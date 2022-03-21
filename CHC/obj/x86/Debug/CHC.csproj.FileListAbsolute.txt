@@ -1,0 +1,125 @@
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\CHC.exe
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\CHC.pdb
+C:\Users\SandhiS\Desktop\CHC\CHC\obj\x86\Debug\CHC.Properties.Resources.resources
+C:\Users\SandhiS\Desktop\CHC\CHC\obj\x86\Debug\CHC.csproj.GenerateResource.Cache
+C:\Users\SandhiS\Desktop\CHC\CHC\obj\x86\Debug\CHC.exe
+C:\Users\SandhiS\Desktop\CHC\CHC\obj\x86\Debug\CHC.pdb
+C:\Users\SandhiS\Desktop\CHC\CHC\obj\x86\Debug\CHC.csprojResolveAssemblyReference.cache
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\ImageHeaven.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\NovaNet.Utils.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\NovaNet.wfe.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\LItems.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\nControls.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\Interop.ClearImage.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\DgvFilterPopup.dll
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\ImageHeaven.pdb
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\NovaNet.Utils.pdb
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\LItems.pdb
+C:\Users\SandhiS\Desktop\CHC\CHC\bin\Debug\nControls.pdb
+D:\CHC\CHC\obj\x86\Debug\CHC.csprojResolveAssemblyReference.cache
+D:\CHC\CHC\obj\x86\Debug\CHC.Properties.Resources.resources
+D:\CHC\CHC\obj\x86\Debug\CHC.csproj.GenerateResource.Cache
+D:\CHC\CHC\bin\Debug\CHC.exe
+D:\CHC\CHC\bin\Debug\CHC.pdb
+D:\CHC\CHC\bin\Debug\ImageHeaven.dll
+D:\CHC\CHC\bin\Debug\NovaNet.Utils.dll
+D:\CHC\CHC\bin\Debug\NovaNet.wfe.dll
+D:\CHC\CHC\bin\Debug\LItems.dll
+D:\CHC\CHC\bin\Debug\nControls.dll
+D:\CHC\CHC\bin\Debug\Interop.ClearImage.dll
+D:\CHC\CHC\bin\Debug\DgvFilterPopup.dll
+D:\CHC\CHC\bin\Debug\ImageHeaven.pdb
+D:\CHC\CHC\bin\Debug\NovaNet.Utils.pdb
+D:\CHC\CHC\bin\Debug\LItems.pdb
+D:\CHC\CHC\bin\Debug\nControls.pdb
+D:\CHC\CHC\obj\x86\Debug\CHC.exe
+D:\CHC\CHC\obj\x86\Debug\CHC.pdb
+D:\CHC\CHC\bin\Debug\NovaNet.wfe.pdb
+D:\CHC\CHC\bin\Debug\TwainUtils.dll
+D:\CHC\CHC\bin\Debug\TwainUtils.pdb
+D:\CHC\CHC\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+D:\CHC\CHC\bin\Debug\ClearImageNet.70.dll
+D:\CHC\CHC\bin\Debug\itextsharp.dll
+D:\CHC\CHC\bin\Debug\Zen.Barcode.Core.dll
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.Properties.Resources.resources
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.csproj.GenerateResource.cache
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.csproj.CoreCompileInputs.cache
+D:\CHC Backup Code\CHC\CHC\bin\Debug\CHC.exe.config
+D:\CHC Backup Code\CHC\CHC\bin\Debug\CHC.exe
+D:\CHC Backup Code\CHC\CHC\bin\Debug\CHC.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\ImageHeaven.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.Utils.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\LItems.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\TwainUtils.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\nControls.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.wfe.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\ClearImageNet.70.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\itextsharp.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Zen.Barcode.Core.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Interop.ClearImage.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\DgvFilterPopup.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\ImageHeaven.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\ImageHeaven.dll.config
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.Utils.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.Utils.dll.config
+D:\CHC Backup Code\CHC\CHC\bin\Debug\LItems.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\LItems.dll.config
+D:\CHC Backup Code\CHC\CHC\bin\Debug\TwainUtils.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\TwainUtils.dll.config
+D:\CHC Backup Code\CHC\CHC\bin\Debug\nControls.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.wfe.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\NovaNet.wfe.dll.config
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.csprojAssemblyReference.cache
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.csproj.CopyComplete
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.exe
+D:\CHC Backup Code\CHC\CHC\obj\x86\Debug\CHC.pdb
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.Pdf.Base.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.Compression.Base.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.Pdf.Base.xml
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.Compression.Base.xml
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.OCRProcessor.Base.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Microsoft.mshtml.dll
+D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.OCRProcessor.Base.xml
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.Properties.Resources.resources
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.GenerateResource.cache
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.CoreCompileInputs.cache
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csprojAssemblyReference.cache
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.exe.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.exe
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\ImageHeaven.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.Utils.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\LItems.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\TwainUtils.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\nControls.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.wfe.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\ClearImageNet.70.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\itextsharp.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Zen.Barcode.Core.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.Pdf.Base.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.OCRProcessor.Base.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Interop.ClearImage.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\DgvFilterPopup.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.Compression.Base.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Microsoft.mshtml.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\ImageHeaven.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\ImageHeaven.dll.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.Utils.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.Utils.dll.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\LItems.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\LItems.dll.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\TwainUtils.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\TwainUtils.dll.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\nControls.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.wfe.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\NovaNet.wfe.dll.config
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.Pdf.Base.xml
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.OCRProcessor.Base.xml
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Syncfusion.Compression.Base.xml
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.CopyComplete
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.exe
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.pdb
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\AxInterop.AcroPDFLib.dll
+D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Interop.AcroPDFLib.dll
