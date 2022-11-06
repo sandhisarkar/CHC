@@ -2034,7 +2034,66 @@ namespace ImageHeaven
             return true;
         }
 
+        public int GetTotalImageCount(string proj, string batch, string file)
+        {
+            string sqlStr = null;
+            DataSet projDs = new DataSet();
+            int count;
 
+            try
+            {
+                sqlStr = @"select count(*) from image_master where proj_key=" + proj + " and batch_key=" + batch + " and policy_number ='" + file + "' and status <> 29";
+                sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
+                sqlAdap.Fill(projDs);
+            }
+            catch (Exception ex)
+            {
+                sqlAdap.Dispose();
+
+                stateLog = new MemoryStream();
+                tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex);
+            }
+            if (projDs.Tables[0].Rows.Count > 0)
+            {
+                count = Convert.ToInt32(projDs.Tables[0].Rows[0][0].ToString());
+            }
+            else
+                count = 0;
+
+            return count;
+        }
+        public string GetCNR(string proj, string batch, string file)
+        {
+            string sqlStr = null;
+            DataSet projDs = new DataSet();
+            string cnrno;
+
+            try
+            {
+                sqlStr = @"select cnrno from metadata_entry where proj_code=" + proj + " and bundle_key=" + batch + " and filename ='" + file + "'";
+                sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
+                sqlAdap.Fill(projDs);
+            }
+            catch (Exception ex)
+            {
+                sqlAdap.Dispose();
+
+                stateLog = new MemoryStream();
+                tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex);
+            }
+            if (projDs.Tables[0].Rows.Count > 0)
+            {
+                cnrno = projDs.Tables[0].Rows[0][0].ToString();
+            }
+            else
+                cnrno = "";
+
+            return cnrno;
+        }
         public System.Data.DataTable GetAllDeedEX(string proj_key, string batch_key)
         {
             string sqlStr = null;
@@ -2064,7 +2123,22 @@ namespace ImageHeaven
                 //{
                 //    dsImage.Tables[0].Rows[i][26] = dsImage.Tables[0].Rows[i][26].ToString() + ".pdf";
                 //}
-                
+                dsImage.Tables[0].Columns.Add("Pages");
+                for (int i = 0; i < dsImage.Tables[0].Rows.Count; i++)
+                {
+                    string filename = dsImage.Tables[0].Rows[i][7].ToString();
+                    string imgCount = string.Empty;
+                    imgCount = GetTotalImageCount(proj_key, batch_key, filename).ToString();
+                    dsImage.Tables[0].Rows[i]["Pages"] = imgCount;
+                }
+                dsImage.Tables[0].Columns.Add("cnrno");
+                for (int i = 0; i < dsImage.Tables[0].Rows.Count; i++)
+                {
+                    string filename = dsImage.Tables[0].Rows[i][7].ToString();
+                    string cnr = string.Empty;
+                    cnr = GetCNR(proj_key, batch_key, filename).ToString();
+                    dsImage.Tables[0].Rows[i]["cnrno"] = cnr;
+                }
                 dsImage.Tables[0].Columns.Add("ImagePath");
                 for (int i = 0; i < dsImage.Tables[0].Rows.Count; i++)
                 {
@@ -2077,12 +2151,12 @@ namespace ImageHeaven
                         if (j == array1.Length - 1)
                         {
                             //pdfnames = pdfnames + Path.GetFileName(array1[j]).ToString();
-                            pdfnames = pdfnames + array1[j].ToString();
+                            pdfnames = pdfnames + array1[j].Remove(0,2).Insert(0,"/data").Replace("\\","/").ToString();
                         }
                         else
                         {
                             //pdfnames = pdfnames + Path.GetFileName(array1[j]).ToString() + " || ";
-                            pdfnames = pdfnames + array1[j].ToString() + " || ";
+                            pdfnames = pdfnames + array1[j].Remove(0, 2).Insert(0, "/data").Replace("\\", "/") + "||";
                         }
                         
                     }
@@ -2171,6 +2245,7 @@ namespace ImageHeaven
                 dsImage.Tables[0].Columns.Remove("FileName");
                 dsImage.Tables[0].Columns.Remove("entryEx");
                 dsImage.Tables[0].Columns.Remove("imageEx");
+                dsImage.Tables[0].Columns.RemoveAt(2);
                 //dsImage.Tables[0].Columns.Add("Exception_Type");
                 //for (int i = 0; i < dsImage.Tables[0].Rows.Count; i++)
                 //{
