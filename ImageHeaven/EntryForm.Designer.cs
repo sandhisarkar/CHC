@@ -190,6 +190,7 @@
             this.deLabel13 = new nControls.deLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.deLabel60 = new nControls.deLabel();
             this.deLabel11 = new nControls.deLabel();
             this.deComboBox12 = new nControls.deComboBox();
             this.deLabel49 = new nControls.deLabel();
@@ -217,6 +218,9 @@
             this.deLabel3 = new nControls.deLabel();
             this.deLabel2 = new nControls.deLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.deLabel61 = new nControls.deLabel();
+            this.deTextBox10 = new nControls.deTextBox();
+            this.deTextBox12 = new nControls.deTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -336,7 +340,7 @@
             this.groupBox16.Controls.Add(this.deButton20);
             this.groupBox16.Controls.Add(this.deButton21);
             this.groupBox16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox16.Location = new System.Drawing.Point(2, 659);
+            this.groupBox16.Location = new System.Drawing.Point(2, 664);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(1207, 42);
             this.groupBox16.TabIndex = 0;
@@ -353,7 +357,7 @@
             this.deButton20.Location = new System.Drawing.Point(960, 9);
             this.deButton20.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.deButton20.Name = "deButton20";
-            this.deButton20.Size = new System.Drawing.Size(90, 30);
+            this.deButton20.Size = new System.Drawing.Size(90, 27);
             this.deButton20.TabIndex = 77;
             this.deButton20.Text = "&Save";
             this.deButton20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -373,7 +377,7 @@
             this.deButton21.Location = new System.Drawing.Point(1114, 9);
             this.deButton21.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.deButton21.Name = "deButton21";
-            this.deButton21.Size = new System.Drawing.Size(87, 30);
+            this.deButton21.Size = new System.Drawing.Size(87, 27);
             this.deButton21.TabIndex = 78;
             this.deButton21.Text = "A&bort";
             this.deButton21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -484,7 +488,7 @@
             this.panel13.Controls.Add(this.groupBox15);
             this.panel13.Controls.Add(this.groupBox14);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(2, 569);
+            this.panel13.Location = new System.Drawing.Point(2, 574);
             this.panel13.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(1207, 90);
@@ -737,10 +741,10 @@
             this.panel11.Controls.Add(this.groupBox13);
             this.panel11.Controls.Add(this.groupBox12);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(2, 455);
+            this.panel11.Location = new System.Drawing.Point(2, 464);
             this.panel11.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1207, 114);
+            this.panel11.Size = new System.Drawing.Size(1207, 110);
             this.panel11.TabIndex = 6;
             // 
             // groupBox13
@@ -762,7 +766,7 @@
             this.groupBox13.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.groupBox13.Size = new System.Drawing.Size(620, 114);
+            this.groupBox13.Size = new System.Drawing.Size(620, 110);
             this.groupBox13.TabIndex = 1;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Connected &Main Case ";
@@ -968,7 +972,7 @@
             this.groupBox12.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.groupBox12.Size = new System.Drawing.Size(587, 114);
+            this.groupBox12.Size = new System.Drawing.Size(587, 110);
             this.groupBox12.TabIndex = 0;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "&Connected Application";
@@ -1228,7 +1232,7 @@
             this.panel10.Controls.Add(this.groupBox11);
             this.panel10.Controls.Add(this.groupBox10);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(2, 361);
+            this.panel10.Location = new System.Drawing.Point(2, 370);
             this.panel10.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1207, 94);
@@ -1722,7 +1726,7 @@
             // 
             this.panel9.Controls.Add(this.groupBox9);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(2, 313);
+            this.panel9.Location = new System.Drawing.Point(2, 322);
             this.panel9.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1207, 48);
@@ -1901,7 +1905,7 @@
             this.panel8.Controls.Add(this.groupBox7);
             this.panel8.Controls.Add(this.groupBox8);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(2, 240);
+            this.panel8.Location = new System.Drawing.Point(2, 249);
             this.panel8.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1207, 73);
@@ -2202,7 +2206,7 @@
             this.panel7.Controls.Add(this.groupBox6);
             this.panel7.Controls.Add(this.groupBox5);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(2, 169);
+            this.panel7.Location = new System.Drawing.Point(2, 178);
             this.panel7.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1207, 71);
@@ -2405,7 +2409,7 @@
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(2, 109);
+            this.panel4.Location = new System.Drawing.Point(2, 118);
             this.panel4.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1207, 60);
@@ -2449,7 +2453,7 @@
             this.deComboBox4.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.deComboBox4.Name = "deComboBox4";
             this.deComboBox4.Size = new System.Drawing.Size(258, 21);
-            this.deComboBox4.TabIndex = 16;
+            this.deComboBox4.TabIndex = 17;
             // 
             // deLabel14
             // 
@@ -2629,11 +2633,15 @@
             this.panel3.Location = new System.Drawing.Point(2, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1207, 105);
+            this.panel3.Size = new System.Drawing.Size(1207, 114);
             this.panel3.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.deTextBox12);
+            this.groupBox2.Controls.Add(this.deTextBox10);
+            this.groupBox2.Controls.Add(this.deLabel61);
+            this.groupBox2.Controls.Add(this.deLabel60);
             this.groupBox2.Controls.Add(this.deLabel11);
             this.groupBox2.Controls.Add(this.deComboBox12);
             this.groupBox2.Controls.Add(this.deLabel49);
@@ -2657,10 +2665,20 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.groupBox2.Size = new System.Drawing.Size(620, 105);
+            this.groupBox2.Size = new System.Drawing.Size(620, 114);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File Information";
+            // 
+            // deLabel60
+            // 
+            this.deLabel60.AutoSize = true;
+            this.deLabel60.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel60.Location = new System.Drawing.Point(16, 92);
+            this.deLabel60.Name = "deLabel60";
+            this.deLabel60.Size = new System.Drawing.Size(79, 13);
+            this.deLabel60.TabIndex = 25;
+            this.deLabel60.Text = "CNR Number :";
             // 
             // deLabel11
             // 
@@ -2888,7 +2906,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.groupBox1.Size = new System.Drawing.Size(587, 105);
+            this.groupBox1.Size = new System.Drawing.Size(587, 114);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bundle Information";
@@ -2997,6 +3015,46 @@
             this.toolTip1.ToolTipTitle = "Image Status";
             this.toolTip1.UseFading = false;
             this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
+            // 
+            // deLabel61
+            // 
+            this.deLabel61.AutoSize = true;
+            this.deLabel61.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel61.Location = new System.Drawing.Point(105, 93);
+            this.deLabel61.Name = "deLabel61";
+            this.deLabel61.Size = new System.Drawing.Size(53, 13);
+            this.deLabel61.TabIndex = 12;
+            this.deLabel61.Text = "WBCHCA";
+            // 
+            // deTextBox10
+            // 
+            this.deTextBox10.BackColor = System.Drawing.Color.White;
+            this.deTextBox10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox10.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox10.Location = new System.Drawing.Point(156, 89);
+            this.deTextBox10.Mandatory = false;
+            this.deTextBox10.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox10.MaxLength = 6;
+            this.deTextBox10.Name = "deTextBox10";
+            this.deTextBox10.Size = new System.Drawing.Size(44, 22);
+            this.deTextBox10.TabIndex = 13;
+            this.deTextBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.deTextBox10_KeyPress);
+            this.deTextBox10.Leave += new System.EventHandler(this.deTextBox10_Leave);
+            this.deTextBox10.MouseLeave += new System.EventHandler(this.deTextBox10_MouseLeave);
+            // 
+            // deTextBox12
+            // 
+            this.deTextBox12.BackColor = System.Drawing.Color.White;
+            this.deTextBox12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox12.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox12.Location = new System.Drawing.Point(201, 89);
+            this.deTextBox12.Mandatory = true;
+            this.deTextBox12.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox12.MaxLength = 4;
+            this.deTextBox12.Name = "deTextBox12";
+            this.deTextBox12.ReadOnly = true;
+            this.deTextBox12.Size = new System.Drawing.Size(32, 22);
+            this.deTextBox12.TabIndex = 14;
             // 
             // EntryForm
             // 
@@ -3256,5 +3314,9 @@
         private nControls.deLabel deLabel58;
         private nControls.deButton deButton31;
         private nControls.deLabel deLabel59;
+        private nControls.deLabel deLabel60;
+        private nControls.deLabel deLabel61;
+        private nControls.deTextBox deTextBox10;
+        private nControls.deTextBox deTextBox12;
     }
 }

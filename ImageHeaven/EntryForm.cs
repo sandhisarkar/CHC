@@ -13,6 +13,7 @@ using System.Net;
 using LItems;
 using System.IO;
 using nControls;
+using System.Text.RegularExpressions;
 
 namespace ImageHeaven
 {
@@ -85,7 +86,7 @@ namespace ImageHeaven
             private string projKey;
             private string bundleKey;
             private string caseFileNo;
-            
+
             private string judge_name;
 
             public string Proj_code
@@ -113,7 +114,7 @@ namespace ImageHeaven
                     caseFileNo = value;
                 }
             }
-            
+
             public string Judge_name
             {
                 get { return judge_name; }
@@ -171,7 +172,7 @@ namespace ImageHeaven
             private string projKey;
             private string bundleKey;
             private string caseFileNo;
-            
+
             private string petitioner_name;
 
             public string Proj_code
@@ -199,7 +200,7 @@ namespace ImageHeaven
                     caseFileNo = value;
                 }
             }
-           
+
             public string Petitioner_name
             {
                 get { return petitioner_name; }
@@ -519,7 +520,7 @@ namespace ImageHeaven
             InitializeComponent();
         }
 
-        public EntryForm(OdbcConnection pCon,string projkey, string batchkey, DataLayerDefs.Mode mode, string casefilename, NovaNet.Utils.Credentials prmCrd)
+        public EntryForm(OdbcConnection pCon, string projkey, string batchkey, DataLayerDefs.Mode mode, string casefilename, NovaNet.Utils.Credentials prmCrd)
         {
             InitializeComponent();
             sqlCon = pCon;
@@ -549,9 +550,9 @@ namespace ImageHeaven
             _mode = mode;
         }
 
-        public EntryForm(OdbcConnection pCon, DataLayerDefs.Mode mode,string fileName, OdbcTransaction pTxn, NovaNet.Utils.Credentials prmCrd)
+        public EntryForm(OdbcConnection pCon, DataLayerDefs.Mode mode, string fileName, OdbcTransaction pTxn, NovaNet.Utils.Credentials prmCrd)
         {
-            
+
             InitializeComponent();
             sqlCon = pCon;
             txn = pTxn;
@@ -563,7 +564,7 @@ namespace ImageHeaven
                 bundleKey = Files.bundleKey;
 
                 filename = fileName;
-                
+
                 _mode = mode;
             }
 
@@ -618,7 +619,7 @@ namespace ImageHeaven
         {
             DataTable dt = new DataTable();
             string sql = "select distinct proj_code, bundle_Key,establishment as Establishment, bundle_name as 'Bundle Name', Bundle_no as 'Bundle Number', date_format(handover_date,'%Y-%m-%d') as 'Handover Date' from bundle_master where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' ";
-            OdbcCommand cmd = new OdbcCommand(sql, sqlCon,txn);
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
             return dt;
@@ -627,8 +628,8 @@ namespace ImageHeaven
         public DataTable _GetFileCaseDetails(string proj, string bundle, string fileName)
         {
             DataTable dt = new DataTable();
-            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no,case_status, case_nature, case_type, case_year, filename from case_file_master where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and filename = '"+fileName+"'";
-            OdbcCommand cmd = new OdbcCommand(sql, sqlCon,txn);
+            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no,case_status, case_nature, case_type, case_year, filename from case_file_master where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and filename = '" + fileName + "'";
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
             return dt;
@@ -637,7 +638,7 @@ namespace ImageHeaven
         public DataTable _GetFileCaseDetails(string proj, string bundle, string casefileno, string itemNo)
         {
             DataTable dt = new DataTable();
-            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no,case_status, case_nature, case_type, case_year from case_file_master where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and case_file_no = '" + casefileno + "' and item_no = '"+itemNo+"' ";
+            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no,case_status, case_nature, case_type, case_year from case_file_master where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and case_file_no = '" + casefileno + "' and item_no = '" + itemNo + "' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -647,19 +648,19 @@ namespace ImageHeaven
         public DataTable _GetMetaCount(string proj, string bundle, string casefileno, string status, string nature, string type, string year)
         {
             DataTable dt = new DataTable();
-            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no from metadata_entry where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and case_file_no = '" + casefileno + "' and case_status = '"+status+"' and case_type = '"+type+"' and case_nature = '"+nature+"' and case_year = '"+year+"' ";
+            string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no from metadata_entry where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and case_file_no = '" + casefileno + "' and case_status = '" + status + "' and case_type = '" + type + "' and case_nature = '" + nature + "' and case_year = '" + year + "' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
             return dt;
         }
 
-       
+
         public DataTable _GetMetaCount(string proj, string bundle, string casefileno)
         {
             DataTable dt = new DataTable();
             string sql = "select distinct proj_code, bundle_Key,item_no,case_file_no from metadata_entry where proj_code = '" + proj + "' and bundle_key = '" + bundle + "' and case_file_no = '" + casefileno + "'";
-            OdbcCommand cmd = new OdbcCommand(sql, sqlCon,txn);
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
             return dt;
@@ -789,7 +790,7 @@ namespace ImageHeaven
                 deComboBox7.DisplayMember = "case_type_code";
                 deComboBox7.ValueMember = "case_type_id";
 
-                
+
             }
         }
 
@@ -868,7 +869,7 @@ namespace ImageHeaven
                 deComboBox5.DisplayMember = "lc_case_type_code";
                 deComboBox5.ValueMember = "lc_case_type_id";
 
-               
+
             }
         }
 
@@ -905,7 +906,7 @@ namespace ImageHeaven
 
             if (dt.Rows.Count > 0)
             {
-               
+
                 deComboBox6.DataSource = dt;
                 deComboBox6.DisplayMember = "judge_name";
                 deComboBox6.ValueMember = "judge_designation";
@@ -964,7 +965,7 @@ namespace ImageHeaven
             odap.Fill(dt);
 
             return dt;
-            
+
         }
 
         private DataTable searchLCCaseType(string lc_case_type_code)
@@ -1047,11 +1048,16 @@ namespace ImageHeaven
                 filename = frmNewCase.caseType + frmNewCase.caseYear + frmNewCase.casefile;
 
                 disablegroup2();
+
+                deLabel61.Text = "WBCHC" + deTextBox3.Text.Substring(0, 1).ToUpper();
+                deTextBox12.Text = frmNewCase.caseYear;
+
+
                 if (deComboBox1.Text == "Disposed")
                 {
                     deTextBox9.Focus();
                     deTextBox9.Select();
-                    
+
                 }
                 else
                 {
@@ -1070,7 +1076,7 @@ namespace ImageHeaven
                 deComboBox11.Text = string.Empty;
 
 
-                if(frmNewCase.isWith == true)
+                if (frmNewCase.isWith == true)
                 {
                     if (metadata_details_analogous(projKey, bundleKey).Rows.Count > 0)
                     {
@@ -1105,8 +1111,8 @@ namespace ImageHeaven
                         }
                     }
                 }
-                
-                
+
+
             }
 
             if (_mode == DataLayerDefs.Mode._Edit)
@@ -1138,6 +1144,19 @@ namespace ImageHeaven
                 deTextBox5.Text = _GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][7].ToString();
                 deComboBox12.Text = _GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][5].ToString();
                 disablegroup2();
+
+                string cnr = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString();
+                if (cnr != "") {
+                    deLabel61.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(0, 6);
+                    deTextBox12.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(12, 4);
+                    deTextBox10.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(6, 6);
+                }
+                else
+                {
+                    deLabel61.Text = "WBCHC" + deTextBox3.Text.Substring(0, 1).ToUpper();
+                    deTextBox12.Text = deTextBox5.Text;
+                }
+
                 if (deComboBox1.Text == "Disposed")
                 {
                     enableDateDisposal();
@@ -1154,7 +1173,7 @@ namespace ImageHeaven
                 string item_no = _GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString();
 
                 string disposal_date = metadata_details(projKey, bundleKey, filename).Rows[0][8].ToString();
-                if(disposal_date == "" || disposal_date == null)
+                if (disposal_date == "" || disposal_date == null)
                 {
                     deTextBox6.Text = string.Empty;
                     deTextBox7.Text = string.Empty;
@@ -1167,18 +1186,18 @@ namespace ImageHeaven
                     deTextBox9.Text = disposal_date.Substring(8, 2);
                 }
                 string judge_name = metadata_details(projKey, bundleKey, filename).Rows[0][9].ToString();
-                
+
                 if (judge_name == "" || judge_name == null)
                 {
                     deComboBox3.Text = string.Empty;
                     listView1.Items.Clear();
-                    
+
                 }
                 else
                 {
                     deComboBox3.Text = string.Empty;
-                    string[] split = judge_name.Split(new string[] {"||"},StringSplitOptions.None);
-                    
+                    string[] split = judge_name.Split(new string[] { "||" }, StringSplitOptions.None);
+
                     foreach (string judge in split)
                     {
                         Console.WriteLine(judge);
@@ -1189,16 +1208,16 @@ namespace ImageHeaven
                         {
                             listView1.Items.Add(judge);
                             jList.Add(judge);
-                            
+
 
                         }
                     }
                     deLabel50.Text = "Total Judges : " + jList.Count;
-                    
+
                 }
 
                 string district = metadata_details(projKey, bundleKey, filename).Rows[0][10].ToString();
-                if(district == null || district == "")
+                if (district == null || district == "")
                 {
                     deComboBox4.Text = string.Empty;
                 }
@@ -1208,7 +1227,7 @@ namespace ImageHeaven
                 }
 
                 string petitioner_name = metadata_details(projKey, bundleKey, filename).Rows[0][11].ToString();
-                if(petitioner_name == null || petitioner_name == "")
+                if (petitioner_name == null || petitioner_name == "")
                 {
                     deTextBox11.Text = string.Empty;
                     listView2.Items.Clear();
@@ -1231,13 +1250,13 @@ namespace ImageHeaven
                             pList.Add(petitioner);
                         }
                     }
-                    
+
                     deLabel51.Text = "Total Petitioner : " + pList.Count;
-                    
+
                 }
 
                 string petitioner_counsel_name = metadata_details(projKey, bundleKey, filename).Rows[0][12].ToString();
-                if(petitioner_counsel_name == null || petitioner_counsel_name == "")
+                if (petitioner_counsel_name == null || petitioner_counsel_name == "")
                 {
                     deTextBox14.Text = string.Empty;
                     listView7.Items.Clear();
@@ -1259,13 +1278,13 @@ namespace ImageHeaven
                             pcList.Add(petitionercounsel);
                         }
                     }
-                   
+
                     deLabel52.Text = "Total Petitioner Counsel : " + pcList.Count;
-                    
+
                 }
 
                 string respondant_name = metadata_details(projKey, bundleKey, filename).Rows[0][13].ToString();
-                if(respondant_name == null || respondant_name == "")
+                if (respondant_name == null || respondant_name == "")
                 {
                     deTextBox18.Text = string.Empty;
                     listView3.Items.Clear();
@@ -1287,13 +1306,13 @@ namespace ImageHeaven
                             rList.Add(respondant);
                         }
                     }
-                    
+
                     deLabel53.Text = "Total Respondant : " + rList.Count;
-                    
+
                 }
 
                 string respondant_counsel = metadata_details(projKey, bundleKey, filename).Rows[0][14].ToString();
-                if(respondant_counsel == null || respondant_counsel == "")
+                if (respondant_counsel == null || respondant_counsel == "")
                 {
                     deTextBox16.Text = string.Empty;
                     listView8.Items.Clear();
@@ -1315,13 +1334,13 @@ namespace ImageHeaven
                             rcList.Add(respondantcounsel);
                         }
                     }
-                    
+
                     deLabel54.Text = "Total Respondant Counsel : " + rcList.Count;
-                    
+
                 }
 
                 string case_filling_date = metadata_details(projKey, bundleKey, filename).Rows[0][15].ToString();
-                if(case_filling_date == null || case_filling_date == "")
+                if (case_filling_date == null || case_filling_date == "")
                 {
                     deTextBox21.Text = string.Empty;
                     deTextBox20.Text = string.Empty;
@@ -1335,7 +1354,7 @@ namespace ImageHeaven
                 }
 
                 string ps = metadata_details(projKey, bundleKey, filename).Rows[0][16].ToString();
-                if(ps == null || ps == "")
+                if (ps == null || ps == "")
                 {
                     deTextBox22.Text = string.Empty;
                 }
@@ -1345,7 +1364,7 @@ namespace ImageHeaven
                 }
 
                 string ps_case_no = metadata_details(projKey, bundleKey, filename).Rows[0][17].ToString();
-                if(ps_case_no == null || ps_case_no == "")
+                if (ps_case_no == null || ps_case_no == "")
                 {
                     deTextBox23.Text = string.Empty;
                 }
@@ -1355,7 +1374,7 @@ namespace ImageHeaven
                 }
 
                 string lc_case_no = metadata_details(projKey, bundleKey, filename).Rows[0][18].ToString();
-                if(lc_case_no == null || lc_case_no == "")
+                if (lc_case_no == null || lc_case_no == "")
                 {
                     deComboBox5.Text = string.Empty;
                     deTextBox24.Text = string.Empty;
@@ -1382,13 +1401,13 @@ namespace ImageHeaven
                             lcNList.Add(lccaseno);
                         }
                     }
-                    
+
                     deLabel55.Text = "Total LC Case : " + lcNList.Count;
-                    
+
                 }
 
                 string lc_order_date = metadata_details(projKey, bundleKey, filename).Rows[0][19].ToString();
-                if(lc_order_date == null || lc_order_date == "")
+                if (lc_order_date == null || lc_order_date == "")
                 {
                     deTextBox29.Text = string.Empty;
                     deTextBox28.Text = string.Empty;
@@ -1402,7 +1421,7 @@ namespace ImageHeaven
                 }
 
                 string lc_judge_name = metadata_details(projKey, bundleKey, filename).Rows[0][20].ToString();
-                if(lc_judge_name == null || lc_judge_name == "")
+                if (lc_judge_name == null || lc_judge_name == "")
                 {
                     deComboBox6.Text = string.Empty;
                     listView9.Items.Clear();
@@ -1424,12 +1443,12 @@ namespace ImageHeaven
                             lcJList.Add(lcjudge);
                         }
                     }
-                    
+
                     deLabel56.Text = "Total LC Judges : " + lcJList.Count;
                 }
 
                 string conn_app_case_no = metadata_details(projKey, bundleKey, filename).Rows[0][21].ToString();
-                if(conn_app_case_no == null || conn_app_case_no == "")
+                if (conn_app_case_no == null || conn_app_case_no == "")
                 {
                     deComboBox7.Text = string.Empty;
                     deTextBox31.Text = string.Empty;
@@ -1459,7 +1478,7 @@ namespace ImageHeaven
                 }
 
                 string conn_disposal_type = metadata_details(projKey, bundleKey, filename).Rows[0][22].ToString();
-                if(conn_disposal_type == null || conn_disposal_type == "")
+                if (conn_disposal_type == null || conn_disposal_type == "")
                 {
                     deComboBox8.Text = string.Empty;
                 }
@@ -1469,7 +1488,7 @@ namespace ImageHeaven
                 }
 
                 string conn_main_case_no = metadata_details(projKey, bundleKey, filename).Rows[0][23].ToString();
-                if(conn_main_case_no == null || conn_main_case_no == "")
+                if (conn_main_case_no == null || conn_main_case_no == "")
                 {
                     deComboBox9.Text = string.Empty;
                     deTextBox35.Text = string.Empty;
@@ -1499,7 +1518,7 @@ namespace ImageHeaven
                 }
 
                 string analogous_case_no = metadata_details(projKey, bundleKey, filename).Rows[0][24].ToString();
-                if(analogous_case_no == null || analogous_case_no == "")
+                if (analogous_case_no == null || analogous_case_no == "")
                 {
                     deComboBox10.Text = string.Empty;
                     deTextBox38.Text = string.Empty;
@@ -1578,7 +1597,7 @@ namespace ImageHeaven
                     deTextBox43.Text = dept_remark;
                 }
 
-               
+
             }
         }
 
@@ -1587,7 +1606,7 @@ namespace ImageHeaven
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
 
-            string sql = "select proj_code, bundle_key, item_no,case_file_no, case_status, case_type, case_nature, case_year, disposal_date, judge_name, district,petitioner_name,petitioner_counsel_name,respondant_name, respondant_counsel_name, case_filling_date, ps_name, ps_case_no, lc_case_no,lc_order_date,lc_judge_name, conn_app_case_no, conn_disposal_type,conn_main_case_no, analogous_case_no, old_case_type,old_case_no,old_case_year,file_move_history,dept_remark from metadata_entry where proj_code = '"+projkey+"' and bundle_key = '"+bundlekey+"' and case_file_no = '"+casefileno+"' and item_no = '"+item_no+"' ";
+            string sql = "select proj_code, bundle_key, item_no,case_file_no, case_status, case_type, case_nature, case_year, disposal_date, judge_name, district,petitioner_name,petitioner_counsel_name,respondant_name, respondant_counsel_name, case_filling_date, ps_name, ps_case_no, lc_case_no,lc_order_date,lc_judge_name, conn_app_case_no, conn_disposal_type,conn_main_case_no, analogous_case_no, old_case_type,old_case_no,old_case_year,file_move_history,dept_remark from metadata_entry where proj_code = '" + projkey + "' and bundle_key = '" + bundlekey + "' and case_file_no = '" + casefileno + "' and item_no = '" + item_no + "' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -1601,7 +1620,7 @@ namespace ImageHeaven
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
 
-            string sql = "select proj_code, bundle_key, item_no,case_file_no, case_status, case_type, case_nature, case_year, disposal_date, judge_name, district,petitioner_name,petitioner_counsel_name,respondant_name, respondant_counsel_name, case_filling_date, ps_name, ps_case_no, lc_case_no,lc_order_date,lc_judge_name, conn_app_case_no, conn_disposal_type,conn_main_case_no, analogous_case_no, old_case_type,old_case_no,old_case_year,file_move_history,dept_remark from metadata_entry where proj_code = '" + projkey + "' and bundle_key = '" + bundlekey + "' and filename = '" + fileName + "'  ";
+            string sql = "select proj_code, bundle_key, item_no,case_file_no, case_status, case_type, case_nature, case_year, disposal_date, judge_name, district,petitioner_name,petitioner_counsel_name,respondant_name, respondant_counsel_name, case_filling_date, ps_name, ps_case_no, lc_case_no,lc_order_date,lc_judge_name, conn_app_case_no, conn_disposal_type,conn_main_case_no, analogous_case_no, old_case_type,old_case_no,old_case_year,file_move_history,dept_remark,cnrno from metadata_entry where proj_code = '" + projkey + "' and bundle_key = '" + bundlekey + "' and filename = '" + fileName + "'  ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -1642,7 +1661,7 @@ namespace ImageHeaven
                         cMList.Clear();
                         aList.Clear();
                         this.Close();
-                        
+
                     }
                     else
                     {
@@ -1747,7 +1766,7 @@ namespace ImageHeaven
                 return;
             }
 
-            if(e.Alt == true && e.KeyCode == Keys.N)
+            if (e.Alt == true && e.KeyCode == Keys.N)
             {
                 deTextBox43.Focus();
                 return;
@@ -1798,7 +1817,7 @@ namespace ImageHeaven
 
         private void deButton1_Click(object sender, EventArgs e)
         {
-            if(listView1.Items.Count > 0)
+            if (listView1.Items.Count > 0)
             {
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
@@ -1844,7 +1863,7 @@ namespace ImageHeaven
                 deTextBox11.Text = string.Empty;
                 deTextBox11.Focus();
             }
-            
+
         }
 
         private void deButton2_Click(object sender, EventArgs e)
@@ -1853,7 +1872,7 @@ namespace ImageHeaven
             {
                 for (int i = 0; i < listView2.Items.Count; i++)
                 {
-                    if(listView2.Items[i].Selected == true)
+                    if (listView2.Items[i].Selected == true)
                     {
                         if (listView2.SelectedItems[0].Selected == true)
                         {
@@ -1863,7 +1882,7 @@ namespace ImageHeaven
                         }
                     }
                 }
-                   
+
             }
         }
 
@@ -1896,7 +1915,7 @@ namespace ImageHeaven
                 deTextBox18.Text = string.Empty;
                 deTextBox18.Focus();
             }
-           
+
         }
 
         private void deButton11_Click(object sender, EventArgs e)
@@ -1947,7 +1966,7 @@ namespace ImageHeaven
                 deTextBox14.Text = string.Empty;
                 deTextBox14.Focus();
             }
-           
+
         }
 
         private void deButton4_Click(object sender, EventArgs e)
@@ -1997,7 +2016,7 @@ namespace ImageHeaven
                 deTextBox16.Text = string.Empty;
                 deTextBox16.Focus();
             }
-            
+
         }
 
         private void deButton7_Click(object sender, EventArgs e)
@@ -2021,7 +2040,7 @@ namespace ImageHeaven
 
         private void deButton9_Click(object sender, EventArgs e)
         {
-            
+
             if ((deComboBox5.Text == "" || deComboBox5.Text == null || String.IsNullOrEmpty(deComboBox5.Text) || String.IsNullOrWhiteSpace(deComboBox5.Text)) || (deTextBox24.Text == "" || deTextBox24.Text == null || String.IsNullOrEmpty(deTextBox24.Text) || String.IsNullOrWhiteSpace(deTextBox24.Text)) || (deTextBox25.Text == "" || deTextBox25.Text == string.Empty || deTextBox25.Text == null || String.IsNullOrEmpty(deTextBox25.Text) || String.IsNullOrWhiteSpace(deTextBox25.Text)))
             {
                 MessageBox.Show("Please Fill All the fields ...");
@@ -2069,7 +2088,7 @@ namespace ImageHeaven
                 }
 
             }
-            
+
         }
 
         private void deButton8_Click(object sender, EventArgs e)
@@ -2128,7 +2147,7 @@ namespace ImageHeaven
                 deComboBox6.Focus();
 
             }
-            
+
         }
 
         private void deButton12_Click(object sender, EventArgs e)
@@ -2173,7 +2192,7 @@ namespace ImageHeaven
 
         private void deButton15_Click(object sender, EventArgs e)
         {
-            
+
             if ((deComboBox7.Text == "" || deComboBox7.Text == null || String.IsNullOrEmpty(deComboBox7.Text) || String.IsNullOrWhiteSpace(deComboBox7.Text)) || (deTextBox31.Text == "" || deTextBox31.Text == null || String.IsNullOrEmpty(deTextBox31.Text) || String.IsNullOrWhiteSpace(deTextBox31.Text)) || (deTextBox32.Text == "" || deTextBox32.Text == null || String.IsNullOrEmpty(deTextBox32.Text) || String.IsNullOrWhiteSpace(deTextBox32.Text)))
             {
                 MessageBox.Show("Please Fill All the fields ...");
@@ -2217,12 +2236,12 @@ namespace ImageHeaven
                 }
 
             }
-            
+
         }
 
         private void deButton17_Click(object sender, EventArgs e)
         {
-           
+
             if ((deComboBox9.Text == "" || deComboBox9.Text == null || String.IsNullOrEmpty(deComboBox9.Text) || String.IsNullOrWhiteSpace(deComboBox9.Text)) || (deTextBox35.Text == "" || deTextBox35.Text == null || String.IsNullOrEmpty(deTextBox35.Text) || String.IsNullOrWhiteSpace(deTextBox35.Text)) || (deTextBox36.Text == "" || deTextBox36.Text == null || String.IsNullOrEmpty(deTextBox36.Text) || String.IsNullOrWhiteSpace(deTextBox36.Text)))
             {
                 MessageBox.Show("Please Fill All the fields ...");
@@ -2266,7 +2285,7 @@ namespace ImageHeaven
                 }
 
             }
-           
+
         }
 
         private void deButton16_Click(object sender, EventArgs e)
@@ -2292,7 +2311,7 @@ namespace ImageHeaven
 
         private void deButton19_Click(object sender, EventArgs e)
         {
-            
+
             if ((deComboBox10.Text == "" || deComboBox10.Text == null || String.IsNullOrEmpty(deComboBox10.Text) || String.IsNullOrWhiteSpace(deComboBox10.Text)) || (deTextBox38.Text == "" || deTextBox38.Text == null || String.IsNullOrEmpty(deTextBox38.Text) || String.IsNullOrWhiteSpace(deTextBox38.Text)) || (deTextBox39.Text == "" || deTextBox39.Text == null || String.IsNullOrEmpty(deTextBox39.Text) || String.IsNullOrWhiteSpace(deTextBox39.Text)))
             {
                 MessageBox.Show("Please Fill All the fields ...");
@@ -2336,7 +2355,7 @@ namespace ImageHeaven
                 }
 
             }
-            
+
         }
 
         private void deButton18_Click(object sender, EventArgs e)
@@ -2417,7 +2436,16 @@ namespace ImageHeaven
             }
         }
 
-        
+        public DataTable checkCNR(string combo, string cnr, string year)
+        {
+            DataTable dt = new DataTable();
+            string sql = "select cnrno from metadata_entry where cnrno = CONCAT('"+combo+"','"+cnr+"','"+year+"') and case_year = '" + year + "'";
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
+            OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
+            odap.Fill(dt);
+
+            return dt;
+        }
 
         public bool validate()
         {
@@ -2427,20 +2455,32 @@ namespace ImageHeaven
             string curYear = DateTime.Now.ToString("yyyy");
             int curIntYear = Convert.ToInt32(curYear);
 
-            if(_mode == DataLayerDefs.Mode._Add)
+            if (_mode == DataLayerDefs.Mode._Add)
             {
-                if(frmNewCase.isWith == true && aList.Count == 0 )
+                if (frmNewCase.isWith == true && aList.Count == 0)
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please add some analogous case ...", "Warning", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please add some analogous case ...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deButton31.Focus();
                     return retval;
                 }
                 else
                 { retval = true; }
-                
+
             }
 
+            if (deTextBox10.Text != "")
+            {
+                string year = frmNewCase.caseYear;
+                if(checkCNR(deLabel61.Text, deTextBox10.Text, year).Rows.Count > 0)
+                {
+                    retval = false;
+                    MessageBox.Show(this, "Please input correct CNR Number...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    deTextBox10.Focus();
+                    return retval;
+                }
+            }
+            
 
             if (deTextBox6.Text != "" || deTextBox7.Text != "" || deTextBox9.Text != "")
             {
@@ -2455,12 +2495,12 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox6.Focus();
                         return retval;
                     }
                 }
-                
+
                 if (deTextBox7.Text != "")
                 {
 
@@ -2474,7 +2514,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox7.Focus();
                         return retval;
                     }
@@ -2482,7 +2522,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox7.Focus();
                     return retval;
                 }
@@ -2498,7 +2538,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox9.Focus();
                         return retval;
                     }
@@ -2506,7 +2546,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox9.Focus();
                     return retval;
                 }
@@ -2520,7 +2560,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please select a valid date", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please select a valid date", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     deTextBox6.Select();
                     return retval;
@@ -2546,7 +2586,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox21.Focus();
                         return retval;
                     }
@@ -2565,7 +2605,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox20.Focus();
                         return retval;
                     }
@@ -2573,7 +2613,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox20.Focus();
                     return retval;
                 }
@@ -2590,7 +2630,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox19.Focus();
                         return retval;
                     }
@@ -2598,7 +2638,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox19.Focus();
                     return retval;
                 }
@@ -2612,7 +2652,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please select a valid date", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please select a valid date", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     deTextBox21.Select();
                     return retval;
@@ -2638,7 +2678,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Year...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox29.Focus();
                         return retval;
                     }
@@ -2656,7 +2696,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox28.Focus();
                         return retval;
                     }
@@ -2664,7 +2704,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Month...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox28.Focus();
                     return retval;
                 }
@@ -2680,7 +2720,7 @@ namespace ImageHeaven
                     else
                     {
                         retval = false;
-                        MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         deTextBox27.Focus();
                         return retval;
                     }
@@ -2688,7 +2728,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please input Valid Date...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     deTextBox27.Focus();
                     return retval;
                 }
@@ -2702,7 +2742,7 @@ namespace ImageHeaven
                 else
                 {
                     retval = false;
-                    MessageBox.Show(this,"Please select a valid date", "Please select a valid date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Please select a valid date", "Please select a valid date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     deTextBox29.Select();
                     return retval;
@@ -2714,7 +2754,7 @@ namespace ImageHeaven
                 retval = true;
             }
 
-            
+
 
             return retval;
         }
@@ -2734,9 +2774,9 @@ namespace ImageHeaven
             //int sl = _GetTotalCount();
             //int sl_no = sl + 1;
 
-            itemno = Convert.ToString( Convert.ToInt32(itemno) + 1 );
+            itemno = Convert.ToString(Convert.ToInt32(itemno) + 1);
 
-            if(frmNewCase.state[0] == eSTATES.METADATA_ENTRY)
+            if (frmNewCase.state[0] == eSTATES.METADATA_ENTRY)
             {
                 sqlStr = @"insert into case_file_master(proj_code,bundle_key, item_no,sl_no,case_file_no,case_status,case_nature,case_type,case_year,filename,created_by,created_dttm,status) values('" +
                         projKey + "','" + bundleKey + "','" + itemno +
@@ -2814,7 +2854,7 @@ namespace ImageHeaven
 
             return commitBol;
         }
-        private bool insertIntoDB(string item_no, OdbcTransaction trans)
+        private bool insertIntoDB(string item_no, string cnr, OdbcTransaction trans)
         {
             bool commitBol = true;
 
@@ -2845,13 +2885,13 @@ namespace ImageHeaven
 
             if (deTextBox6.Text != "" && deTextBox7.Text != "" && deTextBox9.Text != "")
             {
-                disposal_date = deTextBox6.Text+"-"+deTextBox7.Text+"-"+deTextBox9.Text;
+                disposal_date = deTextBox6.Text + "-" + deTextBox7.Text + "-" + deTextBox9.Text;
             }
             else
             {
                 disposal_date = "";
             }
-            
+
             //if (listView1.Items.Count > 0)
             //{
             //    if (listView1.Items.Count == 1)
@@ -2927,15 +2967,15 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < pList.Count; i++)
                     {
-                        if(i == pList.Count - 1)
+                        if (i == pList.Count - 1)
                         {
-                            petitionoer_name = petitionoer_name + pList[i].ToString() ;
+                            petitionoer_name = petitionoer_name + pList[i].ToString();
                         }
                         else
                         {
                             petitionoer_name = petitionoer_name + pList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -2971,7 +3011,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < pcList.Count; i++)
                     {
-                        if(i == pcList.Count - 1)
+                        if (i == pcList.Count - 1)
                         {
                             petitionoer_counsel = petitionoer_counsel + pcList[i].ToString();
                         }
@@ -2979,7 +3019,7 @@ namespace ImageHeaven
                         {
                             petitionoer_counsel = petitionoer_counsel + pcList[i].ToString() + "||";
                         }
-                       
+
                     }
                 }
             }
@@ -3015,15 +3055,15 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < rList.Count; i++)
                     {
-                        if(i == rList.Count - 1)
+                        if (i == rList.Count - 1)
                         {
-                            respondant_name = respondant_name + rList[i].ToString() ;
+                            respondant_name = respondant_name + rList[i].ToString();
                         }
                         else
                         {
                             respondant_name = respondant_name + rList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3059,7 +3099,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < rcList.Count; i++)
                     {
-                        if(i == rcList.Count - 1)
+                        if (i == rcList.Count - 1)
                         {
                             respondant_counsel = respondant_counsel + rcList[i].ToString();
                         }
@@ -3067,7 +3107,7 @@ namespace ImageHeaven
                         {
                             respondant_counsel = respondant_counsel + rcList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3084,7 +3124,7 @@ namespace ImageHeaven
             {
                 case_filling_date = "";
             }
-            
+
             string ps = deTextBox22.Text.Trim();
             string ps_caseno = deTextBox23.Text.Trim();
 
@@ -3116,7 +3156,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < lcNList.Count; i++)
                     {
-                        if(i == lcNList.Count - 1)
+                        if (i == lcNList.Count - 1)
                         {
                             lc_case_no = lc_case_no + lcNList[i].ToString();
                         }
@@ -3124,7 +3164,7 @@ namespace ImageHeaven
                         {
                             lc_case_no = lc_case_no + lcNList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3170,7 +3210,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < lcJList.Count; i++)
                     {
-                        if(i == lcJList.Count - 1)
+                        if (i == lcJList.Count - 1)
                         {
                             lc_judge_name = lc_judge_name + lcJList[i].ToString();
                         }
@@ -3178,7 +3218,7 @@ namespace ImageHeaven
                         {
                             lc_judge_name = lc_judge_name + lcJList[i].ToString() + "||";
                         }
-                       
+
                     }
                 }
             }
@@ -3214,7 +3254,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < cList.Count; i++)
                     {
-                        if (i == cList.Count-1)
+                        if (i == cList.Count - 1)
                         {
                             conn_app_case_no = conn_app_case_no + cList[i].ToString();
                         }
@@ -3222,7 +3262,7 @@ namespace ImageHeaven
                         {
                             conn_app_case_no = conn_app_case_no + cList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3260,7 +3300,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < cMList.Count; i++)
                     {
-                        if(i == cMList.Count-1)
+                        if (i == cMList.Count - 1)
                         {
                             conn_main_case_no = conn_main_case_no + cMList[i].ToString();
                         }
@@ -3268,7 +3308,7 @@ namespace ImageHeaven
                         {
                             conn_main_case_no = conn_main_case_no + cMList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3304,7 +3344,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < aList.Count; i++)
                     {
-                        if(i == aList.Count - 1)
+                        if (i == aList.Count - 1)
                         {
                             analogous_case_no = analogous_case_no + aList[i].ToString();
                         }
@@ -3312,7 +3352,7 @@ namespace ImageHeaven
                         {
                             analogous_case_no = analogous_case_no + aList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3329,9 +3369,9 @@ namespace ImageHeaven
 
             item_no = Convert.ToString(Convert.ToInt32(item_no) + 1);
 
-            sqlStr = @"insert into metadata_entry(proj_code,bundle_key,item_no,case_file_no,case_status,case_type,case_nature,case_year,filename,disposal_date,judge_name,district,petitioner_name,petitioner_counsel_name,respondant_name,respondant_counsel_name,case_filling_date,ps_name,ps_case_no,lc_case_no,lc_order_date,lc_judge_name,conn_app_case_no,conn_disposal_type,conn_main_case_no,analogous_case_no,old_case_type,old_case_no,old_case_year,file_move_history,dept_remark,created_by,created_dttm) values('" +
-                        projKey + "','" + bundleKey + "','"+item_no+"','" + case_file_no +
-                        "','" + case_status + "','" + case_type + "','" + case_nature + "','" + case_year + "','"+filename+"','" + disposal_date + "','" + judge_name + "','" + district + "','" + petitionoer_name + "','" + petitionoer_counsel + "','" + respondant_name + "','" + respondant_counsel + "','" + case_filling_date + "','" + ps + "','" + ps_caseno + "','" + lc_case_no + "','" + lc_order_date + "','" + lc_judge_name + "','"+conn_app_case_no+"','"+conn_app_disposal_type+"','"+conn_main_case_no+"','"+analogous_case_no+"','"+old_case_type+"','"+old_case_no+"','"+old_case_year+"','"+file_move_history+"','"+dept_note+"','" + crd.created_by + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+            sqlStr = @"insert into metadata_entry(proj_code,bundle_key,item_no,case_file_no,case_status,case_type,case_nature,case_year,filename,disposal_date,judge_name,district,cnrno,petitioner_name,petitioner_counsel_name,respondant_name,respondant_counsel_name,case_filling_date,ps_name,ps_case_no,lc_case_no,lc_order_date,lc_judge_name,conn_app_case_no,conn_disposal_type,conn_main_case_no,analogous_case_no,old_case_type,old_case_no,old_case_year,file_move_history,dept_remark,created_by,created_dttm) values('" +
+                        projKey + "','" + bundleKey + "','" + item_no + "','" + case_file_no +
+                        "','" + case_status + "','" + case_type + "','" + case_nature + "','" + case_year + "','" + filename + "','" + disposal_date + "','" + judge_name + "','" + district + "','"+cnr+"','" + petitionoer_name + "','" + petitionoer_counsel + "','" + respondant_name + "','" + respondant_counsel + "','" + case_filling_date + "','" + ps + "','" + ps_caseno + "','" + lc_case_no + "','" + lc_order_date + "','" + lc_judge_name + "','" + conn_app_case_no + "','" + conn_app_disposal_type + "','" + conn_main_case_no + "','" + analogous_case_no + "','" + old_case_type + "','" + old_case_no + "','" + old_case_year + "','" + file_move_history + "','" + dept_note + "','" + crd.created_by + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
             //sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = txn;
             //sqlCmd.CommandText = sqlStr;
@@ -3420,6 +3460,16 @@ namespace ImageHeaven
                 disposal_date = "";
             }
 
+            string cnrno;
+            if (deTextBox10.Text == "" || deTextBox10.Text == null)
+            {
+                cnrno = "";
+            }
+            else
+            {
+                cnrno = deLabel61.Text + deTextBox10.Text.PadLeft(6, '0') + deTextBox12.Text;
+            }
+
             //if (listView1.Items.Count > 0)
             //{
             //    if (listView1.Items.Count == 1)
@@ -3448,7 +3498,7 @@ namespace ImageHeaven
                 {
                     for (int i = 0; i < jList.Count; i++)
                     {
-                        if(i==jList.Count-1)
+                        if (i == jList.Count - 1)
                         {
                             judge_name = judge_name + jList[i].ToString();
                         }
@@ -3456,7 +3506,7 @@ namespace ImageHeaven
                         {
                             judge_name = judge_name + jList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3502,7 +3552,7 @@ namespace ImageHeaven
                         {
                             petitionoer_name = petitionoer_name + pList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3546,7 +3596,7 @@ namespace ImageHeaven
                         {
                             petitionoer_counsel = petitionoer_counsel + pcList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3583,14 +3633,14 @@ namespace ImageHeaven
                     for (int i = 0; i < rList.Count; i++)
                     {
                         if (i == rList.Count - 1)
-                        { 
-                            respondant_name = respondant_name + rList[i].ToString(); 
+                        {
+                            respondant_name = respondant_name + rList[i].ToString();
                         }
-                        else 
+                        else
                         {
                             respondant_name = respondant_name + rList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3634,7 +3684,7 @@ namespace ImageHeaven
                         {
                             respondant_counsel = respondant_counsel + rcList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3691,7 +3741,7 @@ namespace ImageHeaven
                         {
                             lc_case_no = lc_case_no + lcNList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3781,7 +3831,7 @@ namespace ImageHeaven
                         {
                             conn_app_case_no = conn_app_case_no + cList[i].ToString() + "||";
                         }
-                       
+
                     }
                 }
             }
@@ -3827,7 +3877,7 @@ namespace ImageHeaven
                         {
                             conn_main_case_no = conn_main_case_no + cMList[i].ToString() + "||";
                         }
-                        
+
                     }
                 }
             }
@@ -3879,7 +3929,7 @@ namespace ImageHeaven
             string dept_note = deTextBox43.Text;
 
 
-            sqlStr = @"update metadata_entry set case_status = '" + case_status + "',case_type ='" + case_type + "',case_nature='" + case_nature + "',case_year ='" + case_year + "',disposal_date='" + disposal_date + "',judge_name ='" + judge_name + "',district='" + district + "',petitioner_name ='" + petitionoer_name + "',petitioner_counsel_name='" + petitionoer_counsel + "',respondant_name='" + respondant_name + "',respondant_counsel_name='" + respondant_counsel + "',case_filling_date='" + case_filling_date + "',ps_name='" + ps + "',ps_case_no='" + ps_caseno + "',lc_case_no='" + lc_case_no + "',lc_order_date= '" + lc_order_date + "',lc_judge_name='" + lc_judge_name + "',conn_app_case_no='" + conn_app_case_no + "',conn_disposal_type='" + conn_app_disposal_type + "',conn_main_case_no='" + conn_main_case_no + "',analogous_case_no='" + analogous_case_no + "',old_case_type='" + old_case_type + "',old_case_no='" + old_case_no + "',old_case_year='" + old_case_year + "',file_move_history = '" + file_move_history + "',dept_remark = '" + dept_note + "',modified_by ='" + crd.created_by + "',modified_dttm = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where proj_code ='" + projKey + "' and bundle_key = '" + bundleKey + "' and filename = '" + filename + "' ";
+            sqlStr = @"update metadata_entry set case_status = '" + case_status + "',case_type ='" + case_type + "',case_nature='" + case_nature + "',case_year ='" + case_year + "',disposal_date='" + disposal_date + "',judge_name ='" + judge_name + "',district='" + district + "',petitioner_name ='" + petitionoer_name + "',petitioner_counsel_name='" + petitionoer_counsel + "',respondant_name='" + respondant_name + "',respondant_counsel_name='" + respondant_counsel + "',case_filling_date='" + case_filling_date + "',ps_name='" + ps + "',ps_case_no='" + ps_caseno + "',lc_case_no='" + lc_case_no + "',lc_order_date= '" + lc_order_date + "',lc_judge_name='" + lc_judge_name + "',conn_app_case_no='" + conn_app_case_no + "',conn_disposal_type='" + conn_app_disposal_type + "',conn_main_case_no='" + conn_main_case_no + "',analogous_case_no='" + analogous_case_no + "',old_case_type='" + old_case_type + "',old_case_no='" + old_case_no + "',old_case_year='" + old_case_year + "',file_move_history = '" + file_move_history + "',dept_remark = '" + dept_note + "',cnrno = '"+cnrno+"',modified_by ='" + crd.created_by + "',modified_dttm = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where proj_code ='" + projKey + "' and bundle_key = '" + bundleKey + "' and filename = '" + filename + "' ";
             //sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = txn;
             //sqlCmd.CommandText = sqlStr;
@@ -4024,7 +4074,7 @@ namespace ImageHeaven
 
             return retVal;
         }
-        public bool _UpdateCaseFile(string projKey, string bundleKey, string caseFileNo, string status , string nature, string type, string year)
+        public bool _UpdateCaseFile(string projKey, string bundleKey, string caseFileNo, string status, string nature, string type, string year)
         {
             string sqlStr = null;
 
@@ -4061,7 +4111,7 @@ namespace ImageHeaven
             }
 
 
-            sqlStr = "UPDATE case_file_master SET remarks = '"+remarks+"',entry_exception = '"+exception+"' WHERE proj_code = '" + projKey + "' AND bundle_key = '" + bundleKey + "' and case_file_no = '"+caseFileNo+"' and case_status = '"+status+"' and case_nature = '"+nature+"' and case_type = '"+type+"' and case_year = '"+year+"' and filename = '"+filename+"' ";
+            sqlStr = "UPDATE case_file_master SET remarks = '" + remarks + "',entry_exception = '" + exception + "' WHERE proj_code = '" + projKey + "' AND bundle_key = '" + bundleKey + "' and case_file_no = '" + caseFileNo + "' and case_status = '" + status + "' and case_nature = '" + nature + "' and case_type = '" + type + "' and case_year = '" + year + "' and filename = '" + filename + "' ";
             //sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = txn;
             //sqlCmd.CommandText = sqlStr;
@@ -4123,7 +4173,7 @@ namespace ImageHeaven
 
             OdbcTransaction sqlTrans = null;
 
-            if (sqlCon.State == ConnectionState.Closed || sqlCon.State == ConnectionState.Broken )
+            if (sqlCon.State == ConnectionState.Closed || sqlCon.State == ConnectionState.Broken)
             {
                 sqlCon.Open();
             }
@@ -4203,83 +4253,278 @@ namespace ImageHeaven
             //    deComboBox10.Focus();
             //    return;
             //}
-            
-            if (deComboBox4.Text != "" || deComboBox4.Text != null) 
+
+            if (deComboBox4.Text != "" || deComboBox4.Text != null)
             {
                 //if (listView2.Items.Count > 0 && listView3.Items.Count > 0)
                 if (pList.Count > 0 && rList.Count > 0)
                 {
-                    
-                       
+
+
+                    if (_mode == DataLayerDefs.Mode._Add)
+                    {
+                        caseFileNo = deTextBox8.Text;
+                        if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
+                        {
+
+
+                            DialogResult dr = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dr == DialogResult.Yes)
+                            {
+                                string cnrno;
+                                if (deTextBox10.Text == "" || deTextBox10.Text == null)
+                                {
+                                    cnrno = "";
+                                }
+                                else
+                                {
+                                    cnrno = deLabel61.Text + deTextBox10.Text.PadLeft(6, '0') + deTextBox12.Text;
+                                }
+                                if (validate() == true)
+                                {
+                                    bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
+                                    bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+
+                                    bool updatecasefile = updateCaseFile();
+
+                                    if (insertCase == true && insertmeta == true && updatecasefile == true)
+                                    {
+                                        if (sqlTrans == null)
+                                        {
+                                            sqlTrans = sqlCon.BeginTransaction();
+                                        }
+                                        sqlTrans.Commit();
+                                        sqlTrans = null;
+                                        MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //this.Hide();
+                                        jList.Clear();
+                                        pList.Clear();
+                                        pcList.Clear();
+                                        rList.Clear();
+                                        rcList.Clear();
+                                        lcNList.Clear();
+                                        lcJList.Clear();
+                                        cList.Clear();
+                                        cMList.Clear();
+                                        aList.Clear();
+                                        this.Close();
+
+                                        //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                        //fm.ShowDialog(this);
+                                    }
+                                    else
+                                    {
+
+                                        MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //this.Hide();
+                                        //jList.Clear();
+                                        //pList.Clear();
+                                        //pcList.Clear();
+                                        //rList.Clear();
+                                        //rcList.Clear();
+                                        //lcNList.Clear();
+                                        //lcJList.Clear();
+                                        //cList.Clear();
+                                        //cMList.Clear();
+                                        //aList.Clear();
+                                        return;
+                                        //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                        //fm.ShowDialog(this);
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                return;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //this.Hide();
+                            jList.Clear();
+                            pList.Clear();
+                            pcList.Clear();
+                            rList.Clear();
+                            rcList.Clear();
+                            lcNList.Clear();
+                            lcJList.Clear();
+                            cList.Clear();
+                            cMList.Clear();
+                            aList.Clear();
+                            this.Close();
+                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                            //fm.ShowDialog(this);
+                        }
+
+                    }
+                    else if (_mode == DataLayerDefs.Mode._Edit)
+                    {
+
+                        DialogResult dr = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dr == DialogResult.Yes)
+                        {
+                            if (validate() == true)
+                            {
+
+                                bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
+                                bool updatecasefile = updateCaseFileEdit();
+                                if (updatemeta == true && updatecasefile == true)
+                                {
+                                    if (sqlTrans == null)
+                                    {
+                                        sqlTrans = sqlCon.BeginTransaction();
+                                    }
+                                    sqlTrans.Commit();
+                                    sqlTrans = null;
+                                    MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //this.Hide();
+                                    jList.Clear();
+                                    pList.Clear();
+                                    pcList.Clear();
+                                    rList.Clear();
+                                    rcList.Clear();
+                                    lcNList.Clear();
+                                    lcJList.Clear();
+                                    cList.Clear();
+                                    cMList.Clear();
+                                    aList.Clear();
+                                    this.Close();
+                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                    //fm.ShowDialog(this);
+                                }
+                                else
+                                {
+                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                    //jList.Clear();
+                                    //pList.Clear();
+                                    //pcList.Clear();
+                                    //rList.Clear();
+                                    //rcList.Clear();
+                                    //lcNList.Clear();
+                                    //lcJList.Clear();
+                                    //cList.Clear();
+                                    //cMList.Clear();
+                                    //aList.Clear();
+                                    return;
+                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                    //fm.ShowDialog(this);
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //this.Hide();
+                        //jList.Clear();
+                        //pList.Clear();
+                        //pcList.Clear();
+                        //rList.Clear();
+                        //rcList.Clear();
+                        //lcNList.Clear();
+                        //lcJList.Clear();
+                        //cList.Clear();
+                        //cMList.Clear();
+                        //aList.Clear();
+                        return;
+                    }
+
+
+                }
+                else
+                {
+                    if (pList.Count == 0 && rList.Count == 0)
+                    {
+                        DialogResult dr = MessageBox.Show(this, "Do you want to Save ? No petitioner, no respondant name is added ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dr == DialogResult.Yes)
+                        {
+
                             if (_mode == DataLayerDefs.Mode._Add)
                             {
                                 caseFileNo = deTextBox8.Text;
-                                if (_GetMetaCount(projKey, bundleKey, caseFileNo,frmNewCase.caseStatus,frmNewCase.caseNature,frmNewCase.caseType,frmNewCase.caseYear).Rows.Count == 0)
+                                if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
                                 {
-                                    
-                                       
-                                        DialogResult dr = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (dr == DialogResult.Yes)
+
+                                    DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (dr1 == DialogResult.Yes)
+                                    {
+                                        string cnrno;
+                                        if (deTextBox10.Text == "" || deTextBox10.Text == null)
                                         {
-                                            if (validate() == true)
-                                            {
-                                                bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                                bool insertmeta = insertIntoDB( Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), sqlTrans );
-                                                
-                                                bool updatecasefile = updateCaseFile();
-
-                                                if ( insertCase == true && insertmeta == true && updatecasefile == true)
-                                                {
-                                                    if (sqlTrans == null)
-                                                    {
-                                                        sqlTrans = sqlCon.BeginTransaction();
-                                                    }
-                                                    sqlTrans.Commit();
-                                                    sqlTrans = null;
-                                                    MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    //this.Hide();
-                                                    jList.Clear();
-                                                    pList.Clear();
-                                                    pcList.Clear();
-                                                    rList.Clear();
-                                                    rcList.Clear();
-                                                    lcNList.Clear();
-                                                    lcJList.Clear();
-                                                    cList.Clear();
-                                                    cMList.Clear();
-                                                    aList.Clear();
-                                                    this.Close();
-                                                    
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                                else
-                                                {
-                                                    
-                                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    //this.Hide();
-                                                    //jList.Clear();
-                                                    //pList.Clear();
-                                                    //pcList.Clear();
-                                                    //rList.Clear();
-                                                    //rcList.Clear();
-                                                    //lcNList.Clear();
-                                                    //lcJList.Clear();
-                                                    //cList.Clear();
-                                                    //cMList.Clear();
-                                                    //aList.Clear();
-                                                    return;
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-
-                                            }
+                                            cnrno = "";
                                         }
                                         else
                                         {
-                                            return;
+                                            cnrno = deLabel61.Text + deTextBox10.Text.PadLeft(6, '0') + deTextBox12.Text;
                                         }
-                                    
+                                        if (validate() == true)
+                                        {
+
+
+                                            bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+                                            bool updatecasefile = updateCaseFile();
+
+                                            if (insertCase == true && insertmeta == true && updatecasefile == true)
+                                            {
+                                                if (sqlTrans == null)
+                                                {
+                                                    sqlTrans = sqlCon.BeginTransaction();
+                                                }
+                                                sqlTrans.Commit();
+                                                sqlTrans = null;
+                                                MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                //this.Hide();
+                                                jList.Clear();
+                                                pList.Clear();
+                                                pcList.Clear();
+                                                rList.Clear();
+                                                rcList.Clear();
+                                                lcNList.Clear();
+                                                lcJList.Clear();
+                                                cList.Clear();
+                                                cMList.Clear();
+                                                aList.Clear();
+                                                this.Close();
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                                //fm.ShowDialog(this);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //this.Hide();
+                                                //jList.Clear();
+                                                //pList.Clear();
+                                                //pcList.Clear();
+                                                //rList.Clear();
+                                                //rcList.Clear();
+                                                //lcNList.Clear();
+                                                //lcJList.Clear();
+                                                //cList.Clear();
+                                                //cMList.Clear();
+                                                //aList.Clear();
+                                                return;
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                                //fm.ShowDialog(this);
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+
                                 }
                                 else
                                 {
@@ -4299,69 +4544,70 @@ namespace ImageHeaven
                                     //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
                                     //fm.ShowDialog(this);
                                 }
-                                
+
                             }
                             else if (_mode == DataLayerDefs.Mode._Edit)
                             {
-                                 
-                                    DialogResult dr = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dr == DialogResult.Yes)
+
+                                DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dr1 == DialogResult.Yes)
+                                {
+                                    if (validate() == true)
                                     {
-                                        if (validate() == true)
+                                        bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
+                                        bool updatecasefile = updateCaseFileEdit();
+
+
+                                        if (updatemeta == true && updatecasefile == true)
                                         {
-
-                                            bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
-                                            bool updatecasefile = updateCaseFileEdit();
-                                            if (updatemeta == true && updatecasefile == true)
+                                            if (sqlTrans == null)
                                             {
-                                                if (sqlTrans == null)
-                                                {
-                                                    sqlTrans = sqlCon.BeginTransaction();
-                                                }
-                                                sqlTrans.Commit();
-                                                sqlTrans = null;
-                                                MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                //this.Hide();
-                                                jList.Clear();
-                                                pList.Clear();
-                                                pcList.Clear();
-                                                rList.Clear();
-                                                rcList.Clear();
-                                                lcNList.Clear();
-                                                lcJList.Clear();
-                                                cList.Clear();
-                                                cMList.Clear();
-                                                aList.Clear();
-                                                this.Close();
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
-                                                //fm.ShowDialog(this);
+                                                sqlTrans = sqlCon.BeginTransaction();
                                             }
-                                            else
-                                            {
-                                                MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                //this.Hide();
-                                                //jList.Clear();
-                                                //pList.Clear();
-                                                //pcList.Clear();
-                                                //rList.Clear();
-                                                //rcList.Clear();
-                                                //lcNList.Clear();
-                                                //lcJList.Clear();
-                                                //cList.Clear();
-                                                //cMList.Clear();
-                                                //aList.Clear();
-                                                return;
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
-                                                //fm.ShowDialog(this);
-                                            }
-
+                                            sqlTrans.Commit();
+                                            sqlTrans = null;
+                                            MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            //this.Hide();
+                                            jList.Clear();
+                                            pList.Clear();
+                                            pcList.Clear();
+                                            rList.Clear();
+                                            rcList.Clear();
+                                            lcNList.Clear();
+                                            lcJList.Clear();
+                                            cList.Clear();
+                                            cMList.Clear();
+                                            aList.Clear();
+                                            this.Close();
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                            //jList.Clear();
+                                            //pList.Clear();
+                                            //pcList.Clear();
+                                            //rList.Clear();
+                                            //rcList.Clear();
+                                            //lcNList.Clear();
+                                            //lcJList.Clear();
+                                            //cList.Clear();
+                                            //cMList.Clear();
+                                            //aList.Clear();
+                                            return;
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
                                         }
                                     }
-                                    else
-                                    {
-                                        return;
-                                    }
-                                
+
+                                }
+                                else
+                                {
+                                    return;
+                                }
+
                             }
                             else
                             {
@@ -4379,186 +4625,7 @@ namespace ImageHeaven
                                 //aList.Clear();
                                 return;
                             }
-                      
-                    
-                }
-                else
-                {
-                    if (pList.Count == 0 && rList.Count == 0)
-                    {
-                        DialogResult dr = MessageBox.Show(this, "Do you want to Save ? No petitioner, no respondant name is added ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dr == DialogResult.Yes)
-                        {
-                            
-                                if (_mode == DataLayerDefs.Mode._Add)
-                                {
-                                    caseFileNo = deTextBox8.Text;
-                                    if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
-                                    {
-                                       
-                                        DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (dr1 == DialogResult.Yes)
-                                        {
-                                            
-                                            if (validate() == true)
-                                            {
-                                                
 
-                                                bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                                bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), sqlTrans);
-                                                bool updatecasefile = updateCaseFile();
-
-                                                if (insertCase == true && insertmeta == true && updatecasefile == true)
-                                                {
-                                                    if (sqlTrans == null)
-                                                    {
-                                                         sqlTrans = sqlCon.BeginTransaction();
-                                                    }
-                                                    sqlTrans.Commit();
-                                                    sqlTrans = null;
-                                                    MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    //this.Hide();
-                                                    jList.Clear();
-                                                    pList.Clear();
-                                                    pcList.Clear();
-                                                    rList.Clear();
-                                                    rcList.Clear();
-                                                    lcNList.Clear();
-                                                    lcJList.Clear();
-                                                    cList.Clear();
-                                                    cMList.Clear();
-                                                    aList.Clear();
-                                                    this.Close();
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    //this.Hide();
-                                                    //jList.Clear();
-                                                    //pList.Clear();
-                                                    //pcList.Clear();
-                                                    //rList.Clear();
-                                                    //rcList.Clear();
-                                                    //lcNList.Clear();
-                                                    //lcJList.Clear();
-                                                    //cList.Clear();
-                                                    //cMList.Clear();
-                                                    //aList.Clear();
-                                                    return;
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                            }
-                                            
-                                        }
-                                        else 
-                                        {
-                                            return;
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        jList.Clear();
-                                        pList.Clear();
-                                        pcList.Clear();
-                                        rList.Clear();
-                                        rcList.Clear();
-                                        lcNList.Clear();
-                                        lcJList.Clear();
-                                        cList.Clear();
-                                        cMList.Clear();
-                                        aList.Clear();
-                                        this.Close();
-                                        //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                        //fm.ShowDialog(this);
-                                    }
-
-                                }
-                                else if (_mode == DataLayerDefs.Mode._Edit)
-                                {
-                                    
-                                    DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (dr1 == DialogResult.Yes)
-                                    {
-                                        if (validate() == true)
-                                        {
-                                            bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
-                                            bool updatecasefile = updateCaseFileEdit();
-
-
-                                            if (updatemeta == true && updatecasefile == true)
-                                            {
-                                                if (sqlTrans == null)
-                                                {
-                                                    sqlTrans = sqlCon.BeginTransaction();
-                                                }
-                                                sqlTrans.Commit();
-                                                sqlTrans = null;
-                                                MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                //this.Hide();
-                                                jList.Clear();
-                                                pList.Clear();
-                                                pcList.Clear();
-                                                rList.Clear();
-                                                rcList.Clear();
-                                                lcNList.Clear();
-                                                lcJList.Clear();
-                                                cList.Clear();
-                                                cMList.Clear();
-                                                aList.Clear();
-                                                this.Close();
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
-                                                //fm.ShowDialog(this);
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                //this.Hide();
-                                                //jList.Clear();
-                                                //pList.Clear();
-                                                //pcList.Clear();
-                                                //rList.Clear();
-                                                //rcList.Clear();
-                                                //lcNList.Clear();
-                                                //lcJList.Clear();
-                                                //cList.Clear();
-                                                //cMList.Clear();
-                                                //aList.Clear();
-                                                return;
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
-                                                //fm.ShowDialog(this);
-                                            }
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        return;
-                                    }
-                                    
-                                }
-                                else
-                                {
-                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //this.Hide();
-                                    //jList.Clear();
-                                    //pList.Clear();
-                                    //pcList.Clear();
-                                    //rList.Clear();
-                                    //rcList.Clear();
-                                    //lcNList.Clear();
-                                    //lcJList.Clear();
-                                    //cList.Clear();
-                                    //cMList.Clear();
-                                    //aList.Clear();
-                                    return;
-                                }
-                           
                         }
                         else
                         {
@@ -4567,111 +4634,38 @@ namespace ImageHeaven
                             return;
                         }
                     }
-                    else if(pList.Count == 0 && rList.Count > 0)
+                    else if (pList.Count == 0 && rList.Count > 0)
                     {
                         DialogResult dr = MessageBox.Show(this, "Do you want to Save ? No Petitioner name is added ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dr == DialogResult.Yes)
                         {
-                            
-                                if (_mode == DataLayerDefs.Mode._Add)
+
+                            if (_mode == DataLayerDefs.Mode._Add)
+                            {
+
+                                caseFileNo = deTextBox8.Text;
+                                if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
                                 {
 
-                                    caseFileNo = deTextBox8.Text;
-                                    if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
-                                    {
-                                        
-                                        DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (dr1 == DialogResult.Yes)
-                                        {
-                                            if (validate() == true)
-                                            {
-                                                bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                                bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), sqlTrans);
-
-                                                bool updatecasefile = updateCaseFile();
-                                                if (insertCase == true && insertmeta == true && updatecasefile)
-                                                {
-                                                    if (sqlTrans == null)
-                                                    {
-                                                    sqlTrans = sqlCon.BeginTransaction();
-                                                    }
-                                                    sqlTrans.Commit();
-                                                    sqlTrans = null;
-                                                    MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    //this.Hide();
-                                                    jList.Clear();
-                                                    pList.Clear();
-                                                    pcList.Clear();
-                                                    rList.Clear();
-                                                    rcList.Clear();
-                                                    lcNList.Clear();
-                                                    lcJList.Clear();
-                                                    cList.Clear();
-                                                    cMList.Clear();
-                                                    aList.Clear();
-                                                    this.Close();
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    //this.Hide();
-                                                    //jList.Clear();
-                                                    //pList.Clear();
-                                                    //pcList.Clear();
-                                                    //rList.Clear();
-                                                    //rcList.Clear();
-                                                    //lcNList.Clear();
-                                                    //lcJList.Clear();
-                                                    //cList.Clear();
-                                                    //cMList.Clear();
-                                                    //aList.Clear();
-                                                    return;
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                            }
-                                            
-                                        }
-                                        else
-                                        {
-                                            return;
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        jList.Clear();
-                                        pList.Clear();
-                                        pcList.Clear();
-                                        rList.Clear();
-                                        rcList.Clear();
-                                        lcNList.Clear();
-                                        lcJList.Clear();
-                                        cList.Clear();
-                                        cMList.Clear();
-                                        aList.Clear();
-                                        this.Close();
-                                        //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                        //fm.ShowDialog(this);
-                                    }
-
-                                }
-                                else if (_mode == DataLayerDefs.Mode._Edit)
-                                {
-                                    
                                     DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (dr1 == DialogResult.Yes)
                                     {
+                                        string cnrno;
+                                        if (deTextBox10.Text == "" || deTextBox10.Text == null)
+                                        {
+                                            cnrno = "";
+                                        }
+                                        else
+                                        {
+                                            cnrno = deLabel61.Text + deTextBox10.Text.PadLeft(6, '0') + deTextBox12.Text;
+                                        }
                                         if (validate() == true)
                                         {
-                                            bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
-                                            bool updatecasefile = updateCaseFileEdit();
+                                            bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
 
-                                            if (updatemeta == true && updatecasefile == true)
+                                            bool updatecasefile = updateCaseFile();
+                                            if (insertCase == true && insertmeta == true && updatecasefile)
                                             {
                                                 if (sqlTrans == null)
                                                 {
@@ -4680,7 +4674,7 @@ namespace ImageHeaven
                                                 sqlTrans.Commit();
                                                 sqlTrans = null;
                                                 MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                this.Hide();
+                                                //this.Hide();
                                                 jList.Clear();
                                                 pList.Clear();
                                                 pcList.Clear();
@@ -4692,7 +4686,7 @@ namespace ImageHeaven
                                                 cMList.Clear();
                                                 aList.Clear();
                                                 this.Close();
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
                                                 //fm.ShowDialog(this);
                                             }
                                             else
@@ -4710,35 +4704,117 @@ namespace ImageHeaven
                                                 //cMList.Clear();
                                                 //aList.Clear();
                                                 return;
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
                                                 //fm.ShowDialog(this);
                                             }
                                         }
-                                        
+
                                     }
                                     else
                                     {
                                         return;
                                     }
-                                    
+
                                 }
                                 else
                                 {
-                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     //this.Hide();
-                                    //jList.Clear();
-                                    //pList.Clear();
-                                    //pcList.Clear();
-                                    //rList.Clear();
-                                    //rcList.Clear();
-                                    //lcNList.Clear();
-                                    //lcJList.Clear();
-                                    //cList.Clear();
-                                    //cMList.Clear();
-                                    //aList.Clear();
+                                    jList.Clear();
+                                    pList.Clear();
+                                    pcList.Clear();
+                                    rList.Clear();
+                                    rcList.Clear();
+                                    lcNList.Clear();
+                                    lcJList.Clear();
+                                    cList.Clear();
+                                    cMList.Clear();
+                                    aList.Clear();
+                                    this.Close();
+                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                    //fm.ShowDialog(this);
+                                }
+
+                            }
+                            else if (_mode == DataLayerDefs.Mode._Edit)
+                            {
+
+                                DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dr1 == DialogResult.Yes)
+                                {
+                                    if (validate() == true)
+                                    {
+                                        bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
+                                        bool updatecasefile = updateCaseFileEdit();
+
+                                        if (updatemeta == true && updatecasefile == true)
+                                        {
+                                            if (sqlTrans == null)
+                                            {
+                                                sqlTrans = sqlCon.BeginTransaction();
+                                            }
+                                            sqlTrans.Commit();
+                                            sqlTrans = null;
+                                            MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            this.Hide();
+                                            jList.Clear();
+                                            pList.Clear();
+                                            pcList.Clear();
+                                            rList.Clear();
+                                            rcList.Clear();
+                                            lcNList.Clear();
+                                            lcJList.Clear();
+                                            cList.Clear();
+                                            cMList.Clear();
+                                            aList.Clear();
+                                            this.Close();
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                            //jList.Clear();
+                                            //pList.Clear();
+                                            //pcList.Clear();
+                                            //rList.Clear();
+                                            //rcList.Clear();
+                                            //lcNList.Clear();
+                                            //lcJList.Clear();
+                                            //cList.Clear();
+                                            //cMList.Clear();
+                                            //aList.Clear();
+                                            return;
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
                                     return;
                                 }
-                         
+
+                            }
+                            else
+                            {
+                                MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //this.Hide();
+                                //jList.Clear();
+                                //pList.Clear();
+                                //pcList.Clear();
+                                //rList.Clear();
+                                //rcList.Clear();
+                                //lcNList.Clear();
+                                //lcJList.Clear();
+                                //cList.Clear();
+                                //cMList.Clear();
+                                //aList.Clear();
+                                return;
+                            }
+
                         }
                         else
                         {
@@ -4752,106 +4828,34 @@ namespace ImageHeaven
                         DialogResult dr = MessageBox.Show(this, "Do you want to Save ? No Respondant name is added ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dr == DialogResult.Yes)
                         {
-                           
-                                if (_mode == DataLayerDefs.Mode._Add)
+
+                            if (_mode == DataLayerDefs.Mode._Add)
+                            {
+
+                                caseFileNo = deTextBox8.Text;
+
+                                if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
                                 {
 
-                                    caseFileNo = deTextBox8.Text;
-
-                                    if (_GetMetaCount(projKey, bundleKey, caseFileNo, frmNewCase.caseStatus, frmNewCase.caseNature, frmNewCase.caseType, frmNewCase.caseYear).Rows.Count == 0)
-                                    {
-                                       
-                                        DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if (dr1 == DialogResult.Yes)
-                                        {
-                                            if (validate() == true)
-                                            {
-                                                bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                                bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), sqlTrans);
-
-                                                bool updatecasefile = updateCaseFile();
-                                                if (insertCase == true && insertmeta == true && updatecasefile == true)
-                                                {
-                                                    if (sqlTrans == null)
-                                                    {
-                                                        sqlTrans = sqlCon.BeginTransaction();
-                                                    }
-                                                    sqlTrans.Commit();
-                                                    sqlTrans = null;
-                                                    MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    //this.Hide();
-                                                    jList.Clear();
-                                                    pList.Clear();
-                                                    pcList.Clear();
-                                                    rList.Clear();
-                                                    rcList.Clear();
-                                                    lcNList.Clear();
-                                                    lcJList.Clear();
-                                                    cList.Clear();
-                                                    cMList.Clear();
-                                                    aList.Clear();
-                                                    this.Close();
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    //this.Hide();
-                                                    //jList.Clear();
-                                                    //pList.Clear();
-                                                    //pcList.Clear();
-                                                    //rList.Clear();
-                                                    //rcList.Clear();
-                                                    //lcNList.Clear();
-                                                    //lcJList.Clear();
-                                                    //cList.Clear();
-                                                    //cMList.Clear();
-                                                    //aList.Clear();
-                                                    return;
-                                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                                    //fm.ShowDialog(this);
-                                                }
-                                            }
-                                            
-                                        }
-                                        else
-                                        {
-                                            return;
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        jList.Clear();
-                                        pList.Clear();
-                                        pcList.Clear();
-                                        rList.Clear();
-                                        rcList.Clear();
-                                        lcNList.Clear();
-                                        lcJList.Clear();
-                                        cList.Clear();
-                                        cMList.Clear();
-                                        aList.Clear();
-                                        this.Close();
-                                        //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
-                                        //fm.ShowDialog(this);
-                                    }
-
-                                }
-                                else if (_mode == DataLayerDefs.Mode._Edit)
-                                {
-                                    
                                     DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (dr1 == DialogResult.Yes)
                                     {
+                                        string cnrno;
+                                        if (deTextBox10.Text == "" || deTextBox10.Text == null)
+                                        {
+                                            cnrno = "";
+                                        }
+                                        else
+                                        {
+                                            cnrno = deLabel61.Text + deTextBox10.Text.PadLeft(6, '0') + deTextBox12.Text;
+                                        }
                                         if (validate() == true)
                                         {
-                                            bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
-                                            bool updatecasefile = updateCaseFileEdit();
-                                            if (updatemeta == true && updatecasefile == true)
+                                            bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+
+                                            bool updatecasefile = updateCaseFile();
+                                            if (insertCase == true && insertmeta == true && updatecasefile == true)
                                             {
                                                 if (sqlTrans == null)
                                                 {
@@ -4872,7 +4876,7 @@ namespace ImageHeaven
                                                 cMList.Clear();
                                                 aList.Clear();
                                                 this.Close();
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
                                                 //fm.ShowDialog(this);
                                             }
                                             else
@@ -4890,35 +4894,116 @@ namespace ImageHeaven
                                                 //cMList.Clear();
                                                 //aList.Clear();
                                                 return;
-                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                                //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
                                                 //fm.ShowDialog(this);
                                             }
                                         }
-                                        
+
                                     }
                                     else
                                     {
                                         return;
                                     }
-                                    
+
                                 }
                                 else
                                 {
-                                    MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(this, "Record Exists...", "B'Zer - Calcutta High Court ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     //this.Hide();
-                                    //jList.Clear();
-                                    //pList.Clear();
-                                    //pcList.Clear();
-                                    //rList.Clear();
-                                    //rcList.Clear();
-                                    //lcNList.Clear();
-                                    //lcJList.Clear();
-                                    //cList.Clear();
-                                    //cMList.Clear();
-                                    //aList.Clear();
+                                    jList.Clear();
+                                    pList.Clear();
+                                    pcList.Clear();
+                                    rList.Clear();
+                                    rcList.Clear();
+                                    lcNList.Clear();
+                                    lcJList.Clear();
+                                    cList.Clear();
+                                    cMList.Clear();
+                                    aList.Clear();
+                                    this.Close();
+                                    //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Add, txn, crd);
+                                    //fm.ShowDialog(this);
+                                }
+
+                            }
+                            else if (_mode == DataLayerDefs.Mode._Edit)
+                            {
+
+                                DialogResult dr1 = MessageBox.Show(this, "Do you want to Save ? ", "B'Zer - Calcutta High Court ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dr1 == DialogResult.Yes)
+                                {
+                                    if (validate() == true)
+                                    {
+                                        bool updatemeta = updateDB(_GetFileCaseDetails(projKey, bundleKey, filename).Rows[0][2].ToString());
+                                        bool updatecasefile = updateCaseFileEdit();
+                                        if (updatemeta == true && updatecasefile == true)
+                                        {
+                                            if (sqlTrans == null)
+                                            {
+                                                sqlTrans = sqlCon.BeginTransaction();
+                                            }
+                                            sqlTrans.Commit();
+                                            sqlTrans = null;
+                                            MessageBox.Show(this, "Record Saved Successfully...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            //this.Hide();
+                                            jList.Clear();
+                                            pList.Clear();
+                                            pcList.Clear();
+                                            rList.Clear();
+                                            rcList.Clear();
+                                            lcNList.Clear();
+                                            lcJList.Clear();
+                                            cList.Clear();
+                                            cMList.Clear();
+                                            aList.Clear();
+                                            this.Close();
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                            //jList.Clear();
+                                            //pList.Clear();
+                                            //pcList.Clear();
+                                            //rList.Clear();
+                                            //rcList.Clear();
+                                            //lcNList.Clear();
+                                            //lcJList.Clear();
+                                            //cList.Clear();
+                                            //cMList.Clear();
+                                            //aList.Clear();
+                                            return;
+                                            //Files fm = new Files(sqlCon, DataLayerDefs.Mode._Edit);
+                                            //fm.ShowDialog(this);
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
                                     return;
                                 }
-                            
+
+                            }
+                            else
+                            {
+                                MessageBox.Show(this, "Ooops!!! There is an Error - Record not Saved...", "B'Zer - Calcutta High Court", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //this.Hide();
+                                //jList.Clear();
+                                //pList.Clear();
+                                //pcList.Clear();
+                                //rList.Clear();
+                                //rcList.Clear();
+                                //lcNList.Clear();
+                                //lcJList.Clear();
+                                //cList.Clear();
+                                //cMList.Clear();
+                                //aList.Clear();
+                                return;
+                            }
+
                         }
                         else
                         {
@@ -4954,17 +5039,17 @@ namespace ImageHeaven
                 bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox25.Text, "[^0-9]");
                 if (res != true && Convert.ToInt32(deTextBox25.Text) <= curIntYear && deTextBox25.Text.Length == 4 && deTextBox25.Text.Substring(0, 1) != "0")
                 {
-                   
+
                 }
                 else
                 {
-                   
+
                     MessageBox.Show("Please input Valid Lower Court Case Year...");
                     deTextBox25.Focus();
                     return;
                 }
             }
-            
+
         }
 
         private void deTextBox32_Leave(object sender, EventArgs e)
@@ -4978,17 +5063,17 @@ namespace ImageHeaven
                 bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox32.Text, "[^0-9]");
                 if (res != true && Convert.ToInt32(deTextBox32.Text) <= curIntYear && deTextBox32.Text.Length == 4 && deTextBox32.Text.Substring(0, 1) != "0")
                 {
-                   
+
                 }
                 else
                 {
-                   
+
                     MessageBox.Show("Please input Valid Connected Application Case Year...");
                     deTextBox32.Focus();
                     return;
                 }
             }
-           
+
         }
 
         private void deTextBox36_Leave(object sender, EventArgs e)
@@ -5003,17 +5088,17 @@ namespace ImageHeaven
                 bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox36.Text, "[^0-9]");
                 if (res != true && Convert.ToInt32(deTextBox36.Text) <= curIntYear && deTextBox36.Text.Length == 4 && deTextBox36.Text.Substring(0, 1) != "0")
                 {
-                  
+
                 }
                 else
                 {
-                   
+
                     MessageBox.Show("Please input Valid Connected Main Case Year...");
                     deTextBox36.Focus();
                     return;
                 }
             }
-            
+
         }
 
         private void deTextBox39_Leave(object sender, EventArgs e)
@@ -5028,17 +5113,17 @@ namespace ImageHeaven
                 bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox39.Text, "[^0-9]");
                 if (res != true && Convert.ToInt32(deTextBox39.Text) <= curIntYear && deTextBox39.Text.Length == 4 && deTextBox39.Text.Substring(0, 1) != "0")
                 {
-                    
+
                 }
                 else
                 {
-                    
+
                     MessageBox.Show("Please input Valid Analogous Case Year...");
                     deTextBox39.Focus();
                     return;
                 }
             }
-            
+
         }
 
         private void deTextBox41_Leave(object sender, EventArgs e)
@@ -5053,11 +5138,11 @@ namespace ImageHeaven
                 bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox41.Text, "[^0-9]");
                 if (res != true && Convert.ToInt32(deTextBox41.Text) <= curIntYear && deTextBox41.Text.Length == 4 && deTextBox41.Text.Substring(0, 1) != "0")
                 {
-                    
+
                 }
                 else
                 {
-                    
+
                     MessageBox.Show("Please input Valid Connected Main Case Year...");
                     deTextBox41.Focus();
                     return;
@@ -5068,7 +5153,7 @@ namespace ImageHeaven
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listView1.Select();
-            
+
         }
 
         private void listView1_KeyUp(object sender, KeyEventArgs e)
@@ -5081,7 +5166,7 @@ namespace ImageHeaven
                     {
                         listView1_DoubleClick(sender, e);
                     }
-                    if(e.KeyCode == Keys.Delete)
+                    if (e.KeyCode == Keys.Delete)
                     {
                         deButton1_Click(sender, e);
                     }
@@ -5097,18 +5182,18 @@ namespace ImageHeaven
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            
+
             listView1.Select();
-           
+
             //listView1.SelectedItems[0].Selected = true;
-           
-            string name1="";
-            
+
+            string name1 = "";
+
             try
             {
-                
+
                 string[] split = listView1.SelectedItems[0].SubItems[0].Text.Split(' ');
-                
+
                 foreach (string judge in split)
                 {
                     Console.WriteLine(judge);
@@ -5125,20 +5210,20 @@ namespace ImageHeaven
                         {
                             name1 = name1 + " " + judge;
                         }
-                        
+
                     }
                 }
-                if(searchJudge(name1).Rows.Count > 0)
+                if (searchJudge(name1).Rows.Count > 0)
                 {
                     deComboBox3.Text = name1;
                     deComboBox3.Select();
-                }   
+                }
                 else
                 {
                     deComboBox3.Text = "";
                     return;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -5221,8 +5306,8 @@ namespace ImageHeaven
                 return;
                 // MessageBox.Show(ex.Message);
             }
-            
-            
+
+
         }
 
         private void listView2_KeyUp(object sender, KeyEventArgs e)
@@ -5252,9 +5337,9 @@ namespace ImageHeaven
 
         private void deButton3_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F2)
             {
-                if(deTextBox11.Text != "")
+                if (deTextBox11.Text != "")
                 {
                     for (int i = 0; i < listView2.Items.Count; i++)
                     {
@@ -5447,7 +5532,7 @@ namespace ImageHeaven
             {
                 MessageBox.Show(ex.Message);
                 return;
-               
+
             }
         }
 
@@ -5615,7 +5700,7 @@ namespace ImageHeaven
         {
             listView4.Select();
 
-            
+
             try
             {
                 string[] split = listView4.SelectedItems[0].SubItems[0].Text.Split('/');
@@ -5631,16 +5716,16 @@ namespace ImageHeaven
                     }
                     else
                     {
-                        if (i == 0 && split[0] != "" && searchLCCaseType(split[0]).Rows.Count >0)
+                        if (i == 0 && split[0] != "" && searchLCCaseType(split[0]).Rows.Count > 0)
                         {
                             deComboBox5.Text = split[0];
                             deComboBox5.Select();
                         }
-                        else if (i== 1 && split[1] != "")
+                        else if (i == 1 && split[1] != "")
                         {
                             deTextBox24.Text = split[1];
                         }
-                        else if (i== 2 && split[2] != "")
+                        else if (i == 2 && split[2] != "")
                         {
                             deTextBox25.Text = split[2];
                         }
@@ -5654,7 +5739,7 @@ namespace ImageHeaven
                     }
                 }
 
-                
+
             }
             catch (Exception ex)
             {
@@ -5662,17 +5747,17 @@ namespace ImageHeaven
                 // MessageBox.Show(ex.Message);
             }
 
-            
 
-            }
+
+        }
 
         private void deButton9_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
             {
-                if(deComboBox5.Text != "" && searchLCCaseType(deComboBox5.Text).Rows.Count >0)
+                if (deComboBox5.Text != "" && searchLCCaseType(deComboBox5.Text).Rows.Count > 0)
                 {
-                    if(deTextBox24.Text != "" && deTextBox25.Text != "")
+                    if (deTextBox24.Text != "" && deTextBox25.Text != "")
                     {
                         string lc_case_number = deComboBox5.Text + "/" + deTextBox24.Text + "/" + deTextBox25.Text;
 
@@ -5737,7 +5822,7 @@ namespace ImageHeaven
         {
             listView9.Select();
 
-           
+
             string name1 = "";
 
             try
@@ -6187,7 +6272,7 @@ namespace ImageHeaven
         {
             if ((deComboBox3.Text.Trim() == "" || deComboBox3.Text.Trim() == null || String.IsNullOrEmpty(deComboBox3.Text.Trim()) || String.IsNullOrWhiteSpace(deComboBox3.Text.Trim())))
             {
-                
+
             }
             else
             {
@@ -6225,10 +6310,10 @@ namespace ImageHeaven
             }
         }
 
-      
+
         private void listView2_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView2.Items.Count > 0)
@@ -6246,7 +6331,7 @@ namespace ImageHeaven
                     {
                         pNames = pNames + "\n" + (i + 1) + " : " + listView2.Items[i].Text;
                     }
-                    
+
                     toolTip1.SetToolTip(this.listView2, "\nTotal Petitioner Names : " + listView2.Items.Count + "\n" + pNames);
                     //toolTip1.Show("\nTotal Judge Names :" + listView1.Items.Count +"\n" +jNames,listView1);
                 }
@@ -6263,11 +6348,11 @@ namespace ImageHeaven
             }
         }
 
-      
+
 
         private void listView1_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView1.Items.Count > 0)
@@ -6313,7 +6398,7 @@ namespace ImageHeaven
 
         private void listView7_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView7.Items.Count > 0)
@@ -6333,7 +6418,7 @@ namespace ImageHeaven
                     }
 
                     toolTip1.SetToolTip(this.listView7, "\nTotal Petitioner Counsel Names : " + listView7.Items.Count + "\n" + pNames);
-                   
+
                 }
                 else
                 {
@@ -6350,7 +6435,7 @@ namespace ImageHeaven
 
         private void listView3_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView3.Items.Count > 0)
@@ -6370,7 +6455,7 @@ namespace ImageHeaven
                     }
 
                     toolTip1.SetToolTip(this.listView3, "\nTotal Respondant Names : " + listView3.Items.Count + "\n" + pNames);
-                    
+
                 }
                 else
                 {
@@ -6387,7 +6472,7 @@ namespace ImageHeaven
 
         private void listView8_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView8.Items.Count > 0)
@@ -6407,7 +6492,7 @@ namespace ImageHeaven
                     }
 
                     toolTip1.SetToolTip(this.listView8, "\nTotal Respondant Counsel Names : " + listView8.Items.Count + "\n" + pNames);
-                    
+
                 }
                 else
                 {
@@ -6424,7 +6509,7 @@ namespace ImageHeaven
 
         private void listView4_MouseHover(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (listView4.Items.Count > 0)
@@ -6444,7 +6529,7 @@ namespace ImageHeaven
                     }
 
                     toolTip1.SetToolTip(this.listView4, "\nTotal Lower Court Case Numbers : " + listView4.Items.Count + "\n" + pNames);
-                    
+
                 }
                 else
                 {
@@ -6623,7 +6708,7 @@ namespace ImageHeaven
                 plot.Proj_code = projKey;
                 plot.Bundle_code = bundleKey;
                 plot.CaseFile = caseFileNo;
-                
+
                 plot.Judge_name = jList[i].ToString();
                 JudgesList.Add(plot);
             }
@@ -6756,7 +6841,7 @@ namespace ImageHeaven
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            frmAddJudge frm1 = new frmAddJudge(sqlCon, getJudge, projKey, bundleKey, deTextBox8.Text, jList, _mode,txn);
+            frmAddJudge frm1 = new frmAddJudge(sqlCon, getJudge, projKey, bundleKey, deTextBox8.Text, jList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             SendKeys.Send("{Tab}");
@@ -6765,7 +6850,7 @@ namespace ImageHeaven
         private void deButton22_Click(object sender, EventArgs e)
         {
             deLabel50.Text = "Total Judges : " + jList.Count;
-            frmAddJudge frm1 = new frmAddJudge(sqlCon, getJudge, projKey, bundleKey, deTextBox8.Text, jList, _mode,txn);
+            frmAddJudge frm1 = new frmAddJudge(sqlCon, getJudge, projKey, bundleKey, deTextBox8.Text, jList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6784,7 +6869,7 @@ namespace ImageHeaven
         private void deButton23_Click(object sender, EventArgs e)
         {
             deLabel51.Text = "Total Petitioner : " + pList.Count;
-            frmAddPetitioner frm1 = new frmAddPetitioner(sqlCon, getPetitioner, projKey, bundleKey, deTextBox8.Text, pList, _mode,txn);
+            frmAddPetitioner frm1 = new frmAddPetitioner(sqlCon, getPetitioner, projKey, bundleKey, deTextBox8.Text, pList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6803,7 +6888,7 @@ namespace ImageHeaven
         private void deButton24_Click(object sender, EventArgs e)
         {
             deLabel52.Text = "Total Petitioner Counsel : " + pcList.Count;
-            frmAddPetitionerCounsel frm1 = new frmAddPetitionerCounsel(sqlCon, getPetitionerCounsel, projKey, bundleKey, deTextBox8.Text, pcList, _mode,txn);
+            frmAddPetitionerCounsel frm1 = new frmAddPetitionerCounsel(sqlCon, getPetitionerCounsel, projKey, bundleKey, deTextBox8.Text, pcList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6822,7 +6907,7 @@ namespace ImageHeaven
         private void deButton25_Click(object sender, EventArgs e)
         {
             deLabel53.Text = "Total Respondant : " + rList.Count;
-            frmAddRespondant frm1 = new frmAddRespondant(sqlCon, getRespondant, projKey, bundleKey, deTextBox8.Text, rList, _mode,txn);
+            frmAddRespondant frm1 = new frmAddRespondant(sqlCon, getRespondant, projKey, bundleKey, deTextBox8.Text, rList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6841,7 +6926,7 @@ namespace ImageHeaven
         private void deButton26_Click(object sender, EventArgs e)
         {
             deLabel54.Text = "Total Respondant Counsel : " + rcList.Count;
-            frmAddRespondantCounsel frm1 = new frmAddRespondantCounsel(sqlCon, getRespondantCounsel, projKey, bundleKey, deTextBox8.Text, rcList, _mode,txn);
+            frmAddRespondantCounsel frm1 = new frmAddRespondantCounsel(sqlCon, getRespondantCounsel, projKey, bundleKey, deTextBox8.Text, rcList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6860,7 +6945,7 @@ namespace ImageHeaven
         private void deButton27_Click(object sender, EventArgs e)
         {
             deLabel55.Text = "Total LC Case : " + lcNList.Count;
-            frmAddLcCase frm1 = new frmAddLcCase(sqlCon, getLcCase, projKey, bundleKey, deTextBox8.Text, lcNList, _mode,txn);
+            frmAddLcCase frm1 = new frmAddLcCase(sqlCon, getLcCase, projKey, bundleKey, deTextBox8.Text, lcNList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6879,7 +6964,7 @@ namespace ImageHeaven
         private void deButton28_Click(object sender, EventArgs e)
         {
             deLabel56.Text = "Total LC Judges : " + lcJList.Count;
-            frmAddLcJudge frm1 = new frmAddLcJudge(sqlCon, getLcJudge, projKey, bundleKey, deTextBox8.Text, lcJList, _mode,txn);
+            frmAddLcJudge frm1 = new frmAddLcJudge(sqlCon, getLcJudge, projKey, bundleKey, deTextBox8.Text, lcJList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6898,7 +6983,7 @@ namespace ImageHeaven
         private void deButton29_Click(object sender, EventArgs e)
         {
             deLabel57.Text = "Total Connected Application : " + cList.Count;
-            frmAddConnApp frm1 = new frmAddConnApp(sqlCon, getConnApp, projKey, bundleKey, deTextBox8.Text, cList, _mode,txn);
+            frmAddConnApp frm1 = new frmAddConnApp(sqlCon, getConnApp, projKey, bundleKey, deTextBox8.Text, cList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6917,7 +7002,7 @@ namespace ImageHeaven
         private void deButton30_Click(object sender, EventArgs e)
         {
             deLabel58.Text = "Total Connected Main Case : " + cMList.Count;
-            frmAddConnMain frm1 = new frmAddConnMain(sqlCon, getConnMain, projKey, bundleKey, deTextBox8.Text, cMList, _mode,txn);
+            frmAddConnMain frm1 = new frmAddConnMain(sqlCon, getConnMain, projKey, bundleKey, deTextBox8.Text, cMList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6936,7 +7021,7 @@ namespace ImageHeaven
         private void deButton31_Click(object sender, EventArgs e)
         {
             deLabel59.Text = "Total Analogous Case : " + aList.Count;
-            frmAddAnalogous frm1 = new frmAddAnalogous(sqlCon, getAnalogous, projKey, bundleKey, deTextBox8.Text, aList, _mode,txn);
+            frmAddAnalogous frm1 = new frmAddAnalogous(sqlCon, getAnalogous, projKey, bundleKey, deTextBox8.Text, aList, _mode, txn);
             frm1.ShowDialog();
             frm1.Activate();
             //SendKeys.Send("{Tab}");
@@ -6952,5 +7037,37 @@ namespace ImageHeaven
             deLabel59.Text = "Total Analogous Case : " + aList.Count;
         }
 
-     }
+        private void deTextBox10_Leave(object sender, EventArgs e)
+        {
+            if (deTextBox10.Text == "" || deTextBox10.Text == null) {
+                deTextBox10.Text = "";
+            }
+            else
+            {
+                deTextBox10.Text = deTextBox10.Text.PadLeft(6, '0');
+            }
+        }
+
+        private void deTextBox10_MouseLeave(object sender, EventArgs e)
+        {
+            if (deTextBox10.Text == "" || deTextBox10.Text == null)
+            {
+                deTextBox10.Text = "";
+            }
+            else
+            {
+                deTextBox10.Text = deTextBox10.Text.PadLeft(6, '0');
+            }
+        }
+
+        private void deTextBox10_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((Regex.IsMatch(e.KeyChar.ToString(), @"^[0-9\b]*$")))
+            {
+                e.Handled = false;
+            }
+            else
+                e.Handled = true;
+        }
+    }
 }

@@ -193,6 +193,8 @@ namespace ImageHeaven
             this.chkCropClean = new System.Windows.Forms.CheckBox();
             this.chkMissingImg = new System.Windows.Forms.CheckBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tbSelection.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -905,9 +907,9 @@ namespace ImageHeaven
             this.groupBox4.Controls.Add(this.deLabel5);
             this.groupBox4.Controls.Add(this.deLabel4);
             this.groupBox4.Controls.Add(this.deLabel3);
-            this.groupBox4.Location = new System.Drawing.Point(3, 148);
+            this.groupBox4.Location = new System.Drawing.Point(3, 149);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(351, 566);
+            this.groupBox4.Size = new System.Drawing.Size(357, 563);
             this.groupBox4.TabIndex = 29;
             this.groupBox4.TabStop = false;
             // 
@@ -1408,6 +1410,8 @@ namespace ImageHeaven
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.textBox11);
+            this.groupBox6.Controls.Add(this.label26);
             this.groupBox6.Controls.Add(this.textBox2);
             this.groupBox6.Controls.Add(this.label25);
             this.groupBox6.Controls.Add(this.textBox1);
@@ -1422,7 +1426,7 @@ namespace ImageHeaven
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Location = new System.Drawing.Point(3, 53);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(351, 99);
+            this.groupBox6.Size = new System.Drawing.Size(351, 97);
             this.groupBox6.TabIndex = 27;
             this.groupBox6.TabStop = false;
             // 
@@ -1456,7 +1460,7 @@ namespace ImageHeaven
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(185, 46);
+            this.label24.Location = new System.Drawing.Point(184, 46);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 13);
             this.label24.TabIndex = 19;
@@ -1464,17 +1468,17 @@ namespace ImageHeaven
             // 
             // txtCommDt
             // 
-            this.txtCommDt.Location = new System.Drawing.Point(138, 69);
+            this.txtCommDt.Location = new System.Drawing.Point(67, 69);
             this.txtCommDt.Name = "txtCommDt";
             this.txtCommDt.ReadOnly = true;
             this.txtCommDt.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtCommDt.Size = new System.Drawing.Size(132, 20);
+            this.txtCommDt.Size = new System.Drawing.Size(106, 20);
             this.txtCommDt.TabIndex = 15;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(63, 71);
+            this.label6.Location = new System.Drawing.Point(-2, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 14;
@@ -1482,7 +1486,7 @@ namespace ImageHeaven
             // 
             // txtDOB
             // 
-            this.txtDOB.Location = new System.Drawing.Point(75, 42);
+            this.txtDOB.Location = new System.Drawing.Point(68, 42);
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.ReadOnly = true;
             this.txtDOB.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -1522,7 +1526,7 @@ namespace ImageHeaven
             // txtPolicyNumber
             // 
             this.txtPolicyNumber.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtPolicyNumber.Location = new System.Drawing.Point(75, 12);
+            this.txtPolicyNumber.Location = new System.Drawing.Point(68, 12);
             this.txtPolicyNumber.Name = "txtPolicyNumber";
             this.txtPolicyNumber.ReadOnly = true;
             this.txtPolicyNumber.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -2152,6 +2156,24 @@ namespace ImageHeaven
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(225, 70);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox11.Size = new System.Drawing.Size(124, 20);
+            this.textBox11.TabIndex = 24;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(175, 73);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(50, 13);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "CNR No:";
+            // 
             // aeLicQa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2384,5 +2406,7 @@ namespace ImageHeaven
         private nControls.deTextBox deTextBox12;
         private nControls.deLabel deLabel23;
         private System.Windows.Forms.CheckBox chkMeta;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label26;
     }
 }

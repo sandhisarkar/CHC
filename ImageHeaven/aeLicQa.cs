@@ -428,7 +428,7 @@ namespace ImageHeaven
 
             try
             {
-                sqlStr = "select REPLACE(REPLACE(a.judge_name, '||', ' \t\r'),'||','\n'),REPLACE(REPLACE(a.lc_judge_name, '||', ' \t\r'),'||','\n'),REPLACE(REPLACE(a.petitioner_counsel_name, '||', ' , \r'),'||','\n') as 'Petitioner Counsel',REPLACE(REPLACE(a.respondant_counsel_name, '||', ' , \r'),'||','\n') as 'Respondant Counsel',date_format(a.disposal_date,'%d-%m-%Y'),date_format(a.case_filling_date,'%d-%m-%Y'),a.ps_name,a.ps_case_no,REPLACE(REPLACE(a.lc_case_no, '||', ' \t\r'),'||','\n') as 'LC Case No',date_format(a.lc_order_date,'%d-%m-%Y'),REPLACE(REPLACE(a.conn_app_case_no, '||', ' \t\r'),'||','\n') as 'Conn App Case No',a.conn_disposal_type,REPLACE(REPLACE(a.conn_main_case_no, '||', ' \t\r'),'||','\n') as 'Conn Main Case No',REPLACE(REPLACE(a.analogous_case_no, '||', ' \t\r'),'||','\n') as 'Analogous Case No',a.old_case_type,a.old_case_no,a.old_case_year,a.file_move_history,a.dept_remark from metadata_entry a, bundle_master b where a.proj_code = b.proj_code and a.bundle_key = b.bundle_key and b.proj_code ='" + prmProjectKey+"' and b.bundle_key ='"+prmBatch+"' and a.filename = '"+prmFilename+"' ";
+                sqlStr = "select REPLACE(REPLACE(a.judge_name, '||', ' \t\r'),'||','\n'),REPLACE(REPLACE(a.lc_judge_name, '||', ' \t\r'),'||','\n'),REPLACE(REPLACE(a.petitioner_counsel_name, '||', ' , \r'),'||','\n') as 'Petitioner Counsel',REPLACE(REPLACE(a.respondant_counsel_name, '||', ' , \r'),'||','\n') as 'Respondant Counsel',date_format(a.disposal_date,'%d-%m-%Y'),date_format(a.case_filling_date,'%d-%m-%Y'),a.ps_name,a.ps_case_no,REPLACE(REPLACE(a.lc_case_no, '||', ' \t\r'),'||','\n') as 'LC Case No',date_format(a.lc_order_date,'%d-%m-%Y'),REPLACE(REPLACE(a.conn_app_case_no, '||', ' \t\r'),'||','\n') as 'Conn App Case No',a.conn_disposal_type,REPLACE(REPLACE(a.conn_main_case_no, '||', ' \t\r'),'||','\n') as 'Conn Main Case No',REPLACE(REPLACE(a.analogous_case_no, '||', ' \t\r'),'||','\n') as 'Analogous Case No',a.old_case_type,a.old_case_no,a.old_case_year,a.file_move_history,a.dept_remark,a.cnrno from metadata_entry a, bundle_master b where a.proj_code = b.proj_code and a.bundle_key = b.bundle_key and b.proj_code ='" + prmProjectKey+"' and b.bundle_key ='"+prmBatch+"' and a.filename = '"+prmFilename+"' ";
                 sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
                 sqlAdap.Fill(batchDs);
             }
@@ -1903,7 +1903,7 @@ namespace ImageHeaven
                     textBox10.Text = counselMetaDetails(Convert.ToInt32(projCode), Convert.ToInt32(batchCode), policyNumber).Rows[0][16].ToString();
                     deTextBox11.Text = counselMetaDetails(Convert.ToInt32(projCode), Convert.ToInt32(batchCode), policyNumber).Rows[0][17].ToString();
                     deTextBox12.Text = counselMetaDetails(Convert.ToInt32(projCode), Convert.ToInt32(batchCode), policyNumber).Rows[0][18].ToString();
-
+                    textBox11.Text = counselMetaDetails(Convert.ToInt32(projCode), Convert.ToInt32(batchCode), policyNumber).Rows[0][19].ToString();
 
                     policyRowIndex = e.RowIndex;
                     if (Convert.ToDouble(grdPolicy.Rows[e.RowIndex].Cells[7].Value.ToString()) > 0)
