@@ -503,6 +503,12 @@
     <Compile Include="frmTriggerReport.Designer.cs">
       <DependentUpon>frmTriggerReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUAT.Designer.cs">
+      <DependentUpon>frmUAT.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUserReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -697,6 +703,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTriggerReport.resx">
       <DependentUpon>frmTriggerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUAT.resx">
+      <DependentUpon>frmUAT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserReport.resx">
       <DependentUpon>frmUserReport.cs</DependentUpon>

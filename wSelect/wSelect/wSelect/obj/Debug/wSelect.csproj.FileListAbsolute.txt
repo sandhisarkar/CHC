@@ -667,7 +667,6 @@ D:\CHC Backup Code\CHC\wSelect\wSelect\wSelect\bin\Debug\NovaNet.wfe.dll.config
 D:\CHC Backup Code\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csprojAssemblyReference.cache
 D:\CHC Backup Code\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.CoreCompileInputs.cache
 D:\CHC Backup Code\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.CopyComplete
-D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csprojAssemblyReference.cache
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.BoxDetails.resources
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.GenerateResource.cache
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.CoreCompileInputs.cache
@@ -687,3 +686,4 @@ D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\bin\Debug\NovaNet.wfe.dll.
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.CopyComplete
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.dll
 D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.pdb
+D:\CHC Backup Code - Copy\CHC\wSelect\wSelect\wSelect\obj\Debug\wSelect.csproj.AssemblyReference.cache

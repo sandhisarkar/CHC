@@ -683,3 +683,4 @@ D:\CHC Backup Code - Copy\CHC\NovaNet\Utils\obj\Debug\Utils.csproj.GenerateResou
 D:\CHC Backup Code - Copy\CHC\NovaNet\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
 D:\CHC Backup Code - Copy\CHC\NovaNet\Utils\obj\Debug\NovaNet.Utils.dll
 D:\CHC Backup Code - Copy\CHC\NovaNet\Utils\obj\Debug\NovaNet.Utils.pdb
+D:\CHC Backup Code - Copy\CHC\NovaNet\Utils\obj\Debug\Utils.csproj.AssemblyReference.cache

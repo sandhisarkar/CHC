@@ -256,8 +256,8 @@ D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\bin\Debug\NovaNet.wfe.dll.config
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\bin\Debug\NovaNet.wfe.dll
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\bin\Debug\NovaNet.wfe.pdb
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\bin\Debug\NovaNet.Utils.dll
-D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\wfe.csprojAssemblyReference.cache
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\wfe.csproj.CoreCompileInputs.cache
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\wfe.csproj.CopyComplete
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\NovaNet.wfe.dll
 D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\NovaNet.wfe.pdb
+D:\CHC Backup Code - Copy\CHC\NovaNet\wfe\obj\Debug\wfe.csproj.AssemblyReference.cache

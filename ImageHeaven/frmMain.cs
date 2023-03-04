@@ -166,6 +166,7 @@ namespace ImageHeaven
                         auditToolStripMenuItem.Visible = true;
 
                         userWiseReportToolStripMenuItem.Visible = true;
+                        uATCertificateToolStripMenuItem.Visible = true;
                     }
                     else if(crd.role == "Metadata Entry")
                     {
@@ -232,6 +233,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "Scan")
                     {
@@ -305,6 +307,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "QC")
                     {
@@ -378,6 +381,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "DOC Type Association")
                     {
@@ -451,6 +455,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "InventoryIn")
                     {
@@ -526,6 +531,7 @@ namespace ImageHeaven
                         auditToolStripMenuItem.Visible = false;
 
                         userWiseReportToolStripMenuItem.Visible = false;
+                        uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if(crd.role == ihConstants._LIC_ROLE)
                     {
@@ -550,6 +556,7 @@ namespace ImageHeaven
                         userWiseReportToolStripMenuItem.Visible = false;
                         helpToolStripMenuItem.Visible = true;
                         logoutToolStripMenuItem.Visible = true;
+                        uATCertificateToolStripMenuItem.Visible = true;
                     }
                     else
                     {
@@ -593,6 +600,7 @@ namespace ImageHeaven
                         aboutToolStripMenuItem.Visible = true;
 
                         auditToolStripMenuItem.Visible = true;
+                        uATCertificateToolStripMenuItem.Visible = true;
                     }
                 }
             }
@@ -1216,6 +1224,12 @@ namespace ImageHeaven
         private void userWiseReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUserReport frm = new frmUserReport(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void uATCertificateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUAT frm = new frmUAT(sqlCon);
             frm.ShowDialog(this);
         }
     }

@@ -329,7 +329,6 @@ D:\CHC Backup Code\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.csproj.CopyComplete
 D:\CHC Backup Code\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.dll
 D:\CHC Backup Code\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.pdb
 D:\CHC Backup Code\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmJudge.resources
-D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.csprojAssemblyReference.cache
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.aeCustomExp.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.aeFQC.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.aeImageQC.resources
@@ -425,3 +424,5 @@ D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.About.resour
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.aeLicQa.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmMandPolicyList.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmUserReport.resources
+D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.csproj.AssemblyReference.cache
+D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmUAT.resources

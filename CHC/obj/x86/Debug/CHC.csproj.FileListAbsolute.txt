@@ -84,7 +84,6 @@ D:\CHC Backup Code\CHC\CHC\bin\Debug\Syncfusion.OCRProcessor.Base.xml
 D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.Properties.Resources.resources
 D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.GenerateResource.cache
 D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.CoreCompileInputs.cache
-D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csprojAssemblyReference.cache
 D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.exe.config
 D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.exe
 D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\CHC.pdb
@@ -123,3 +122,4 @@ D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.exe
 D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.pdb
 D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\AxInterop.AcroPDFLib.dll
 D:\CHC Backup Code - Copy\CHC\CHC\bin\Debug\Interop.AcroPDFLib.dll
+D:\CHC Backup Code - Copy\CHC\CHC\obj\x86\Debug\CHC.csproj.AssemblyReference.cache
