@@ -190,6 +190,9 @@
             this.deLabel13 = new nControls.deLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.deTextBox12 = new nControls.deTextBox();
+            this.deTextBox10 = new nControls.deTextBox();
+            this.deLabel61 = new nControls.deLabel();
             this.deLabel60 = new nControls.deLabel();
             this.deLabel11 = new nControls.deLabel();
             this.deComboBox12 = new nControls.deComboBox();
@@ -218,9 +221,6 @@
             this.deLabel3 = new nControls.deLabel();
             this.deLabel2 = new nControls.deLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.deLabel61 = new nControls.deLabel();
-            this.deTextBox10 = new nControls.deTextBox();
-            this.deTextBox12 = new nControls.deTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -2670,6 +2670,46 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File Information";
             // 
+            // deTextBox12
+            // 
+            this.deTextBox12.BackColor = System.Drawing.Color.White;
+            this.deTextBox12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox12.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox12.Location = new System.Drawing.Point(201, 89);
+            this.deTextBox12.Mandatory = true;
+            this.deTextBox12.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox12.MaxLength = 4;
+            this.deTextBox12.Name = "deTextBox12";
+            this.deTextBox12.ReadOnly = true;
+            this.deTextBox12.Size = new System.Drawing.Size(32, 22);
+            this.deTextBox12.TabIndex = 14;
+            // 
+            // deTextBox10
+            // 
+            this.deTextBox10.BackColor = System.Drawing.Color.White;
+            this.deTextBox10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox10.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox10.Location = new System.Drawing.Point(156, 89);
+            this.deTextBox10.Mandatory = false;
+            this.deTextBox10.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox10.MaxLength = 6;
+            this.deTextBox10.Name = "deTextBox10";
+            this.deTextBox10.Size = new System.Drawing.Size(44, 22);
+            this.deTextBox10.TabIndex = 13;
+            this.deTextBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.deTextBox10_KeyPress);
+            this.deTextBox10.Leave += new System.EventHandler(this.deTextBox10_Leave);
+            this.deTextBox10.MouseLeave += new System.EventHandler(this.deTextBox10_MouseLeave);
+            // 
+            // deLabel61
+            // 
+            this.deLabel61.AutoSize = true;
+            this.deLabel61.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel61.Location = new System.Drawing.Point(105, 93);
+            this.deLabel61.Name = "deLabel61";
+            this.deLabel61.Size = new System.Drawing.Size(53, 13);
+            this.deLabel61.TabIndex = 12;
+            this.deLabel61.Text = "WBCHCA";
+            // 
             // deLabel60
             // 
             this.deLabel60.AutoSize = true;
@@ -3015,46 +3055,6 @@
             this.toolTip1.ToolTipTitle = "Image Status";
             this.toolTip1.UseFading = false;
             this.toolTip1.Draw += new System.Windows.Forms.DrawToolTipEventHandler(this.toolTip1_Draw);
-            // 
-            // deLabel61
-            // 
-            this.deLabel61.AutoSize = true;
-            this.deLabel61.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel61.Location = new System.Drawing.Point(105, 93);
-            this.deLabel61.Name = "deLabel61";
-            this.deLabel61.Size = new System.Drawing.Size(53, 13);
-            this.deLabel61.TabIndex = 12;
-            this.deLabel61.Text = "WBCHCA";
-            // 
-            // deTextBox10
-            // 
-            this.deTextBox10.BackColor = System.Drawing.Color.White;
-            this.deTextBox10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deTextBox10.ForeColor = System.Drawing.Color.Black;
-            this.deTextBox10.Location = new System.Drawing.Point(156, 89);
-            this.deTextBox10.Mandatory = false;
-            this.deTextBox10.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.deTextBox10.MaxLength = 6;
-            this.deTextBox10.Name = "deTextBox10";
-            this.deTextBox10.Size = new System.Drawing.Size(44, 22);
-            this.deTextBox10.TabIndex = 13;
-            this.deTextBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.deTextBox10_KeyPress);
-            this.deTextBox10.Leave += new System.EventHandler(this.deTextBox10_Leave);
-            this.deTextBox10.MouseLeave += new System.EventHandler(this.deTextBox10_MouseLeave);
-            // 
-            // deTextBox12
-            // 
-            this.deTextBox12.BackColor = System.Drawing.Color.White;
-            this.deTextBox12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deTextBox12.ForeColor = System.Drawing.Color.Black;
-            this.deTextBox12.Location = new System.Drawing.Point(201, 89);
-            this.deTextBox12.Mandatory = true;
-            this.deTextBox12.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.deTextBox12.MaxLength = 4;
-            this.deTextBox12.Name = "deTextBox12";
-            this.deTextBox12.ReadOnly = true;
-            this.deTextBox12.Size = new System.Drawing.Size(32, 22);
-            this.deTextBox12.TabIndex = 14;
             // 
             // EntryForm
             // 
