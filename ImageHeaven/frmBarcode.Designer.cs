@@ -36,6 +36,7 @@
             this.sfdUAT = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.deLabel1 = new nControls.deLabel();
             this.deButton1 = new nControls.deButton();
             this.deComboBox2 = new nControls.deComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.deButton20 = new nControls.deButton();
             this.deButton21 = new nControls.deButton();
-            this.deLabel1 = new nControls.deLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -122,6 +122,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(661, 68);
             this.panel2.TabIndex = 6;
+            // 
+            // deLabel1
+            // 
+            this.deLabel1.AutoSize = true;
+            this.deLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.deLabel1.Location = new System.Drawing.Point(288, 43);
+            this.deLabel1.Name = "deLabel1";
+            this.deLabel1.Size = new System.Drawing.Size(54, 15);
+            this.deLabel1.TabIndex = 11;
+            this.deLabel1.Text = "deLabel1";
             // 
             // deButton1
             // 
@@ -222,14 +233,13 @@
             this.grdStatus.AllowUserToAddRows = false;
             this.grdStatus.AllowUserToDeleteRows = false;
             this.grdStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdStatus.Location = new System.Drawing.Point(3, 19);
             this.grdStatus.MultiSelect = false;
             this.grdStatus.Name = "grdStatus";
             this.grdStatus.ReadOnly = true;
             this.grdStatus.RowHeadersWidth = 62;
             this.grdStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdStatus.Size = new System.Drawing.Size(907, 438);
+            this.grdStatus.Size = new System.Drawing.Size(907, 348);
             this.grdStatus.TabIndex = 6;
             // 
             // panel4
@@ -291,17 +301,6 @@
             this.deButton21.UseCompatibleTextRendering = true;
             this.deButton21.UseVisualStyleBackColor = false;
             this.deButton21.Click += new System.EventHandler(this.deButton21_Click);
-            // 
-            // deLabel1
-            // 
-            this.deLabel1.AutoSize = true;
-            this.deLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.deLabel1.Location = new System.Drawing.Point(288, 43);
-            this.deLabel1.Name = "deLabel1";
-            this.deLabel1.Size = new System.Drawing.Size(54, 15);
-            this.deLabel1.TabIndex = 11;
-            this.deLabel1.Text = "deLabel1";
             // 
             // frmBarcode
             // 
