@@ -68,6 +68,9 @@ namespace ImageHeaven
                 var listItem3 = new ListViewItem(row3);
                 listView6.Items.Add(listItem3);
 
+                string[] row5 = { "Drag Image", "F10" };
+                var listItem5 = new ListViewItem(row5);
+                listView6.Items.Add(listItem5);
                 //string[] row4 = { "Show File Log", "Ctrl + L" };
                 //var listItem4 = new ListViewItem(row4);
                 //listView6.Items.Add(listItem4);
@@ -93,6 +96,10 @@ namespace ImageHeaven
                 string[] row4 = { "Show File Log", "Ctrl + L" };
                 var listItem4 = new ListViewItem(row4);
                 listView6.Items.Add(listItem4);
+
+                string[] row5 = { "Drag Image", "F10" };
+                var listItem5 = new ListViewItem(row5);
+                listView6.Items.Add(listItem5);
             }
 
         }
