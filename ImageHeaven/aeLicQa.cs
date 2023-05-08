@@ -3391,6 +3391,15 @@ namespace ImageHeaven
                         {
                             pPolicy = new CtrlPolicy(Convert.ToInt32(cmbProject.SelectedValue.ToString()), Convert.ToInt32(cmbBatch.SelectedValue.ToString()), boxNo, policyNumber);
                             wfePolicy wPolicy = new wfePolicy(sqlCon, pPolicy);
+                            
+
+                            if(wPolicy.GetAllExceptionCheck().Tables[0].Rows.Count > 0)
+                            { wPolicy.QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED); }
+                            else
+                            {
+                                wPolicy.InitiateQaPolicyException(crd);
+                                wPolicy.QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED);
+                            }
                             UpdateStatus(eSTATES.POLICY_CHECKED, crd);
 
                             //for (int i = 0; i < lstImage.Items.Count; i++)
@@ -3404,14 +3413,6 @@ namespace ImageHeaven
                             wfeImage expwImage = new wfeImage(sqlCon, exppImage);
                             expwImage.UpdateAllImageStatus(eSTATES.PAGE_CHECKED, crd);
 
-                            if(wPolicy.GetAllException().Tables[0].Rows.Count > 0)
-                            { wPolicy.QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED); }
-                            else
-                            {
-                                wPolicy.InitiateQaPolicyException(crd);
-                                wPolicy.QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED); 
-                            }
-                            
                             grdPolicy.Rows[policyRowIndex].DefaultCellStyle.BackColor = Color.Green;
                             if ((GetPolicyStatus() == (int)eSTATES.POLICY_NOT_INDEXED))
                             {
@@ -3604,7 +3605,7 @@ namespace ImageHeaven
                         {
                             udtExp.solved = ihConstants._POLICY_EXCEPTION_NOT_SOLVED;
                             //if(policy.InitiateQaPolicyException(crd))
-                            if(policy.GetAllException().Tables[0].Rows.Count > 0)
+                            if(policy.GetAllExceptionCheck().Tables[0].Rows.Count > 0)
                             {
                                 if (policy.UpdateQaPolicyException(crd, udtExp) == true)
                                 {
@@ -3843,7 +3844,97 @@ namespace ImageHeaven
             }
             return commitBol;
         }
+        public DataTable getAllFiles()
+        {
+            string sqlStr = null;
+            DataTable dsImage = new DataTable();
+            OdbcDataAdapter sqlAdap = null;
 
+            sqlStr = "select filename from metadata_entry " +
+                    " where proj_code=" + projCode +
+                " and bundle_key=" + batchCode + " ";
+
+            try
+            {
+                sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
+                sqlAdap.Fill(dsImage);
+            }
+            catch (Exception ex)
+            {
+                sqlAdap.Dispose();
+
+                exMailLog.Log(ex);
+            }
+            return dsImage;
+        }
+        public DataSet GetAllException(string policy)
+        {
+            string sqlStr = null;
+
+            DataSet expDs = new DataSet();
+
+            try
+            {
+                sqlStr = "select missing_img_exp,crop_clean_exp,poor_scan_exp,wrong_indexing_exp,linked_policy_exp,decision_misd_exp,extra_page_exp,rearrange_exp,other_exp,move_to_respective_policy_exp,comments from lic_qa_log where proj_key=" + cmbProject.SelectedValue.ToString() + " and batch_key=" + cmbBatch.SelectedValue.ToString() + " and policy_number='" + policy + "' ";
+                sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
+                sqlAdap.Fill(expDs);
+            }
+            catch (Exception ex)
+            {
+                sqlAdap.Dispose();
+                //stateLog = new MemoryStream();
+                //tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                //stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex);
+            }
+
+            return expDs;
+        }
+        public bool QaExceptionStatus(int prmStatus, int prmExpStatus, string policy)
+        {
+            string sqlStr = null;
+            bool commitBol = true;
+            OdbcCommand sqlCmd = new OdbcCommand();
+            OdbcTransaction prmTrans;
+
+            try
+            {
+                prmTrans = sqlCon.BeginTransaction();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.Transaction = prmTrans;
+
+                sqlStr = @"update lic_qa_log" +
+                " set solved=" + prmStatus + " where proj_key=" + cmbProject.SelectedValue.ToString() +
+                " and batch_key=" + cmbBatch.SelectedValue.ToString() + " and box_number='" + 1 + "'" +
+                " and policy_number='" + policy + "' and solved <>" + 7;
+
+
+                sqlCmd.CommandText = sqlStr;
+                sqlCmd.ExecuteNonQuery();
+
+                sqlStr = @"update lic_qa_log" +
+                " set qa_status=" + prmExpStatus + ",created_by = '" + crd.created_by + "',created_dttm = '" + crd.created_dttm + "' where proj_key=" + cmbProject.SelectedValue.ToString() +
+                " and batch_key=" + cmbBatch.SelectedValue.ToString() + " and box_number='" + 1 + "'" +
+                " and policy_number='" + policy + "'";
+
+
+                sqlCmd.CommandText = sqlStr;
+                int i = sqlCmd.ExecuteNonQuery();
+
+                prmTrans.Commit();
+                commitBol = true;
+            }
+            catch (Exception ex)
+            {
+                commitBol = false;
+                sqlCmd.Dispose();
+                //stateLog = new MemoryStream();
+                //tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                //stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex);
+            }
+            return commitBol;
+        }
         private void chkReadyUat_Click(object sender, EventArgs e)
         {
             DialogResult dlg;
@@ -3864,6 +3955,20 @@ namespace ImageHeaven
                                     dlg = MessageBox.Show(this, "Are you sure, this bundle is ready for UAT?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (dlg == DialogResult.Yes)
                                     {
+                                        int totNO = getAllFiles().Rows.Count;
+
+                                        for (int i = 0; i < totNO; i++)
+                                        {
+                                            string policy = getAllFiles().Rows[i][0].ToString();
+                                            if (GetAllException(policy).Tables[0].Rows.Count > 0)
+                                            { /*QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED, policy);*/ }
+                                            else
+                                            {
+                                                wPolicy.InitiateQaPolicyException(crd, policy);
+                                                QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED, policy);
+                                            }
+                                        }
+
                                         UpdateStatus(eSTATES.BATCH_READY_FOR_UAT, Convert.ToInt32(cmbProject.SelectedValue.ToString()), Convert.ToInt32(cmbBatch.SelectedValue.ToString()));
                                         chkReadyUat.Checked = true;
                                         chkReadyUat.Enabled = false;
@@ -3910,6 +4015,20 @@ namespace ImageHeaven
                                         dlg = MessageBox.Show(this, "Are you sure, this bundle is ready for UAT?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                         if (dlg == DialogResult.Yes)
                                         {
+                                            int totNO = getAllFiles().Rows.Count;
+
+                                            for (int i = 0; i < totNO; i++)
+                                            {
+                                                string policy = getAllFiles().Rows[i][0].ToString();
+                                                if (GetAllException(policy).Tables[0].Rows.Count > 0)
+                                                { /*QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED, policy);*/ }
+                                                else
+                                                {
+                                                    wPolicy.InitiateQaPolicyException(crd, policy);
+                                                    QaExceptionStatus(ihConstants._POLICY_EXCEPTION_SOLVED, ihConstants._LIC_QA_POLICY_CHECKED, policy);
+                                                }
+                                            }
+
                                             UpdateStatus(eSTATES.BATCH_READY_FOR_UAT, Convert.ToInt32(cmbProject.SelectedValue.ToString()), Convert.ToInt32(cmbBatch.SelectedValue.ToString()));
                                             chkReadyUat.Checked = true;
                                             chkReadyUat.Enabled = false;

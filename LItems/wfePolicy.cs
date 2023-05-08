@@ -802,6 +802,29 @@ namespace LItems
 			
 			return expDs;
 		}
+        public DataSet GetAllExceptionCheck()
+        {
+            string sqlStr = null;
+
+            DataSet expDs = new DataSet();
+
+            try
+            {
+                sqlStr = "select missing_img_exp,crop_clean_exp,poor_scan_exp,wrong_indexing_exp,linked_policy_exp,decision_misd_exp,extra_page_exp,rearrange_exp,other_exp,move_to_respective_policy_exp,metadata_exp,comments from lic_qa_log where proj_key=" + ctrlPolicy.ProjectKey + " and batch_key=" + ctrlPolicy.BatchKey + " and policy_number='" + ctrlPolicy.PolicyNumber + "'";
+                sqlAdap = new OdbcDataAdapter(sqlStr, sqlCon);
+                sqlAdap.Fill(expDs);
+            }
+            catch (Exception ex)
+            {
+                sqlAdap.Dispose();
+                stateLog = new MemoryStream();
+                tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex, this);
+            }
+
+            return expDs;
+        }
         public int GetLICLogStatus()
         {
             string sqlStr = null;
@@ -2806,7 +2829,38 @@ public bool UpdateStatus(int pStatus,Credentials prmCrd)
 			}
 			return commitBol;
 		}
-		public bool UpdateQaPolicyException(NovaNet.Utils.Credentials prmCrd,policyException udtException)
+        public bool InitiateQaPolicyException(NovaNet.Utils.Credentials prmCrd, string policy)
+        {
+            string sqlStr = null;
+            OdbcTransaction sqlTrans = null;
+            bool commitBol = true;
+            OdbcCommand sqlCmd = new OdbcCommand();
+            try
+            {
+                sqlTrans = sqlCon.BeginTransaction();
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.Transaction = sqlTrans;
+
+                sqlStr = @"insert into lic_qa_log (proj_key,box_number,policy_number,batch_key,created_by,created_dttm) values(" + ctrlPolicy.ProjectKey + ",'" + ctrlPolicy.BoxNumber + "','" + policy + "'," + ctrlPolicy.BatchKey + ",'" + prmCrd.created_by + "','" + prmCrd.created_dttm + "')";
+                sqlCmd.CommandText = sqlStr;
+                sqlCmd.ExecuteNonQuery();
+
+                sqlTrans.Commit();
+                commitBol = true;
+            }
+            catch (Exception ex)
+            {
+                commitBol = false;
+                sqlTrans.Rollback();
+                sqlCmd.Dispose();
+                stateLog = new MemoryStream();
+                tmpWrite = new System.Text.ASCIIEncoding().GetBytes(sqlStr + "\n");
+                stateLog.Write(tmpWrite, 0, tmpWrite.Length);
+                exMailLog.Log(ex, this);
+            }
+            return commitBol;
+        }
+        public bool UpdateQaPolicyException(NovaNet.Utils.Credentials prmCrd,policyException udtException)
 		{
 			string sqlStr=null;
 			OdbcTransaction sqlTrans=null;
