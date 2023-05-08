@@ -41,7 +41,7 @@ namespace ImageHeaven
         public string endDate;
         public Credentials crd = new Credentials();
 
-        public frmProduction(OdbcConnection prmCon,Credentials pcrd)
+        public frmProduction(OdbcConnection prmCon, Credentials pcrd)
         {
             InitializeComponent();
             sqlCon = prmCon;
@@ -65,7 +65,7 @@ namespace ImageHeaven
                 deComboBox1.DisplayMember = "role_description";
                 deComboBox1.ValueMember = "role_id";
             }
-            
+
         }
         private void populateUserTypeM()
         {
@@ -124,7 +124,7 @@ namespace ImageHeaven
             }
 
         }
-        
+
         private void populateUserTypeS()
         {
             DataSet ds = new DataSet();
@@ -245,8 +245,8 @@ namespace ImageHeaven
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "yyyy-MM-dd";
             dateTimePicker2.Value = Convert.ToDateTime(endDate.ToString());
-            
-            
+
+
         }
 
         private void deButton1_Click(object sender, EventArgs e)
@@ -303,7 +303,10 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesAudit()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select distinct date_format(created_dttm,'%Y-%m-%d') as 'Audit Date',created_by as 'Audit User' from lic_qa_log where (date_format(created_dttm,'%Y-%m-%d') >= '" + dateTimePicker1.Text + "' and date_format(created_dttm,'%Y-%m-%d') <= '" + dateTimePicker2.Text + "') or (date_format(modified_dttm,'%Y-%m-%d') >= '" + dateTimePicker1.Text + "' and date_format(modified_dttm,'%Y-%m-%d') <= '" + dateTimePicker2.Text + "') and (qa_status = 0 or qa_status = 1 or qa_status = 2)";
+            //string sql = "select distinct date_format(created_dttm,'%Y-%m-%d') as 'Audit Date',created_by as 'Audit User' from lic_qa_log where (date_format(created_dttm,'%Y-%m-%d') >= '" + dateTimePicker1.Text + "' and date_format(created_dttm,'%Y-%m-%d') <= '" + dateTimePicker2.Text + "') or (date_format(modified_dttm,'%Y-%m-%d') >= '" + dateTimePicker1.Text + "' and date_format(modified_dttm,'%Y-%m-%d') <= '" + dateTimePicker2.Text + "') and (qa_status = 0 or qa_status = 1 or qa_status = 2)";
+            string sql = "select distinct date_format(a.created_dttm,'%Y-%m-%d') as 'Audit Date',a.created_by as 'Audit User',b.bundle_name as 'Bundle Name',a.policy_number  as 'Filename',a.proj_key,a.batch_key from lic_qa_log a, bundle_master b " +
+                         " where (date_format(a.created_dttm,'%Y-%m-%d') >= '" + dateTimePicker1.Text + "' and date_format(a.created_dttm,'%Y-%m-%d') <= '" + dateTimePicker2.Text + "') and (a.qa_status = 0 or a.qa_status = 1 or a.qa_status = 2) and " +
+                         " a.proj_key = b.proj_code and a.batch_key = b.bundle_key";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -413,7 +416,7 @@ namespace ImageHeaven
         public string _GetImageCountQC(string projk, string batchK, string file)
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select COUNT(*) from image_master where proj_key =  '" + projk + "' and batch_key = '" + batchK + "' and policy_number = '"+file+"'   ";
+            string sql = "select COUNT(*) from image_master where proj_key =  '" + projk + "' and batch_key = '" + batchK + "' and policy_number = '" + file + "'   ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -463,7 +466,7 @@ namespace ImageHeaven
             Dt.Columns.Add("Number of Files");
             //Dt.Columns.Add("No of Petitioner/Respondant");
 
-            
+
 
             for (int i = 0; i < Dt.Rows.Count; i++)
             {
@@ -477,7 +480,7 @@ namespace ImageHeaven
 
                 //for (int j =0; j < _GetEntryCount(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count; j++)
                 //{
-                    
+
 
                 //    string p_name = _GetEntryCount(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows[j][0].ToString();
 
@@ -487,7 +490,7 @@ namespace ImageHeaven
 
                 //    foreach (string p in split)
                 //    {
-                       
+
                 //        if (p_name == null || p_name == "")
                 //        {
                 //        }
@@ -517,7 +520,7 @@ namespace ImageHeaven
 
                 //    Dt.Rows[i][3] = count.ToString();
                 //}
-                
+
             }
 
             grdStatus.DataSource = Dt;
@@ -527,7 +530,7 @@ namespace ImageHeaven
 
             this.grdStatus.Refresh();
 
-            if(Dt.Rows.Count > 0)
+            if (Dt.Rows.Count > 0)
             {
                 deButton20.Enabled = true;
             }
@@ -578,7 +581,7 @@ namespace ImageHeaven
                 Dt.Rows[i][2] = _GetFileCountQC(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString());
 
                 int count = 0;
-                for (int j = 0; j<_GetFileDetailsQC(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count; j++)
+                for (int j = 0; j < _GetFileDetailsQC(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count; j++)
                 {
                     string pk = _GetFileDetailsQC(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows[j][0].ToString();
 
@@ -695,30 +698,28 @@ namespace ImageHeaven
             System.Data.DataTable Dt = new System.Data.DataTable();
             Dt = _GetEntriesAudit();
 
-            Dt.Columns.Add("Number of Files");
+            //Dt.Columns.Add("Number of Files");
             Dt.Columns.Add("Number of Images");
 
 
 
             for (int i = 0; i < Dt.Rows.Count; i++)
             {
-                Dt.Rows[i][2] = _GetFileCountAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count;
+                //Dt.Rows[i][2] = _GetFileCountAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count;
 
-                int count = 0;
-                for (int j = 0; j < _GetFileDetailsAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows.Count; j++)
-                {
-                    string pk = _GetFileDetailsAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows[j][0].ToString();
+                string pk = Dt.Rows[i][4].ToString();
 
-                    string bk = _GetFileDetailsAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows[j][1].ToString();
+                string bk = Dt.Rows[i][5].ToString();
 
-                    string pn = _GetFileDetailsAudit(Dt.Rows[i][0].ToString(), Dt.Rows[i][1].ToString()).Rows[j][2].ToString();
+                string pn = Dt.Rows[i][3].ToString();
 
-                    count = count + Convert.ToInt32(_GetImageCountAudit(pk, bk, pn).ToString());
+                int count = Convert.ToInt32(_GetImageCountAudit(pk, bk, pn).ToString());
 
-                    Dt.Rows[i][3] = count.ToString();
+                Dt.Rows[i][6] = count.ToString();
 
-                }
             }
+            Dt.Columns.Remove("proj_key");
+            Dt.Columns.Remove("batch_key");
 
             grdStatus.DataSource = Dt;
 
@@ -753,7 +754,7 @@ namespace ImageHeaven
 
         private void deButton1_Click_1(object sender, EventArgs e)
         {
-            if(deComboBox1.Text == "Metadata Entry")
+            if (deComboBox1.Text == "Metadata Entry")
             {
                 init();
             }
@@ -769,7 +770,7 @@ namespace ImageHeaven
             {
                 initIndex();
             }
-            if(deComboBox1.Text == "Fqc")
+            if (deComboBox1.Text == "Fqc")
             {
                 initFqc();
             }
@@ -824,7 +825,7 @@ namespace ImageHeaven
             range.Borders.Color = ColorTranslator.ToOle(Color.Black);
 
 
-            
+
             if (deComboBox1.Text == "Metadata Entry")
             {
                 Range range1 = worksheet.get_Range("A6", "C6");
@@ -835,6 +836,22 @@ namespace ImageHeaven
 
 
                     Range range2 = worksheet.get_Range("A6", "C6");
+                    range2.Borders.Color = ColorTranslator.ToOle(Color.Black);
+                    range2.EntireRow.AutoFit();
+                    range2.EntireColumn.AutoFit();
+                    worksheet.Cells[6, i] = grdStatus.Columns[i - 1].HeaderText;
+                }
+            }
+            else if (deComboBox1.Text == "Audit")
+            {
+                Range range1 = worksheet.get_Range("A6", "E6");
+                range1.Borders.Color = ColorTranslator.ToOle(Color.Black);
+
+                for (int i = 1; i < grdStatus.Columns.Count + 1; i++)
+                {
+
+
+                    Range range2 = worksheet.get_Range("A6", "E6");
                     range2.Borders.Color = ColorTranslator.ToOle(Color.Black);
                     range2.EntireRow.AutoFit();
                     range2.EntireColumn.AutoFit();
@@ -858,7 +875,7 @@ namespace ImageHeaven
                 }
             }
 
-            
+
 
             for (int i = 0; i < grdStatus.Rows.Count; i++)
             {
