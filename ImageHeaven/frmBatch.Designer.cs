@@ -52,6 +52,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbProject = new nControls.deComboBox();
             this.deLabel1 = new nControls.deLabel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.txtInwardDate = new nControls.deTextBox();
+            this.deLabel8 = new nControls.deLabel();
             this.panel4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,7 +63,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 333);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 370);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(701, 22);
             this.statusStrip1.TabIndex = 0;
@@ -76,7 +79,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(701, 333);
+            this.panel4.Size = new System.Drawing.Size(701, 370);
             this.panel4.TabIndex = 2;
             // 
             // button2
@@ -88,7 +91,7 @@
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button2.Location = new System.Drawing.Point(443, 282);
+            this.button2.Location = new System.Drawing.Point(443, 319);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(104, 44);
             this.button2.TabIndex = 15;
@@ -109,7 +112,7 @@
             this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(573, 281);
+            this.button3.Location = new System.Drawing.Point(573, 318);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(118, 45);
             this.button3.TabIndex = 16;
@@ -127,9 +130,9 @@
             this.groupBox4.Controls.Add(this.deLabel6);
             this.groupBox4.Controls.Add(this.deLabel7);
             this.groupBox4.Enabled = false;
-            this.groupBox4.Location = new System.Drawing.Point(2, 211);
+            this.groupBox4.Location = new System.Drawing.Point(2, 253);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(695, 66);
+            this.groupBox4.Size = new System.Drawing.Size(695, 60);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
@@ -179,6 +182,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.dateTimePicker2);
+            this.groupBox3.Controls.Add(this.txtInwardDate);
+            this.groupBox3.Controls.Add(this.deLabel8);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Controls.Add(this.deButton1);
             this.groupBox3.Controls.Add(this.txtHandoverDate);
@@ -192,7 +198,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(2, 70);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(695, 142);
+            this.groupBox3.Size = new System.Drawing.Size(695, 184);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bundle Details";
@@ -216,10 +222,10 @@
             this.deButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deButton1.Image = ((System.Drawing.Image)(resources.GetObject("deButton1.Image")));
             this.deButton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.deButton1.Location = new System.Drawing.Point(255, 91);
+            this.deButton1.Location = new System.Drawing.Point(255, 134);
             this.deButton1.Name = "deButton1";
             this.deButton1.Size = new System.Drawing.Size(224, 43);
-            this.deButton1.TabIndex = 10;
+            this.deButton1.TabIndex = 11;
             this.deButton1.Text = "         &Generate Bundle Code";
             this.deButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.deButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -352,11 +358,44 @@
             this.deLabel1.TabIndex = 0;
             this.deLabel1.Text = "Project Name :";
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = " ";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(305, 99);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(170, 22);
+            this.dateTimePicker2.TabIndex = 10;
+            this.dateTimePicker2.Leave += new System.EventHandler(this.dateTimePicker2_Leave);
+            // 
+            // txtInwardDate
+            // 
+            this.txtInwardDate.BackColor = System.Drawing.Color.White;
+            this.txtInwardDate.Enabled = false;
+            this.txtInwardDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInwardDate.ForeColor = System.Drawing.Color.Black;
+            this.txtInwardDate.Location = new System.Drawing.Point(306, 98);
+            this.txtInwardDate.Mandatory = true;
+            this.txtInwardDate.Name = "txtInwardDate";
+            this.txtInwardDate.Size = new System.Drawing.Size(170, 23);
+            this.txtInwardDate.TabIndex = 16;
+            this.txtInwardDate.Visible = false;
+            // 
+            // deLabel8
+            // 
+            this.deLabel8.AutoSize = true;
+            this.deLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel8.Location = new System.Drawing.Point(219, 102);
+            this.deLabel8.Name = "deLabel8";
+            this.deLabel8.Size = new System.Drawing.Size(76, 15);
+            this.deLabel8.TabIndex = 15;
+            this.deLabel8.Text = "Inward Date :";
+            // 
             // frmBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 355);
+            this.ClientSize = new System.Drawing.Size(701, 392);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -408,5 +447,8 @@
         private nControls.deButton button3;
         private nControls.deButton button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private nControls.deTextBox txtInwardDate;
+        private nControls.deLabel deLabel8;
     }
 }
