@@ -168,6 +168,7 @@ namespace ImageHeaven
 
                         userWiseReportToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
+                        outwardReportToolStripMenuItem.Visible = true;
                     }
                     else if(crd.role == "Metadata Entry")
                     {
@@ -235,6 +236,7 @@ namespace ImageHeaven
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
+                        outwardReportToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "Scan")
                     {
@@ -308,6 +310,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "QC")
@@ -382,6 +385,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "DOC Type Association")
@@ -456,6 +460,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
+                        outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if (crd.role == "InventoryIn")
@@ -532,6 +537,7 @@ namespace ImageHeaven
                         auditToolStripMenuItem.Visible = false;
 
                         userWiseReportToolStripMenuItem.Visible = false;
+                        outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
                     }
                     else if(crd.role == ihConstants._LIC_ROLE)
@@ -559,6 +565,7 @@ namespace ImageHeaven
                         helpToolStripMenuItem.Visible = true;
                         logoutToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
+                        outwardReportToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -603,6 +610,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
+                        outwardReportToolStripMenuItem.Visible = false;
                     }
                 }
             }
@@ -1238,6 +1246,12 @@ namespace ImageHeaven
         private void outwardSubmissionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOutwardSubmission frm = new frmOutwardSubmission(sqlCon, crd);
+            frm.ShowDialog(this);
+        }
+
+        private void outwardReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOutwardReport frm = new frmOutwardReport(sqlCon);
             frm.ShowDialog(this);
         }
     }

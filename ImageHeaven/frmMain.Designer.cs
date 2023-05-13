@@ -47,6 +47,7 @@
             this.qualityControlFinalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.outwardSubmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.outwardSubmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outwardReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -250,6 +251,14 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(234, 6);
             // 
+            // outwardSubmissionToolStripMenuItem
+            // 
+            this.outwardSubmissionToolStripMenuItem.Name = "outwardSubmissionToolStripMenuItem";
+            this.outwardSubmissionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.outwardSubmissionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.outwardSubmissionToolStripMenuItem.Text = "&Outward Submission";
+            this.outwardSubmissionToolStripMenuItem.Click += new System.EventHandler(this.outwardSubmissionToolStripMenuItem_Click);
+            // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
@@ -336,6 +345,7 @@
             this.productionReportToolStripMenuItem,
             this.siteReportToolStripMenuItem,
             this.userWiseReportToolStripMenuItem,
+            this.outwardReportToolStripMenuItem,
             this.uATCertificateToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
@@ -344,35 +354,35 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // productionReportToolStripMenuItem
             // 
             this.productionReportToolStripMenuItem.Name = "productionReportToolStripMenuItem";
-            this.productionReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.productionReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.productionReportToolStripMenuItem.Text = "Production Report";
             this.productionReportToolStripMenuItem.Click += new System.EventHandler(this.productionReportToolStripMenuItem_Click);
             // 
             // siteReportToolStripMenuItem
             // 
             this.siteReportToolStripMenuItem.Name = "siteReportToolStripMenuItem";
-            this.siteReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.siteReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.siteReportToolStripMenuItem.Text = "Site Report";
             this.siteReportToolStripMenuItem.Click += new System.EventHandler(this.siteReportToolStripMenuItem_Click);
             // 
             // userWiseReportToolStripMenuItem
             // 
             this.userWiseReportToolStripMenuItem.Name = "userWiseReportToolStripMenuItem";
-            this.userWiseReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.userWiseReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userWiseReportToolStripMenuItem.Text = "User Wise Report";
             this.userWiseReportToolStripMenuItem.Click += new System.EventHandler(this.userWiseReportToolStripMenuItem_Click);
             // 
             // uATCertificateToolStripMenuItem
             // 
             this.uATCertificateToolStripMenuItem.Name = "uATCertificateToolStripMenuItem";
-            this.uATCertificateToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.uATCertificateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uATCertificateToolStripMenuItem.Text = "UAT Certificate";
             this.uATCertificateToolStripMenuItem.Click += new System.EventHandler(this.uATCertificateToolStripMenuItem_Click);
             // 
@@ -507,13 +517,12 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // outwardSubmissionToolStripMenuItem
+            // outwardReportToolStripMenuItem
             // 
-            this.outwardSubmissionToolStripMenuItem.Name = "outwardSubmissionToolStripMenuItem";
-            this.outwardSubmissionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.outwardSubmissionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.outwardSubmissionToolStripMenuItem.Text = "&Outward Submission";
-            this.outwardSubmissionToolStripMenuItem.Click += new System.EventHandler(this.outwardSubmissionToolStripMenuItem_Click);
+            this.outwardReportToolStripMenuItem.Name = "outwardReportToolStripMenuItem";
+            this.outwardReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.outwardReportToolStripMenuItem.Text = "Outward Report";
+            this.outwardReportToolStripMenuItem.Click += new System.EventHandler(this.outwardReportToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -596,6 +605,7 @@
         private System.Windows.Forms.ToolStripMenuItem userWiseReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uATCertificateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outwardSubmissionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem outwardReportToolStripMenuItem;
     }
 }
 
