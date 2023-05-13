@@ -317,6 +317,12 @@
     <Compile Include="frmMandPolicyList.Designer.cs">
       <DependentUpon>frmMandPolicyList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOutwardReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOutwardReport.Designer.cs">
+      <DependentUpon>frmOutwardReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOutwardSubmission.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,6 +622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMandPolicyList.resx">
       <DependentUpon>frmMandPolicyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOutwardReport.resx">
+      <DependentUpon>frmOutwardReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOutwardSubmission.resx">
       <DependentUpon>frmOutwardSubmission.cs</DependentUpon>
