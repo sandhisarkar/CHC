@@ -138,6 +138,7 @@ namespace ImageHeaven
                         toolStripButton4.Visible = true;
                         toolStripMenuItem1.Visible = true;
                         //generateBarcodeToolStripMenuItem.Visible = false;
+                        outwardSubmissionToolStripMenuItem.Visible = true;
                         reportToolStripMenuItem.Visible = true;
                         reportToolStripMenuItem.Enabled = true;
                         dashboardToolStripMenuItem1.Visible = true;
@@ -224,8 +225,8 @@ namespace ImageHeaven
                         toolStrip1.Visible = false;
                         toolStrip1.Enabled = false;
                         configurationToolStripMenuItem.Visible = false;
-                        
-                        
+                        outwardSubmissionToolStripMenuItem.Visible = false;
+
                         helpToolStripMenuItem.Visible = true;
 
                        
@@ -298,8 +299,8 @@ namespace ImageHeaven
                         toolStripButton4.Visible = true;
 
                         configurationToolStripMenuItem.Visible = false;
-                        
-                       
+                        outwardSubmissionToolStripMenuItem.Visible = false;
+
                         helpToolStripMenuItem.Visible = true;
 
                         
@@ -372,8 +373,8 @@ namespace ImageHeaven
                         toolStripButton4.Visible = false;
 
                         configurationToolStripMenuItem.Visible = false;
-                        
-                       
+                        outwardSubmissionToolStripMenuItem.Visible = false;
+
                         helpToolStripMenuItem.Visible = true;
 
                         
@@ -444,7 +445,7 @@ namespace ImageHeaven
                         toolStripButton3.Visible = false;
                         toolStripButton2.Visible = true;
                         toolStripButton4.Visible = true;
-
+                        outwardSubmissionToolStripMenuItem.Visible = false;
                         configurationToolStripMenuItem.Visible = false;
                         
                       
@@ -521,8 +522,8 @@ namespace ImageHeaven
 
 
                         configurationToolStripMenuItem.Visible = false;
-                        
-                      
+                        outwardSubmissionToolStripMenuItem.Visible = false;
+
                         helpToolStripMenuItem.Visible = true;
 
                         
@@ -546,6 +547,7 @@ namespace ImageHeaven
                         masterUpdateToolStripMenuItem.Enabled = false;
                         toolsToolStripMenuItem.Visible = true;
                         configurationToolStripMenuItem.Visible = false;
+                        outwardSubmissionToolStripMenuItem.Visible = false;
                         newPasswordToolStripMenuItem.Visible = true;
                         newUserToolStripMenuItem.Visible = false;
                         onlineUsersToolStripMenuItem.Visible = false;
@@ -583,7 +585,7 @@ namespace ImageHeaven
                         productionReportToolStripMenuItem.Enabled = false;
                         siteReportToolStripMenuItem.Visible = false;
                         siteReportToolStripMenuItem.Enabled = false;
-
+                        outwardSubmissionToolStripMenuItem.Visible = false;
 
                         masterUpdateToolStripMenuItem.Visible = false;
                         masterUpdateToolStripMenuItem.Enabled = false;
@@ -1230,6 +1232,12 @@ namespace ImageHeaven
         private void uATCertificateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUAT frm = new frmUAT(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void outwardSubmissionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOutwardSubmission frm = new frmOutwardSubmission(sqlCon, crd);
             frm.ShowDialog(this);
         }
     }

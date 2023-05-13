@@ -62,6 +62,7 @@
             this.productionReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.siteReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userWiseReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uATCertificateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +76,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.uATCertificateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outwardSubmissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -168,6 +169,7 @@
             this.qualityControlFinalToolStripMenuItem,
             this.toolStripMenuItem1,
             this.toolStripSeparator2,
+            this.outwardSubmissionToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(87, 22);
@@ -302,28 +304,28 @@
             // configurationToolStripMenuItem
             // 
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.configurationToolStripMenuItem.Text = "Configuration";
             this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
             // 
             // newPasswordToolStripMenuItem
             // 
             this.newPasswordToolStripMenuItem.Name = "newPasswordToolStripMenuItem";
-            this.newPasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newPasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.newPasswordToolStripMenuItem.Text = "Change Password";
             this.newPasswordToolStripMenuItem.Click += new System.EventHandler(this.newPasswordToolStripMenuItem_Click);
             // 
             // newUserToolStripMenuItem
             // 
             this.newUserToolStripMenuItem.Name = "newUserToolStripMenuItem";
-            this.newUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.newUserToolStripMenuItem.Text = "New User";
             this.newUserToolStripMenuItem.Click += new System.EventHandler(this.newUserToolStripMenuItem_Click);
             // 
             // onlineUsersToolStripMenuItem
             // 
             this.onlineUsersToolStripMenuItem.Name = "onlineUsersToolStripMenuItem";
-            this.onlineUsersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlineUsersToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.onlineUsersToolStripMenuItem.Text = "Online Users";
             this.onlineUsersToolStripMenuItem.Click += new System.EventHandler(this.onlineUsersToolStripMenuItem_Click);
             // 
@@ -342,30 +344,37 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // productionReportToolStripMenuItem
             // 
             this.productionReportToolStripMenuItem.Name = "productionReportToolStripMenuItem";
-            this.productionReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productionReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.productionReportToolStripMenuItem.Text = "Production Report";
             this.productionReportToolStripMenuItem.Click += new System.EventHandler(this.productionReportToolStripMenuItem_Click);
             // 
             // siteReportToolStripMenuItem
             // 
             this.siteReportToolStripMenuItem.Name = "siteReportToolStripMenuItem";
-            this.siteReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.siteReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.siteReportToolStripMenuItem.Text = "Site Report";
             this.siteReportToolStripMenuItem.Click += new System.EventHandler(this.siteReportToolStripMenuItem_Click);
             // 
             // userWiseReportToolStripMenuItem
             // 
             this.userWiseReportToolStripMenuItem.Name = "userWiseReportToolStripMenuItem";
-            this.userWiseReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userWiseReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.userWiseReportToolStripMenuItem.Text = "User Wise Report";
             this.userWiseReportToolStripMenuItem.Click += new System.EventHandler(this.userWiseReportToolStripMenuItem_Click);
+            // 
+            // uATCertificateToolStripMenuItem
+            // 
+            this.uATCertificateToolStripMenuItem.Name = "uATCertificateToolStripMenuItem";
+            this.uATCertificateToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.uATCertificateToolStripMenuItem.Text = "UAT Certificate";
+            this.uATCertificateToolStripMenuItem.Click += new System.EventHandler(this.uATCertificateToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -498,12 +507,13 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // uATCertificateToolStripMenuItem
+            // outwardSubmissionToolStripMenuItem
             // 
-            this.uATCertificateToolStripMenuItem.Name = "uATCertificateToolStripMenuItem";
-            this.uATCertificateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uATCertificateToolStripMenuItem.Text = "UAT Certificate";
-            this.uATCertificateToolStripMenuItem.Click += new System.EventHandler(this.uATCertificateToolStripMenuItem_Click);
+            this.outwardSubmissionToolStripMenuItem.Name = "outwardSubmissionToolStripMenuItem";
+            this.outwardSubmissionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.outwardSubmissionToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.outwardSubmissionToolStripMenuItem.Text = "&Outward Submission";
+            this.outwardSubmissionToolStripMenuItem.Click += new System.EventHandler(this.outwardSubmissionToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -585,6 +595,7 @@
         private System.Windows.Forms.ToolStripMenuItem auditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userWiseReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uATCertificateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem outwardSubmissionToolStripMenuItem;
     }
 }
 
