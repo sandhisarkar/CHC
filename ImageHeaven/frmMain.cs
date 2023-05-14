@@ -165,7 +165,7 @@ namespace ImageHeaven
                         aboutToolStripMenuItem.Visible = true;
 
                         auditToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = true;
                         userWiseReportToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = true;
@@ -232,7 +232,7 @@ namespace ImageHeaven
 
                        
                         aboutToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
@@ -307,7 +307,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -382,7 +382,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -457,7 +457,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -535,7 +535,7 @@ namespace ImageHeaven
                         aboutToolStripMenuItem.Visible = true;
 
                         auditToolStripMenuItem.Visible = false;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
@@ -566,6 +566,7 @@ namespace ImageHeaven
                         logoutToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = false;
+                        detailDashboardToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -607,7 +608,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        detailDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -1252,6 +1253,12 @@ namespace ImageHeaven
         private void outwardReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOutwardReport frm = new frmOutwardReport(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void detailDashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDashboard frm = new frmDashboard(sqlCon);
             frm.ShowDialog(this);
         }
     }
