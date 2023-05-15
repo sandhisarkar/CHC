@@ -38,8 +38,7 @@ namespace ImageHeaven
     {
         OdbcConnection sqlCon = null;
 
-        public string stDate;
-        public string endDate;
+        
 
         public frmDashboard()
         {
@@ -54,18 +53,7 @@ namespace ImageHeaven
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-            stDate = DateTime.Now.ToString("yyyy-MM-dd");
-            endDate = DateTime.Now.ToString("yyyy-MM-dd");
-
-            dateTimePicker1.Text = stDate;
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-            dateTimePicker1.Value = Convert.ToDateTime(stDate.ToString());
-
-            dateTimePicker2.Text = endDate;
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "yyyy-MM-dd";
-            dateTimePicker2.Value = Convert.ToDateTime(endDate.ToString());
+            
 
             grdStatus.DataSource = null;
         }
@@ -75,16 +63,13 @@ namespace ImageHeaven
             grdStatus.DataSource = null;
 
 
-            stDate = dateTimePicker1.Text;
-            endDate = dateTimePicker2.Text;
 
             init();
         }
         public System.Data.DataTable _GetBundleEntries()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct bundle_code) from bundle_master " +
-                         "where date_format(created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(created_dttm, '%Y-%m-%d') <= '" + endDate + "'";
+            string sql = "select count(*) from bundle_master " ;
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -93,8 +78,7 @@ namespace ImageHeaven
         public System.Data.DataTable _GetFileEntries()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct filename) from case_file_master " +
-                         "where date_format(created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(created_dttm, '%Y-%m-%d') <= '" + endDate + "'";
+            string sql = "select count(*) from case_file_master ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -103,8 +87,8 @@ namespace ImageHeaven
         public System.Data.DataTable _GetImageEntries()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct Page_name) from image_master " +
-                         "where date_format(created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(created_dttm, '%Y-%m-%d') <= '" + endDate + "' and status<> 29";
+            string sql = "select count(*) from image_master " +
+                         "where status<> 29";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -113,7 +97,7 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesScan()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct Policy_number) from transaction_log where date_format(scanned_dttm,'%Y-%m-%d') >= '" + stDate + "' and date_format(scanned_dttm,'%Y-%m-%d') <= '" + endDate + "' ";
+            string sql = "select count(*) from transaction_log where scanned_user <> '' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -122,7 +106,7 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesQC()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct Policy_number) from transaction_log where date_format(qc_dttm,'%Y-%m-%d') >= '" + stDate + "' and date_format(qc_dttm,'%Y-%m-%d') <= '" + endDate + "' ";
+            string sql = "select count(*) from transaction_log where qc_user <> ''  ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -131,7 +115,7 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesIndex()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct Policy_number) from transaction_log where date_format(index_dttm,'%Y-%m-%d') >= '" + stDate + "' and date_format(index_dttm,'%Y-%m-%d') <= '" + endDate + "' ";
+            string sql = "select count(*) from transaction_log where index_user <> '' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -140,7 +124,7 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesFqc()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct Policy_number) from transaction_log where date_format(fqc_dttm,'%Y-%m-%d') >= '" + stDate + "' and date_format(fqc_dttm,'%Y-%m-%d') <= '" + endDate + "' ";
+            string sql = "select count(*) from transaction_log where fqc_user <> '' ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -149,8 +133,8 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesAudit()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct a.Policy_number) from lic_qa_log a, bundle_master b " +
-                         "where(date_format(a.created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(a.created_dttm, '%Y-%m-%d') <= '" + endDate + "') and(a.qa_status = 0 or a.qa_status = 1 or a.qa_status = 2) and " +
+            string sql = "select count(*) from lic_qa_log a, bundle_master b " +
+                         "where (a.qa_status = 0 or a.qa_status = 1 or a.qa_status = 2) and " +
                          "a.proj_key = b.proj_code and a.batch_key = b.bundle_key";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
@@ -160,8 +144,8 @@ namespace ImageHeaven
         public System.Data.DataTable _GetImagesAudit()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct b.Page_name) from lic_qa_log a, image_master b " +
-                         "where(date_format(a.created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(a.created_dttm, '%Y-%m-%d') <= '" + endDate + "') and(a.qa_status = 0 or a.qa_status = 1 or a.qa_status = 2) and " +
+            string sql = "select count(*) from lic_qa_log a, image_master b " +
+                         "where (a.qa_status = 0 or a.qa_status = 1 or a.qa_status = 2) and " +
                          "a.proj_key = b.proj_key and a.batch_key = b.batch_key and a.Policy_number = b.policy_number and b.status <> 29";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
@@ -171,8 +155,8 @@ namespace ImageHeaven
         public System.Data.DataTable _GetEntriesExport()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct a.filename) from metadata_entry a, bundle_master b "+
-                         "where(date_format(a.created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(a.created_dttm, '%Y-%m-%d') <= '" + endDate + "') and " +
+            string sql = "select count(*) from metadata_entry a, bundle_master b "+
+                         "where " +
                          "a.proj_code = b.proj_code and a.bundle_key = b.bundle_key and b.status >= 7 and a.status = 'Exported'";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
@@ -182,8 +166,8 @@ namespace ImageHeaven
         public System.Data.DataTable _GetImagesExport()
         {
             System.Data.DataTable dt = new System.Data.DataTable();
-            string sql = "select count(distinct c.Page_name) from metadata_entry a, bundle_master b, image_master c "+
-                         "where(date_format(a.created_dttm, '%Y-%m-%d') >= '" + stDate + "' and date_format(a.created_dttm, '%Y-%m-%d') <= '" + endDate + "') and " +
+            string sql = "select count(*) from metadata_entry a, bundle_master b, image_master c "+
+                         "where " +
                          "a.proj_code = b.proj_code and a.bundle_key = b.bundle_key and b.proj_code = c.proj_key and " +
                          "b.bundle_key = c.batch_key and a.proj_code = c.proj_key and a.bundle_key and c.batch_key "+
                          "and a.filename = c.policy_number and b.status >= 7 and a.status = 'Exported' and c.status <> 29";
@@ -196,8 +180,7 @@ namespace ImageHeaven
         {
             System.Data.DataTable dt = new System.Data.DataTable();
             string sql = "select SUM(a.outward_image_count) from case_file_master a, bundle_master b where "+
-                         "(date_format(b.outward_date, '%Y-%m-%d') >= '" + stDate + "' and " +
-                         "date_format(b.outward_date, '%Y-%m-%d') <= '" + endDate + "') and a.proj_code = b.proj_code and " +
+                         " a.proj_code = b.proj_code and " +
                          "a.bundle_key and b.bundle_key ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
@@ -301,34 +284,18 @@ namespace ImageHeaven
 
 
 
-                worksheet.Cells[3, 2] = "Date From : " + stDate;
-                Range range33 = worksheet.get_Range("B3");
-                range33.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow);
-                worksheet.Rows.AutoFit();
-                worksheet.Columns.AutoFit();
-
-                worksheet.Cells[4, 2] = "Date To : " + endDate;
-                Range range34 = worksheet.get_Range("B4");
-                range34.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow);
-                worksheet.Rows.AutoFit();
-                worksheet.Columns.AutoFit();
-
-                Range range = worksheet.get_Range("B3", "B4");
-                range.Borders.Color = ColorTranslator.ToOle(Color.Black);
-
-
-                Range range1 = worksheet.get_Range("B7", "S7");
+                Range range1 = worksheet.get_Range("B3", "S3");
                 range1.Borders.Color = ColorTranslator.ToOle(Color.Black);
 
                 for (int i = 1; i < grdStatus.Columns.Count + 1; i++)
                 {
 
 
-                    Range range2 = worksheet.get_Range("B7", "S7");
+                    Range range2 = worksheet.get_Range("B3", "S3");
                     range2.Borders.Color = ColorTranslator.ToOle(Color.Black);
                     range2.EntireRow.AutoFit();
                     range2.EntireColumn.AutoFit();
-                    worksheet.Cells[7, i + 1] = grdStatus.Columns[i - 1].HeaderText;
+                    worksheet.Cells[3, i + 1] = grdStatus.Columns[i - 1].HeaderText;
                 }
 
                 for (int i = 0; i < grdStatus.Rows.Count; i++)
@@ -339,8 +306,8 @@ namespace ImageHeaven
                         //range3.Borders.Color = ColorTranslator.ToOle(Color.Black);
                         range3.EntireRow.AutoFit();
                         range3.EntireColumn.AutoFit();
-                        worksheet.Cells[i + 8, j + 2] = grdStatus.Rows[i].Cells[j].Value.ToString();
-                        worksheet.Cells[i + 8, j + 2].Borders.Color = ColorTranslator.ToOle(Color.Black);
+                        worksheet.Cells[i + 4, j + 2] = grdStatus.Rows[i].Cells[j].Value.ToString();
+                        worksheet.Cells[i + 4, j + 2].Borders.Color = ColorTranslator.ToOle(Color.Black);
 
                     }
                 }

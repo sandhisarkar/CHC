@@ -34,10 +34,6 @@ namespace ImageHeaven
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.deButton1 = new nControls.deButton();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.deLabel3 = new nControls.deLabel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.deLabel4 = new nControls.deLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdStatus = new System.Windows.Forms.DataGridView();
@@ -66,10 +62,6 @@ namespace ImageHeaven
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.deButton1);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.deLabel3);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.deLabel4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -97,44 +89,6 @@ namespace ImageHeaven
             this.deButton1.UseCompatibleTextRendering = true;
             this.deButton1.UseVisualStyleBackColor = false;
             this.deButton1.Click += new System.EventHandler(this.deButton1_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = " ";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(446, 24);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(204, 25);
-            this.dateTimePicker2.TabIndex = 10;
-            // 
-            // deLabel3
-            // 
-            this.deLabel3.AutoSize = true;
-            this.deLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel3.Location = new System.Drawing.Point(378, 27);
-            this.deLabel3.Name = "deLabel3";
-            this.deLabel3.Size = new System.Drawing.Size(52, 15);
-            this.deLabel3.TabIndex = 11;
-            this.deLabel3.Text = "Date To :";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = " ";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(104, 24);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(204, 25);
-            this.dateTimePicker1.TabIndex = 8;
-            // 
-            // deLabel4
-            // 
-            this.deLabel4.AutoSize = true;
-            this.deLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel4.Location = new System.Drawing.Point(25, 29);
-            this.deLabel4.Name = "deLabel4";
-            this.deLabel4.Size = new System.Drawing.Size(68, 15);
-            this.deLabel4.TabIndex = 9;
-            this.deLabel4.Text = "Date From :";
             // 
             // panel3
             // 
@@ -175,7 +129,7 @@ namespace ImageHeaven
             // updateDeedToolStripMenuItem
             // 
             this.updateDeedToolStripMenuItem.Name = "updateDeedToolStripMenuItem";
-            this.updateDeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateDeedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.updateDeedToolStripMenuItem.Text = "&Export to Excel";
             this.updateDeedToolStripMenuItem.Click += new System.EventHandler(this.updateDeedToolStripMenuItem_Click);
             // 
@@ -184,7 +138,7 @@ namespace ImageHeaven
             this.cmsDeeds.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.updateDeedToolStripMenuItem});
             this.cmsDeeds.Name = "cmsDeeds";
-            this.cmsDeeds.Size = new System.Drawing.Size(181, 48);
+            this.cmsDeeds.Size = new System.Drawing.Size(153, 26);
             // 
             // panel2
             // 
@@ -213,7 +167,6 @@ namespace ImageHeaven
             this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdStatus)).EndInit();
@@ -228,10 +181,6 @@ namespace ImageHeaven
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private nControls.deButton deButton1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private nControls.deLabel deLabel3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private nControls.deLabel deLabel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView grdStatus;
