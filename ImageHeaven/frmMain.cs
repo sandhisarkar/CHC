@@ -166,6 +166,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = true;
+                        detailedDashboardToolStripMenuItem.Visible = true;
                         userWiseReportToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = true;
@@ -233,6 +234,7 @@ namespace ImageHeaven
                        
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
@@ -308,6 +310,7 @@ namespace ImageHeaven
                         
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -383,6 +386,7 @@ namespace ImageHeaven
                         
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -458,6 +462,7 @@ namespace ImageHeaven
                         
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -536,6 +541,7 @@ namespace ImageHeaven
 
                         auditToolStripMenuItem.Visible = false;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
                         outwardReportToolStripMenuItem.Visible = false;
                         uATCertificateToolStripMenuItem.Visible = false;
@@ -567,6 +573,7 @@ namespace ImageHeaven
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = false;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -609,6 +616,7 @@ namespace ImageHeaven
                         
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
+                        detailedDashboardToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = true;
                         uATCertificateToolStripMenuItem.Visible = true;
                         outwardReportToolStripMenuItem.Visible = false;
@@ -1259,6 +1267,12 @@ namespace ImageHeaven
         private void detailDashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDashboard frm = new frmDashboard(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void detailedDashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetailDashboard frm = new frmDetailDashboard();
             frm.ShowDialog(this);
         }
     }

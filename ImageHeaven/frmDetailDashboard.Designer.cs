@@ -1,7 +1,7 @@
 ﻿
 namespace ImageHeaven
 {
-    partial class frmDashboard
+    partial class frmDetailDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace ImageHeaven
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetailDashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.deButton1 = new nControls.deButton();
@@ -57,7 +57,7 @@ namespace ImageHeaven
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 65);
-            this.panel1.TabIndex = 8;
+            this.panel1.TabIndex = 10;
             // 
             // groupBox1
             // 
@@ -131,7 +131,6 @@ namespace ImageHeaven
             this.updateDeedToolStripMenuItem.Name = "updateDeedToolStripMenuItem";
             this.updateDeedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.updateDeedToolStripMenuItem.Text = "&Export to Excel";
-            this.updateDeedToolStripMenuItem.Click += new System.EventHandler(this.updateDeedToolStripMenuItem_Click);
             // 
             // cmsDeeds
             // 
@@ -147,24 +146,24 @@ namespace ImageHeaven
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 450);
-            this.panel2.TabIndex = 9;
+            this.panel2.TabIndex = 11;
             // 
-            // frmDashboard
+            // frmDetailDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmDashboard";
+            this.Name = "frmDetailDashboard";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Summary Report";
-            this.Load += new System.EventHandler(this.frmDashboard_Load);
+            this.Text = "Detailed Dashboard Report";
+            this.Load += new System.EventHandler(this.frmDetailDashboard_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

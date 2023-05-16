@@ -79,6 +79,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.detailedDashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -348,7 +349,8 @@
             this.userWiseReportToolStripMenuItem,
             this.outwardReportToolStripMenuItem,
             this.uATCertificateToolStripMenuItem,
-            this.detailDashboardToolStripMenuItem});
+            this.detailDashboardToolStripMenuItem,
+            this.detailedDashboardToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -399,7 +401,7 @@
             // 
             this.detailDashboardToolStripMenuItem.Name = "detailDashboardToolStripMenuItem";
             this.detailDashboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.detailDashboardToolStripMenuItem.Text = "Detailed Dashboard";
+            this.detailDashboardToolStripMenuItem.Text = "Summary Report";
             this.detailDashboardToolStripMenuItem.Click += new System.EventHandler(this.detailDashboardToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -533,6 +535,13 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // detailedDashboardToolStripMenuItem
+            // 
+            this.detailedDashboardToolStripMenuItem.Name = "detailedDashboardToolStripMenuItem";
+            this.detailedDashboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detailedDashboardToolStripMenuItem.Text = "Detailed Dashboard";
+            this.detailedDashboardToolStripMenuItem.Click += new System.EventHandler(this.detailedDashboardToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,6 +625,7 @@
         private System.Windows.Forms.ToolStripMenuItem outwardSubmissionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outwardReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detailDashboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detailedDashboardToolStripMenuItem;
     }
 }
 
