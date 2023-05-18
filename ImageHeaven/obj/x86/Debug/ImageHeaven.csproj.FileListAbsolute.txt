@@ -429,3 +429,4 @@ D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmUAT.resou
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmOutwardSubmission.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmOutwardReport.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmDashboard.resources
+D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmDetailDashboard.resources

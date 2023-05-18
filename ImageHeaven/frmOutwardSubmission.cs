@@ -43,10 +43,10 @@ namespace ImageHeaven
 
         public void init()
         {
-            dtpDateFrom.CustomFormat = " ";
-            dtpDateFrom.Text = string.Empty;
-            dtpDateTo.CustomFormat = " ";
-            dtpDateTo.Text = string.Empty;
+            //dtpDateFrom.CustomFormat = " ";
+            //dtpDateFrom.Text = string.Empty;
+            //dtpDateTo.CustomFormat = " ";
+            //dtpDateTo.Text = string.Empty;
             cmbBundle.Enabled = false;
             cmbBundle.Text = string.Empty;
             dtGrdVol.DataSource = null;
@@ -54,6 +54,8 @@ namespace ImageHeaven
             dtpOutDate.Enabled = false;
             dtpOutDate.Text = string.Empty;
             btnSave.Enabled = false;
+
+            populateBundle();
         }
 
         private void frmOutwardSubmission_Load(object sender, EventArgs e)
@@ -63,10 +65,10 @@ namespace ImageHeaven
 
         public void clearFields()
         {
-            dtpDateFrom.CustomFormat = " ";
-            dtpDateFrom.Text = string.Empty;
-            dtpDateTo.CustomFormat = " ";
-            dtpDateTo.Text = string.Empty;
+            //dtpDateFrom.CustomFormat = " ";
+            //dtpDateFrom.Text = string.Empty;
+            //dtpDateTo.CustomFormat = " ";
+            //dtpDateTo.Text = string.Empty;
             cmbBundle.Text = string.Empty;
             dtGrdVol.DataSource = null;
             dtpOutDate.CustomFormat = " ";
@@ -82,7 +84,7 @@ namespace ImageHeaven
         {
             DataTable dt = new DataTable();
 
-            string sql = "select bundle_key,bundle_code from bundle_master where ISNULL(outward_date) and status >= 7 and inward_date >= '" + dtpDateFrom.Text + "' and inward_date <= '" + dtpDateTo.Text + "'";
+            string sql = "select bundle_key,bundle_code from bundle_master where ISNULL(outward_date) and status >= 7 ";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -95,7 +97,7 @@ namespace ImageHeaven
             }
             else
             {
-                MessageBox.Show(this, "Please select correct date range", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbBundle.DataSource = null;
                 cmbBundle.Text = string.Empty;
                 cmbBundle.Enabled = false;
                 dtGrdVol.DataSource = null;
@@ -109,23 +111,9 @@ namespace ImageHeaven
 
         private void cmdSearch_Click(object sender, EventArgs e)
         {
-            if ((dtpDateFrom.Text != null || dtpDateFrom.Text != string.Empty)
-                && (dtpDateTo.Text != null || dtpDateTo.Text != string.Empty))
-            {
-                populateBundle();
-            }
-            else
-            {
-                MessageBox.Show(this, "Please select correct date range", "Warning !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbBundle.Text = string.Empty;
-                cmbBundle.Enabled = false;
-                dtGrdVol.DataSource = null;
-                dtpOutDate.Enabled = false;
-                dtpOutDate.CustomFormat = " ";
-                dtpOutDate.Text = string.Empty;
-                btnSave.Enabled = false;
-                return;
-            }
+
+            //populateBundle();
+
         }
 
         public void populateGrid()
@@ -212,12 +200,12 @@ namespace ImageHeaven
 
         private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
         {
-            dtpDateFrom.CustomFormat = "yyyy-MM-dd";
+            //dtpDateFrom.CustomFormat = "yyyy-MM-dd";
         }
 
         private void dtpDateTo_ValueChanged(object sender, EventArgs e)
         {
-            dtpDateTo.CustomFormat = "yyyy-MM-dd";
+            //dtpDateTo.CustomFormat = "yyyy-MM-dd";
         }
 
         private void dtpOutDate_ValueChanged(object sender, EventArgs e)
@@ -357,6 +345,6 @@ namespace ImageHeaven
                 return;
             }
         }
-    
+
     }
 }

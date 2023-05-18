@@ -1272,7 +1272,7 @@ namespace ImageHeaven
 
         private void detailedDashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDetailDashboard frm = new frmDetailDashboard();
+            frmDetailDashboard frm = new frmDetailDashboard(sqlCon);
             frm.ShowDialog(this);
         }
     }

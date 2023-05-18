@@ -129,15 +129,16 @@ namespace ImageHeaven
             // updateDeedToolStripMenuItem
             // 
             this.updateDeedToolStripMenuItem.Name = "updateDeedToolStripMenuItem";
-            this.updateDeedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateDeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.updateDeedToolStripMenuItem.Text = "&Export to Excel";
+            this.updateDeedToolStripMenuItem.Click += new System.EventHandler(this.updateDeedToolStripMenuItem_Click);
             // 
             // cmsDeeds
             // 
             this.cmsDeeds.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.updateDeedToolStripMenuItem});
             this.cmsDeeds.Name = "cmsDeeds";
-            this.cmsDeeds.Size = new System.Drawing.Size(153, 26);
+            this.cmsDeeds.Size = new System.Drawing.Size(181, 48);
             // 
             // panel2
             // 

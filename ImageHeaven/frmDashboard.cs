@@ -272,9 +272,9 @@ namespace ImageHeaven
 
                 worksheet = (Microsoft.Office.Interop.Excel._Worksheet)workbook.ActiveSheet;
 
-                worksheet.Name = "Detailed Dashboard Report";
+                worksheet.Name = "Summary Dashboard Report";
 
-                worksheet.Cells[1, 4] = "Detailed Dashboard Report";
+                worksheet.Cells[1, 4] = "Summary Dashboard Report";
                 Range range44 = worksheet.get_Range("D1");
                 range44.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.YellowGreen);
 
@@ -313,7 +313,7 @@ namespace ImageHeaven
                 }
 
 
-                string namexls = "Detailed_Dashboard_Report" + ".xls";
+                string namexls = "Summary_Dashboard_Report" + ".xls";
                 string path = Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
                 sfdUAT.Filter = "Xls files (*.xls)|*.xls";
                 sfdUAT.FilterIndex = 2;

@@ -30,10 +30,10 @@ namespace ImageHeaven
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOutwardSubmission));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancel = new nControls.deButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSave = new nControls.deButton();
@@ -49,13 +49,6 @@ namespace ImageHeaven
             this.deLabel3 = new nControls.deLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cmdSearch = new nControls.deButton();
-            this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
-            this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
-            this.deLabel2 = new nControls.deLabel();
-            this.deLabel1 = new nControls.deLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox5.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -65,8 +58,6 @@ namespace ImageHeaven
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -77,10 +68,10 @@ namespace ImageHeaven
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(719, 10);
+            this.btnCancel.Location = new System.Drawing.Point(719, 17);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(87, 27);
+            this.btnCancel.Size = new System.Drawing.Size(87, 37);
             this.btnCancel.TabIndex = 80;
             this.btnCancel.Text = "A&bort";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -97,7 +88,7 @@ namespace ImageHeaven
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(814, 40);
+            this.groupBox5.Size = new System.Drawing.Size(814, 67);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             // 
@@ -109,10 +100,10 @@ namespace ImageHeaven
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(582, 10);
+            this.btnSave.Location = new System.Drawing.Point(582, 17);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 27);
+            this.btnSave.Size = new System.Drawing.Size(90, 37);
             this.btnSave.TabIndex = 79;
             this.btnSave.Text = "&Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -125,16 +116,16 @@ namespace ImageHeaven
             // 
             this.panel5.Controls.Add(this.groupBox5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 410);
+            this.panel5.Location = new System.Drawing.Point(0, 378);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(814, 40);
+            this.panel5.Size = new System.Drawing.Size(814, 67);
             this.panel5.TabIndex = 9;
             // 
             // dtpOutDate
             // 
             this.dtpOutDate.CustomFormat = "yyyy-MM-dd";
             this.dtpOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOutDate.Location = new System.Drawing.Point(423, 18);
+            this.dtpOutDate.Location = new System.Drawing.Point(423, 28);
             this.dtpOutDate.Name = "dtpOutDate";
             this.dtpOutDate.Size = new System.Drawing.Size(135, 22);
             this.dtpOutDate.TabIndex = 4;
@@ -147,7 +138,7 @@ namespace ImageHeaven
             // 
             this.deLabel4.AutoSize = true;
             this.deLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel4.Location = new System.Drawing.Point(232, 23);
+            this.deLabel4.Location = new System.Drawing.Point(232, 33);
             this.deLabel4.Name = "deLabel4";
             this.deLabel4.Size = new System.Drawing.Size(181, 15);
             this.deLabel4.TabIndex = 3;
@@ -161,7 +152,7 @@ namespace ImageHeaven
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(814, 86);
+            this.groupBox4.Size = new System.Drawing.Size(814, 128);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Outward Date Selection :";
@@ -170,58 +161,58 @@ namespace ImageHeaven
             // 
             this.panel4.Controls.Add(this.groupBox4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 364);
+            this.panel4.Location = new System.Drawing.Point(0, 317);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(814, 86);
+            this.panel4.Size = new System.Drawing.Size(814, 128);
             this.panel4.TabIndex = 8;
             // 
             // dtGrdVol
             // 
             this.dtGrdVol.AllowUserToAddRows = false;
             this.dtGrdVol.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.White;
-            this.dtGrdVol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dtGrdVol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtGrdVol.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtGrdVol.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtGrdVol.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dtGrdVol.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtGrdVol.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGrdVol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdVol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtGrdVol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtGrdVol.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtGrdVol.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtGrdVol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtGrdVol.Location = new System.Drawing.Point(3, 18);
             this.dtGrdVol.MultiSelect = false;
             this.dtGrdVol.Name = "dtGrdVol";
             this.dtGrdVol.ReadOnly = true;
             this.dtGrdVol.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGrdVol.RowHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdVol.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtGrdVol.RowHeadersVisible = false;
             this.dtGrdVol.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtGrdVol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtGrdVol.Size = new System.Drawing.Size(808, 235);
+            this.dtGrdVol.Size = new System.Drawing.Size(808, 247);
             this.dtGrdVol.StandardTab = true;
             this.dtGrdVol.TabIndex = 5;
             // 
@@ -232,7 +223,7 @@ namespace ImageHeaven
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(814, 256);
+            this.groupBox3.Size = new System.Drawing.Size(814, 268);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "File Details :";
@@ -252,9 +243,9 @@ namespace ImageHeaven
             // 
             this.panel3.Controls.Add(this.groupBox3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 108);
+            this.panel3.Location = new System.Drawing.Point(0, 49);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(814, 256);
+            this.panel3.Size = new System.Drawing.Size(814, 268);
             this.panel3.TabIndex = 7;
             // 
             // deLabel3
@@ -284,107 +275,20 @@ namespace ImageHeaven
             // 
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 59);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(814, 49);
             this.panel2.TabIndex = 6;
-            // 
-            // cmdSearch
-            // 
-            this.cmdSearch.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cmdSearch.BackgroundImage")));
-            this.cmdSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.cmdSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cmdSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSearch.Location = new System.Drawing.Point(597, 14);
-            this.cmdSearch.Name = "cmdSearch";
-            this.cmdSearch.Size = new System.Drawing.Size(94, 31);
-            this.cmdSearch.TabIndex = 4;
-            this.cmdSearch.Text = "S&earch";
-            this.cmdSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.cmdSearch.UseCompatibleTextRendering = true;
-            this.cmdSearch.UseVisualStyleBackColor = false;
-            this.cmdSearch.Click += new System.EventHandler(this.cmdSearch_Click);
-            // 
-            // dtpDateTo
-            // 
-            this.dtpDateTo.CustomFormat = "yyyy-MM-dd";
-            this.dtpDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateTo.Location = new System.Drawing.Point(404, 21);
-            this.dtpDateTo.Name = "dtpDateTo";
-            this.dtpDateTo.Size = new System.Drawing.Size(151, 22);
-            this.dtpDateTo.TabIndex = 3;
-            this.dtpDateTo.Value = new System.DateTime(2022, 5, 28, 0, 0, 0, 0);
-            this.dtpDateTo.ValueChanged += new System.EventHandler(this.dtpDateTo_ValueChanged);
-            // 
-            // dtpDateFrom
-            // 
-            this.dtpDateFrom.CustomFormat = "yyyy-MM-dd";
-            this.dtpDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateFrom.Location = new System.Drawing.Point(163, 22);
-            this.dtpDateFrom.Name = "dtpDateFrom";
-            this.dtpDateFrom.Size = new System.Drawing.Size(135, 22);
-            this.dtpDateFrom.TabIndex = 2;
-            this.dtpDateFrom.Value = new System.DateTime(2022, 5, 28, 0, 0, 0, 0);
-            this.dtpDateFrom.ValueChanged += new System.EventHandler(this.dtpDateFrom_ValueChanged);
-            // 
-            // deLabel2
-            // 
-            this.deLabel2.AutoSize = true;
-            this.deLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel2.Location = new System.Drawing.Point(345, 26);
-            this.deLabel2.Name = "deLabel2";
-            this.deLabel2.Size = new System.Drawing.Size(52, 15);
-            this.deLabel2.TabIndex = 1;
-            this.deLabel2.Text = "Date To :";
-            // 
-            // deLabel1
-            // 
-            this.deLabel1.AutoSize = true;
-            this.deLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel1.Location = new System.Drawing.Point(89, 27);
-            this.deLabel1.Name = "deLabel1";
-            this.deLabel1.Size = new System.Drawing.Size(68, 15);
-            this.deLabel1.TabIndex = 0;
-            this.deLabel1.Text = "Date From :";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cmdSearch);
-            this.groupBox1.Controls.Add(this.dtpDateTo);
-            this.groupBox1.Controls.Add(this.dtpDateFrom);
-            this.groupBox1.Controls.Add(this.deLabel2);
-            this.groupBox1.Controls.Add(this.deLabel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(814, 59);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Inward Date Selection :";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(814, 59);
-            this.panel1.TabIndex = 5;
             // 
             // frmOutwardSubmission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 450);
+            this.ClientSize = new System.Drawing.Size(814, 445);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -404,9 +308,6 @@ namespace ImageHeaven
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -428,12 +329,5 @@ namespace ImageHeaven
         private nControls.deLabel deLabel3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel2;
-        private nControls.deButton cmdSearch;
-        private System.Windows.Forms.DateTimePicker dtpDateTo;
-        private System.Windows.Forms.DateTimePicker dtpDateFrom;
-        private nControls.deLabel deLabel2;
-        private nControls.deLabel deLabel1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
     }
 }
