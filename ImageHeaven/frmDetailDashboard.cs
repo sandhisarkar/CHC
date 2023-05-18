@@ -59,8 +59,16 @@ namespace ImageHeaven
         private void deButton1_Click(object sender, EventArgs e)
         {
             grdStatus.DataSource = null;
-
-            init();
+            validateFrom();
+            validateTo();
+            if (Convert.ToInt32(deTextBox1.Text) >= Convert.ToInt32(deTextBox29.Text))
+            {
+                init();
+            }
+            else
+            {
+                MessageBox.Show("No record found...");
+            }
         }
 
         private void FormatDataGridView()
@@ -84,9 +92,10 @@ namespace ImageHeaven
         {
             System.Data.DataTable dt = new System.Data.DataTable();
             string sql = "select a.proj_code, a.bundle_key, date_format(a.inward_date,'%M-%Y'), a.bundle_name, a.bundle_no, b.filename, " +
-                         "a.outward_date , b.status " +
+                         "a.outward_date , b.status, b.running_serial " +
                          "from bundle_master a, metadata_entry b where " +
-                         "a.proj_code = b.proj_code and a.bundle_key = b.bundle_key order by a.proj_code, a.bundle_key";
+                         "a.proj_code = b.proj_code and b.running_serial >='"+ deTextBox29.Text + "' and b.running_serial <= '"+ deTextBox1.Text + "' and " +
+                         " a.bundle_key = b.bundle_key order by b.running_serial";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -131,7 +140,7 @@ namespace ImageHeaven
         }
         public class DataRecord
         {
-            public int sl { get; set; }
+            public string sl { get; set; }
             public string loc { get; set; }
             public string soft { get; set; }
             public string monthyear { get; set; }
@@ -160,6 +169,8 @@ namespace ImageHeaven
         }
         private void init()
         {
+            
+
             System.Data.DataTable table = new System.Data.DataTable();
             table = _GetBundleEntries();
 
@@ -212,6 +223,7 @@ namespace ImageHeaven
                     string file = table.Rows[i][5].ToString();
                     string outdate = table.Rows[i][6].ToString();
                     string expStatus = table.Rows[i][7].ToString();
+                    string runningSlNo = table.Rows[i][8].ToString();
                     string expImage = "";
                     if (expStatus == "N") { expStatus = "Not Exported"; expImage = ""; }
                     else { expImage = _GetImagesExport(pk, bk, file).Rows[0][0].ToString(); }
@@ -245,7 +257,7 @@ namespace ImageHeaven
                     }
                     records.Add(new DataRecord
                     {
-                        sl = i + 1,
+                        sl = runningSlNo,
                         loc = "",
                         soft = "Nevaeh",
                         monthyear = table.Rows[i][2].ToString(),
@@ -449,8 +461,8 @@ namespace ImageHeaven
 
                 worksheet.Name = "Detailed Dashboard Report";
 
-                worksheet.Cells[1, 4] = "Detailed Dashboard Report";
-                Range range44 = worksheet.get_Range("D1");
+                worksheet.Cells[1, 9] = "Detailed Dashboard Report";
+                Range range44 = worksheet.get_Range("I1");
                 range44.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.YellowGreen);
 
                 worksheet.Rows.AutoFit();
@@ -508,6 +520,71 @@ namespace ImageHeaven
 
                 app.Quit();
             }
+        }
+        public bool validateFrom()
+        {
+            bool retval = false;
+            if (deTextBox29.Text != "")
+            {
+
+                bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox29.Text, "[^0-9]");
+                if (res != true && deTextBox29.Text.Substring(0, 1) != "0")
+                {
+                    retval = true;
+                }
+                else
+                {
+                    retval = false;
+                    MessageBox.Show("Please input Valid no...");
+                    deTextBox29.Focus();
+                    return retval;
+                }
+            }
+            else
+            {
+                retval = false;
+                MessageBox.Show("Please input Valid no...");
+                deTextBox29.Focus();
+                return retval;
+            }
+            return retval;
+        }
+        public bool validateTo()
+        {
+            bool retval = false;
+            if (deTextBox1.Text != "")
+            {
+
+                bool res = System.Text.RegularExpressions.Regex.IsMatch(deTextBox1.Text, "[^0-9]");
+                if (res != true && deTextBox1.Text.Substring(0, 1) != "0")
+                {
+                    retval = true;
+                }
+                else
+                {
+                    retval = false;
+                    MessageBox.Show("Please input Valid no...");
+                    deTextBox1.Focus();
+                    return retval;
+                }
+            }
+            else
+            {
+                retval = false;
+                MessageBox.Show("Please input Valid no...");
+                deTextBox1.Focus();
+                return retval;
+            }
+            return retval;
+        }
+        private void deTextBox29_Leave(object sender, EventArgs e)
+        {
+            validateFrom();
+        }
+
+        private void deTextBox1_Leave(object sender, EventArgs e)
+        {
+            validateTo();
         }
     }
 }

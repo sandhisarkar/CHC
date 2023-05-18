@@ -675,7 +675,15 @@ namespace ImageHeaven
             odap.Fill(dt);
             return dt;
         }
-
+        public DataTable _GetTotalMetaCount()
+        {
+            DataTable dt = new DataTable();
+            string sql = "select MAX(running_serial) from metadata_entry ";
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
+            OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
+            odap.Fill(dt);
+            return dt;
+        }
         public DataTable _GetFileCount(string proj, string bundle)
         {
             DataTable dt = new DataTable();
@@ -1146,7 +1154,8 @@ namespace ImageHeaven
                 disablegroup2();
 
                 string cnr = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString();
-                if (cnr != "") {
+                if (cnr != "")
+                {
                     deLabel61.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(0, 6);
                     deTextBox12.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(12, 4);
                     deTextBox10.Text = metadata_details(projKey, bundleKey, filename).Rows[0][30].ToString().Substring(6, 6);
@@ -2439,7 +2448,7 @@ namespace ImageHeaven
         public DataTable checkCNR(string combo, string cnr, string year)
         {
             DataTable dt = new DataTable();
-            string sql = "select cnrno from metadata_entry where cnrno = CONCAT('"+combo+"','"+cnr+"','"+year+"') and case_year = '" + year + "'";
+            string sql = "select cnrno from metadata_entry where cnrno = CONCAT('" + combo + "','" + cnr + "','" + year + "') and case_year = '" + year + "'";
             OdbcCommand cmd = new OdbcCommand(sql, sqlCon, txn);
             OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
             odap.Fill(dt);
@@ -2472,7 +2481,7 @@ namespace ImageHeaven
             if (deTextBox10.Text != "")
             {
                 string year = frmNewCase.caseYear;
-                if(checkCNR(deLabel61.Text, deTextBox10.Text, year).Rows.Count > 0)
+                if (checkCNR(deLabel61.Text, deTextBox10.Text, year).Rows.Count > 0)
                 {
                     retval = false;
                     MessageBox.Show(this, "Please input correct CNR Number...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -2480,7 +2489,7 @@ namespace ImageHeaven
                     return retval;
                 }
             }
-            
+
 
             if (deTextBox6.Text != "" || deTextBox7.Text != "" || deTextBox9.Text != "")
             {
@@ -3368,10 +3377,10 @@ namespace ImageHeaven
             string dept_note = deTextBox43.Text;
 
             item_no = Convert.ToString(Convert.ToInt32(item_no) + 1);
-
-            sqlStr = @"insert into metadata_entry(proj_code,bundle_key,item_no,case_file_no,case_status,case_type,case_nature,case_year,filename,disposal_date,judge_name,district,cnrno,petitioner_name,petitioner_counsel_name,respondant_name,respondant_counsel_name,case_filling_date,ps_name,ps_case_no,lc_case_no,lc_order_date,lc_judge_name,conn_app_case_no,conn_disposal_type,conn_main_case_no,analogous_case_no,old_case_type,old_case_no,old_case_year,file_move_history,dept_remark,created_by,created_dttm) values('" +
-                        projKey + "','" + bundleKey + "','" + item_no + "','" + case_file_no +
-                        "','" + case_status + "','" + case_type + "','" + case_nature + "','" + case_year + "','" + filename + "','" + disposal_date + "','" + judge_name + "','" + district + "','"+cnr+"','" + petitionoer_name + "','" + petitionoer_counsel + "','" + respondant_name + "','" + respondant_counsel + "','" + case_filling_date + "','" + ps + "','" + ps_caseno + "','" + lc_case_no + "','" + lc_order_date + "','" + lc_judge_name + "','" + conn_app_case_no + "','" + conn_app_disposal_type + "','" + conn_main_case_no + "','" + analogous_case_no + "','" + old_case_type + "','" + old_case_no + "','" + old_case_year + "','" + file_move_history + "','" + dept_note + "','" + crd.created_by + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+            string runningSL = Convert.ToString(Convert.ToInt32(_GetTotalMetaCount().Rows[0][0].ToString()) + 1);
+            sqlStr = @"insert into metadata_entry(proj_code,bundle_key,item_no,running_serial,case_file_no,case_status,case_type,case_nature,case_year,filename,disposal_date,judge_name,district,cnrno,petitioner_name,petitioner_counsel_name,respondant_name,respondant_counsel_name,case_filling_date,ps_name,ps_case_no,lc_case_no,lc_order_date,lc_judge_name,conn_app_case_no,conn_disposal_type,conn_main_case_no,analogous_case_no,old_case_type,old_case_no,old_case_year,file_move_history,dept_remark,created_by,created_dttm) values('" +
+                        projKey + "','" + bundleKey + "','" + item_no + "','" + runningSL + "','" + case_file_no +
+                        "','" + case_status + "','" + case_type + "','" + case_nature + "','" + case_year + "','" + filename + "','" + disposal_date + "','" + judge_name + "','" + district + "','" + cnr + "','" + petitionoer_name + "','" + petitionoer_counsel + "','" + respondant_name + "','" + respondant_counsel + "','" + case_filling_date + "','" + ps + "','" + ps_caseno + "','" + lc_case_no + "','" + lc_order_date + "','" + lc_judge_name + "','" + conn_app_case_no + "','" + conn_app_disposal_type + "','" + conn_main_case_no + "','" + analogous_case_no + "','" + old_case_type + "','" + old_case_no + "','" + old_case_year + "','" + file_move_history + "','" + dept_note + "','" + crd.created_by + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
             //sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = txn;
             //sqlCmd.CommandText = sqlStr;
@@ -3929,7 +3938,7 @@ namespace ImageHeaven
             string dept_note = deTextBox43.Text;
 
 
-            sqlStr = @"update metadata_entry set case_status = '" + case_status + "',case_type ='" + case_type + "',case_nature='" + case_nature + "',case_year ='" + case_year + "',disposal_date='" + disposal_date + "',judge_name ='" + judge_name + "',district='" + district + "',petitioner_name ='" + petitionoer_name + "',petitioner_counsel_name='" + petitionoer_counsel + "',respondant_name='" + respondant_name + "',respondant_counsel_name='" + respondant_counsel + "',case_filling_date='" + case_filling_date + "',ps_name='" + ps + "',ps_case_no='" + ps_caseno + "',lc_case_no='" + lc_case_no + "',lc_order_date= '" + lc_order_date + "',lc_judge_name='" + lc_judge_name + "',conn_app_case_no='" + conn_app_case_no + "',conn_disposal_type='" + conn_app_disposal_type + "',conn_main_case_no='" + conn_main_case_no + "',analogous_case_no='" + analogous_case_no + "',old_case_type='" + old_case_type + "',old_case_no='" + old_case_no + "',old_case_year='" + old_case_year + "',file_move_history = '" + file_move_history + "',dept_remark = '" + dept_note + "',cnrno = '"+cnrno+"',modified_by ='" + crd.created_by + "',modified_dttm = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where proj_code ='" + projKey + "' and bundle_key = '" + bundleKey + "' and filename = '" + filename + "' ";
+            sqlStr = @"update metadata_entry set case_status = '" + case_status + "',case_type ='" + case_type + "',case_nature='" + case_nature + "',case_year ='" + case_year + "',disposal_date='" + disposal_date + "',judge_name ='" + judge_name + "',district='" + district + "',petitioner_name ='" + petitionoer_name + "',petitioner_counsel_name='" + petitionoer_counsel + "',respondant_name='" + respondant_name + "',respondant_counsel_name='" + respondant_counsel + "',case_filling_date='" + case_filling_date + "',ps_name='" + ps + "',ps_case_no='" + ps_caseno + "',lc_case_no='" + lc_case_no + "',lc_order_date= '" + lc_order_date + "',lc_judge_name='" + lc_judge_name + "',conn_app_case_no='" + conn_app_case_no + "',conn_disposal_type='" + conn_app_disposal_type + "',conn_main_case_no='" + conn_main_case_no + "',analogous_case_no='" + analogous_case_no + "',old_case_type='" + old_case_type + "',old_case_no='" + old_case_no + "',old_case_year='" + old_case_year + "',file_move_history = '" + file_move_history + "',dept_remark = '" + dept_note + "',cnrno = '" + cnrno + "',modified_by ='" + crd.created_by + "',modified_dttm = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where proj_code ='" + projKey + "' and bundle_key = '" + bundleKey + "' and filename = '" + filename + "' ";
             //sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = txn;
             //sqlCmd.CommandText = sqlStr;
@@ -4283,7 +4292,7 @@ namespace ImageHeaven
                                 if (validate() == true)
                                 {
                                     bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                    bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+                                    bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), cnrno, sqlTrans);
 
                                     bool updatecasefile = updateCaseFile();
 
@@ -4472,7 +4481,7 @@ namespace ImageHeaven
 
 
                                             bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), cnrno, sqlTrans);
                                             bool updatecasefile = updateCaseFile();
 
                                             if (insertCase == true && insertmeta == true && updatecasefile == true)
@@ -4662,7 +4671,7 @@ namespace ImageHeaven
                                         if (validate() == true)
                                         {
                                             bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), cnrno, sqlTrans);
 
                                             bool updatecasefile = updateCaseFile();
                                             if (insertCase == true && insertmeta == true && updatecasefile)
@@ -4852,7 +4861,7 @@ namespace ImageHeaven
                                         if (validate() == true)
                                         {
                                             bool insertCase = insertIntoCaseFileDB(Convert.ToString(_GetFileCount(projKey, bundleKey).Rows[0][0]), deTextBox8.Text, deComboBox1.Text, deComboBox12.Text, deComboBox2.Text, deTextBox5.Text, sqlTrans);
-                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]),cnrno, sqlTrans);
+                                            bool insertmeta = insertIntoDB(Convert.ToString(_GetMetaCount(projKey, bundleKey).Rows[0][0]), cnrno, sqlTrans);
 
                                             bool updatecasefile = updateCaseFile();
                                             if (insertCase == true && insertmeta == true && updatecasefile == true)
@@ -7039,7 +7048,8 @@ namespace ImageHeaven
 
         private void deTextBox10_Leave(object sender, EventArgs e)
         {
-            if (deTextBox10.Text == "" || deTextBox10.Text == null) {
+            if (deTextBox10.Text == "" || deTextBox10.Text == null)
+            {
                 deTextBox10.Text = "";
             }
             else
