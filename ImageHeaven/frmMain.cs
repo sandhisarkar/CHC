@@ -163,7 +163,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        updateStatusToolStripMenuItem.Visible = true;
                         auditToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = true;
                         detailedDashboardToolStripMenuItem.Visible = true;
@@ -231,7 +231,7 @@ namespace ImageHeaven
 
                         helpToolStripMenuItem.Visible = true;
 
-                       
+                        updateStatusToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
@@ -255,7 +255,7 @@ namespace ImageHeaven
                         judgeCreationToolStripMenuItem.Visible = false;
                         districtCreationToolStripMenuItem.Visible = false;
 
-
+                        updateStatusToolStripMenuItem.Visible = false;
                         generateBarcodeToolStripMenuItem1.Enabled = false;
                         exitToolStripMenuItem.Enabled = false;
                         transactionsToolStripMenuItem.Enabled = true;
@@ -383,7 +383,7 @@ namespace ImageHeaven
 
                         helpToolStripMenuItem.Visible = true;
 
-                        
+                        updateStatusToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
@@ -459,7 +459,7 @@ namespace ImageHeaven
                       
                         helpToolStripMenuItem.Visible = true;
 
-                        
+                        updateStatusToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
@@ -538,7 +538,7 @@ namespace ImageHeaven
 
                         
                         aboutToolStripMenuItem.Visible = true;
-
+                        updateStatusToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
@@ -574,6 +574,7 @@ namespace ImageHeaven
                         outwardReportToolStripMenuItem.Visible = false;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
+                        updateStatusToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -613,7 +614,7 @@ namespace ImageHeaven
 
                         helpToolStripMenuItem.Visible = true;
 
-                        
+                        updateStatusToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
                         detailedDashboardToolStripMenuItem.Visible = false;
@@ -1273,6 +1274,12 @@ namespace ImageHeaven
         private void detailedDashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDetailDashboard frm = new frmDetailDashboard(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void updateStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStatusUpdate frm = new frmStatusUpdate(sqlCon);
             frm.ShowDialog(this);
         }
     }

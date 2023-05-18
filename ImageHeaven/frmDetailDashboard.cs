@@ -92,7 +92,7 @@ namespace ImageHeaven
         {
             System.Data.DataTable dt = new System.Data.DataTable();
             string sql = "select a.proj_code, a.bundle_key, date_format(a.inward_date,'%M-%Y'), a.bundle_name, a.bundle_no, b.filename, " +
-                         "a.outward_date , b.status, b.running_serial " +
+                         "date_format(a.outward_date,'%M-%Y') , b.status, b.running_serial " +
                          "from bundle_master a, metadata_entry b where " +
                          "a.proj_code = b.proj_code and b.running_serial >='"+ deTextBox29.Text + "' and b.running_serial <= '"+ deTextBox1.Text + "' and " +
                          " a.bundle_key = b.bundle_key order by b.running_serial";

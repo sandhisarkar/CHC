@@ -515,6 +515,12 @@
     <Compile Include="frmRescanPolicy.designer.cs">
       <DependentUpon>frmRescanPolicy.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmStatusUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStatusUpdate.Designer.cs">
+      <DependentUpon>frmStatusUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSubmit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -733,6 +739,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRescanPolicy.resx">
       <DependentUpon>frmRescanPolicy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStatusUpdate.resx">
+      <DependentUpon>frmStatusUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSubmit.resx">
       <DependentUpon>frmSubmit.cs</DependentUpon>
