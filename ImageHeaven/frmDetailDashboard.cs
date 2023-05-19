@@ -39,6 +39,9 @@ namespace ImageHeaven
     public partial class frmDetailDashboard : Form
     {
         OdbcConnection sqlCon = null;
+        private INIReader rd = null;
+        private KeyValueStruct udtKeyValue;
+        public string location = "";
 
         public frmDetailDashboard()
         {
@@ -54,6 +57,11 @@ namespace ImageHeaven
         private void frmDetailDashboard_Load(object sender, EventArgs e)
         {
             grdStatus.DataSource = null;
+            
+            deLabel2.Text = "Maximum running serail no : " +_GetTotalBundleEntries().Rows.Count.ToString();
+            INIFile ini = new INIFile();
+            string iniPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Remove(0, 6) + "\\" + "IhConfiguration.ini";
+            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath);
         }
 
         private void deButton1_Click(object sender, EventArgs e)
@@ -87,6 +95,19 @@ namespace ImageHeaven
             }
 
 
+        }
+        public System.Data.DataTable _GetTotalBundleEntries()
+        {
+            System.Data.DataTable dt = new System.Data.DataTable();
+            string sql = "select a.proj_code, a.bundle_key, date_format(a.inward_date,'%M-%Y'), a.bundle_name, a.bundle_no, b.filename, " +
+                         "date_format(a.outward_date,'%M-%Y') , b.status, b.running_serial " +
+                         "from bundle_master a, metadata_entry b where " +
+                         "a.proj_code = b.proj_code and  " +
+                         " a.bundle_key = b.bundle_key order by b.running_serial";
+            OdbcCommand cmd = new OdbcCommand(sql, sqlCon);
+            OdbcDataAdapter odap = new OdbcDataAdapter(cmd);
+            odap.Fill(dt);
+            return dt;
         }
         public System.Data.DataTable _GetBundleEntries()
         {
@@ -166,6 +187,8 @@ namespace ImageHeaven
             public string uD { get; set; }
             public string oD { get; set; }
             public string rI { get; set; }
+            public string challanNo { get; set; }
+            public string challanDate { get; set; }
         }
         private void init()
         {
@@ -206,6 +229,8 @@ namespace ImageHeaven
 
             DtTemp.Columns.Add("Outward date");
             DtTemp.Columns.Add("Raise invoice");
+            DtTemp.Columns.Add("Challan No");
+            DtTemp.Columns.Add("Challan Date");
 
             List<DataRecord> records = new List<DataRecord>();
             using (Process p = Process.GetCurrentProcess())
@@ -258,7 +283,7 @@ namespace ImageHeaven
                     records.Add(new DataRecord
                     {
                         sl = runningSlNo,
-                        loc = "",
+                        loc = location,
                         soft = "Nevaeh",
                         monthyear = table.Rows[i][2].ToString(),
                         bunName = table.Rows[i][3].ToString(),
@@ -282,7 +307,9 @@ namespace ImageHeaven
                         uI = "",
                         uD = "",
                         oD = outdate,
-                        rI = ""
+                        rI = "",
+                        challanNo = "",
+                        challanDate = ""
                     });
 
                     GC.Collect();
@@ -295,7 +322,7 @@ namespace ImageHeaven
                         records[i].uatIm, records[i].uatdoneby, records[i].uatdate, records[i].ocrf,
                         records[i].ocrI, records[i].dDMS, records[i].dI, records[i].dD,
                         records[i].dT, records[i].uF, records[i].uI, records[i].uD,
-                        records[i].oD, records[i].rI);
+                        records[i].oD, records[i].rI, records[i].challanNo, records[i].challanDate);
                     //DtTemp.Rows.Add(i + 1, "", "Nevaeh", table.Rows[i][2].ToString(), table.Rows[i][3].ToString(), table.Rows[i][4].ToString(), file,
                     //totalImageScaned, scanComplete, indexComplete, fqcComplete,
                     //uatCom, uatimg, uatby, uatdate, expStatus, _GetImagesExport(pk, bk, file).Rows[0][0].ToString(),
@@ -471,14 +498,14 @@ namespace ImageHeaven
 
 
 
-                Range range1 = worksheet.get_Range("B3", "AA3");
+                Range range1 = worksheet.get_Range("B3", "AC3");
                 range1.Borders.Color = ColorTranslator.ToOle(Color.Black);
 
                 for (int i = 1; i < grdStatus.Columns.Count + 1; i++)
                 {
 
 
-                    Range range2 = worksheet.get_Range("B3", "AA3");
+                    Range range2 = worksheet.get_Range("B3", "AC3");
                     range2.Borders.Color = ColorTranslator.ToOle(Color.Black);
                     range2.EntireRow.AutoFit();
                     range2.EntireColumn.AutoFit();

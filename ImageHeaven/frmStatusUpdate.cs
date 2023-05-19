@@ -37,6 +37,9 @@ namespace ImageHeaven
     public partial class frmStatusUpdate : Form
     {
         OdbcConnection sqlCon = null;
+        private INIReader rd = null;
+        private KeyValueStruct udtKeyValue;
+        public string location = "";
 
         public frmStatusUpdate()
         {
@@ -47,6 +50,9 @@ namespace ImageHeaven
         {
             InitializeComponent();
             sqlCon = prmCon;
+            INIFile ini = new INIFile();
+            string iniPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Remove(0, 6) + "\\" + "IhConfiguration.ini";
+            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath);
         }
 
         private void deButton21_Click(object sender, EventArgs e)
@@ -162,6 +168,8 @@ namespace ImageHeaven
             public string uD { get; set; }
             public string oD { get; set; }
             public string rI { get; set; }
+            public string challanNo { get; set; }
+            public string challanDate { get; set; }
         }
         public System.Data.DataTable _GetBundleEntries()
         {
@@ -251,7 +259,9 @@ namespace ImageHeaven
             DtTemp.Columns.Add("Upload date");
 
             DtTemp.Columns.Add("Outward date");
-            DtTemp.Columns.Add("Raise invoice");
+            DtTemp.Columns.Add("Raise invoice");   
+            DtTemp.Columns.Add("Challan No");
+            DtTemp.Columns.Add("Challan Date");
 
             List<DataRecord> records = new List<DataRecord>();
             using (Process p = Process.GetCurrentProcess())
@@ -304,7 +314,7 @@ namespace ImageHeaven
                     records.Add(new DataRecord
                     {
                         sl = runningSlNo,
-                        loc = "",
+                        loc = location,
                         soft = "Nevaeh",
                         monthyear = table.Rows[i][2].ToString(),
                         bunName = table.Rows[i][3].ToString(),
@@ -328,7 +338,9 @@ namespace ImageHeaven
                         uI = "",
                         uD = "",
                         oD = outdate,
-                        rI = ""
+                        rI = "",
+                        challanNo = "",
+                        challanDate = ""
                     });
 
                     GC.Collect();
@@ -341,7 +353,7 @@ namespace ImageHeaven
                         records[i].uatIm, records[i].uatdoneby, records[i].uatdate, records[i].ocrf,
                         records[i].ocrI, records[i].dDMS, records[i].dI, records[i].dD,
                         records[i].dT, records[i].uF, records[i].uI, records[i].uD,
-                        records[i].oD, records[i].rI);
+                        records[i].oD, records[i].rI, records[i].challanNo, records[i].challanDate);
                     //DtTemp.Rows.Add(i + 1, "", "Nevaeh", table.Rows[i][2].ToString(), table.Rows[i][3].ToString(), table.Rows[i][4].ToString(), file,
                     //totalImageScaned, scanComplete, indexComplete, fqcComplete,
                     //uatCom, uatimg, uatby, uatdate, expStatus, _GetImagesExport(pk, bk, file).Rows[0][0].ToString(),
@@ -386,7 +398,8 @@ namespace ImageHeaven
         }
         private bool insertIntoDB(string sl, string loc, string software, string monthyr, string bunName, string bundleNo, string file, string scanI,
             string scanCom, string indCom, string fqcCom, string uatCom, string uatIm, string uatDone, string uatDate, string ocrF, string ocrI,
-            string delDMS, string delI, string delDate, string delTo, string upFile, string upIm, string upDate, string oDate, string rInv)
+            string delDMS, string delI, string delDate, string delTo, string upFile, string upIm, string upDate, string oDate, string rInv,
+            string challanNo,string challanDate)
         {
             bool commitBol = true;
 
@@ -400,10 +413,11 @@ namespace ImageHeaven
             sqlStr = @"insert into detailed_dashboard_master(slno,location,software,monthyear,
                       bundle_name,bundle_no,fileNo,scanImageco,scanComplete,indexComplete,fqcComplete,uatComplete,
                       uatImage,uatdoneby,uatdate,ocrfile,ocrImage,deliveryDMS,deliveredImage,
-                      deliveryDate,deliveredTo,uploadedFile,uploadedImage,uploadDate,outwardDate,raiseInvoice) values('" + sl + "'," +
+                      deliveryDate,deliveredTo,uploadedFile,uploadedImage,uploadDate,outwardDate,raiseInvoice,challanNo,challanDate) values('" + sl + "'," +
                 "'" + loc + "','" + software + "','" + monthyr + "','" + bunName + "', '" + bundleNo + "','" + file + "','" + scanI + "','" + scanCom + "','" + indCom + "'," +
                 "'" + fqcCom + "','" + uatCom + "','" + uatIm + "','" + uatDone + "','" + uatDate + "','" + ocrF + "','" + ocrI + "','" + delDMS + "','" + delI + "','" + delDate + "'," +
-                "'" + delTo + "','" + upFile + "','" + upIm + "','" + upDate + "','" + oDate + "','" + rInv + "')";
+                "'" + delTo + "','" + upFile + "','" + upIm + "','" + upDate + "','" + oDate + "','" + rInv + "'," +
+                "'"+ challanNo + "','"+challanDate+"')";
 
             sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = trans;
@@ -424,7 +438,8 @@ namespace ImageHeaven
 
         private bool updateIntoDB(string sl, string loc, string software, string monthyr, string bunName, string bundleNo, string file, string scanI,
             string scanCom, string indCom, string fqcCom, string uatCom, string uatIm, string uatDone, string uatDate, string ocrF, string ocrI,
-            string delDMS, string delI, string delDate, string delTo, string upFile, string upIm, string upDate, string oDate, string rInv)
+            string delDMS, string delI, string delDate, string delTo, string upFile, string upIm, string upDate, string oDate, string rInv,
+            string challanNo, string challanDate)
         {
             bool commitBol = true;
 
@@ -438,7 +453,8 @@ namespace ImageHeaven
                       "uatComplete = '" + uatCom + "', uatImage ='" + uatIm + "',uatdoneby ='" + uatDone + "',uatdate='" + uatDate + "'," +
                       "ocrfile='" + ocrF + "',ocrImage='" + ocrI + "',deliveryDMS='" + delDMS + "',deliveredImage = '" + delI + "'," +
                       "deliveryDate='" + delDate + "',deliveredTo='" + delTo + "',uploadedFile='" + upFile + "'," +
-                      "uploadedImage='" + upIm + "',uploadDate='" + upDate + "',outwardDate='" + oDate + "',raiseInvoice='" + rInv + "')";
+                      "uploadedImage='" + upIm + "',uploadDate='" + upDate + "',outwardDate='" + oDate + "',raiseInvoice='" + rInv + "'," +
+                      "challanNo='" + challanNo + "',challanDate='" + challanDate + "' where slno= '" + sl + "'";
 
             sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = trans;
@@ -479,7 +495,8 @@ namespace ImageHeaven
                         grdStatus.Rows[i].Cells[19].Value.ToString(), grdStatus.Rows[i].Cells[20].Value.ToString(),
                         grdStatus.Rows[i].Cells[21].Value.ToString(), grdStatus.Rows[i].Cells[22].Value.ToString(),
                         grdStatus.Rows[i].Cells[23].Value.ToString(), grdStatus.Rows[i].Cells[24].Value.ToString(),
-                        grdStatus.Rows[i].Cells[25].Value.ToString());
+                        grdStatus.Rows[i].Cells[25].Value.ToString(), grdStatus.Rows[i].Cells[26].Value.ToString(),
+                        grdStatus.Rows[i].Cells[27].Value.ToString());
                     if (updatelog == true)
                     {
                         retVal = true;
@@ -507,7 +524,8 @@ namespace ImageHeaven
                         grdStatus.Rows[i].Cells[19].Value.ToString(), grdStatus.Rows[i].Cells[20].Value.ToString(),
                         grdStatus.Rows[i].Cells[21].Value.ToString(), grdStatus.Rows[i].Cells[22].Value.ToString(),
                         grdStatus.Rows[i].Cells[23].Value.ToString(), grdStatus.Rows[i].Cells[24].Value.ToString(),
-                        grdStatus.Rows[i].Cells[25].Value.ToString());
+                        grdStatus.Rows[i].Cells[25].Value.ToString(), grdStatus.Rows[i].Cells[26].Value.ToString(),
+                        grdStatus.Rows[i].Cells[27].Value.ToString());
                     if (insertlog == true)
                     {
                         retVal = true;

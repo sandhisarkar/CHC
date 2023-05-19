@@ -81,6 +81,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.locationConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -317,7 +318,8 @@
             this.configurationToolStripMenuItem,
             this.newPasswordToolStripMenuItem,
             this.newUserToolStripMenuItem,
-            this.onlineUsersToolStripMenuItem});
+            this.onlineUsersToolStripMenuItem,
+            this.locationConfigurationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -325,28 +327,28 @@
             // configurationToolStripMenuItem
             // 
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.configurationToolStripMenuItem.Text = "Configuration";
             this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
             // 
             // newPasswordToolStripMenuItem
             // 
             this.newPasswordToolStripMenuItem.Name = "newPasswordToolStripMenuItem";
-            this.newPasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.newPasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.newPasswordToolStripMenuItem.Text = "Change Password";
             this.newPasswordToolStripMenuItem.Click += new System.EventHandler(this.newPasswordToolStripMenuItem_Click);
             // 
             // newUserToolStripMenuItem
             // 
             this.newUserToolStripMenuItem.Name = "newUserToolStripMenuItem";
-            this.newUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.newUserToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.newUserToolStripMenuItem.Text = "New User";
             this.newUserToolStripMenuItem.Click += new System.EventHandler(this.newUserToolStripMenuItem_Click);
             // 
             // onlineUsersToolStripMenuItem
             // 
             this.onlineUsersToolStripMenuItem.Name = "onlineUsersToolStripMenuItem";
-            this.onlineUsersToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.onlineUsersToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.onlineUsersToolStripMenuItem.Text = "Online Users";
             this.onlineUsersToolStripMenuItem.Click += new System.EventHandler(this.onlineUsersToolStripMenuItem_Click);
             // 
@@ -432,7 +434,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -552,6 +554,13 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // locationConfigurationToolStripMenuItem
+            // 
+            this.locationConfigurationToolStripMenuItem.Name = "locationConfigurationToolStripMenuItem";
+            this.locationConfigurationToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.locationConfigurationToolStripMenuItem.Text = "Location Configuration";
+            this.locationConfigurationToolStripMenuItem.Click += new System.EventHandler(this.locationConfigurationToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,6 +646,7 @@
         private System.Windows.Forms.ToolStripMenuItem detailDashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detailedDashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locationConfigurationToolStripMenuItem;
     }
 }
 

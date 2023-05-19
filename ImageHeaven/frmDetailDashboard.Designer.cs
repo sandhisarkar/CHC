@@ -33,6 +33,10 @@ namespace ImageHeaven
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetailDashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.deTextBox1 = new nControls.deTextBox();
+            this.deTextBox29 = new nControls.deTextBox();
+            this.deLabel1 = new nControls.deLabel();
+            this.deLabel29 = new nControls.deLabel();
             this.deButton1 = new nControls.deButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -41,10 +45,7 @@ namespace ImageHeaven
             this.cmsDeeds = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sfdUAT = new System.Windows.Forms.SaveFileDialog();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.deLabel29 = new nControls.deLabel();
-            this.deLabel1 = new nControls.deLabel();
-            this.deTextBox29 = new nControls.deTextBox();
-            this.deTextBox1 = new nControls.deTextBox();
+            this.deLabel2 = new nControls.deLabel();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -65,6 +66,7 @@ namespace ImageHeaven
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.deLabel2);
             this.groupBox1.Controls.Add(this.deTextBox1);
             this.groupBox1.Controls.Add(this.deTextBox29);
             this.groupBox1.Controls.Add(this.deLabel1);
@@ -79,6 +81,58 @@ namespace ImageHeaven
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search Criteria";
             // 
+            // deTextBox1
+            // 
+            this.deTextBox1.BackColor = System.Drawing.Color.White;
+            this.deTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.deTextBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox1.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox1.Location = new System.Drawing.Point(569, 19);
+            this.deTextBox1.Mandatory = true;
+            this.deTextBox1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox1.MaxLength = 99999999;
+            this.deTextBox1.Name = "deTextBox1";
+            this.deTextBox1.Size = new System.Drawing.Size(98, 22);
+            this.deTextBox1.TabIndex = 2;
+            this.deTextBox1.Leave += new System.EventHandler(this.deTextBox1_Leave);
+            // 
+            // deTextBox29
+            // 
+            this.deTextBox29.BackColor = System.Drawing.Color.White;
+            this.deTextBox29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.deTextBox29.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deTextBox29.ForeColor = System.Drawing.Color.Black;
+            this.deTextBox29.Location = new System.Drawing.Point(337, 19);
+            this.deTextBox29.Mandatory = true;
+            this.deTextBox29.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.deTextBox29.MaxLength = 99999999;
+            this.deTextBox29.Name = "deTextBox29";
+            this.deTextBox29.Size = new System.Drawing.Size(98, 22);
+            this.deTextBox29.TabIndex = 1;
+            this.deTextBox29.Leave += new System.EventHandler(this.deTextBox29_Leave);
+            // 
+            // deLabel1
+            // 
+            this.deLabel1.AutoSize = true;
+            this.deLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel1.Location = new System.Drawing.Point(491, 23);
+            this.deLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deLabel1.Name = "deLabel1";
+            this.deLabel1.Size = new System.Drawing.Size(74, 13);
+            this.deLabel1.TabIndex = 14;
+            this.deLabel1.Text = "To Serial No :";
+            // 
+            // deLabel29
+            // 
+            this.deLabel29.AutoSize = true;
+            this.deLabel29.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel29.Location = new System.Drawing.Point(245, 23);
+            this.deLabel29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deLabel29.Name = "deLabel29";
+            this.deLabel29.Size = new System.Drawing.Size(88, 13);
+            this.deLabel29.TabIndex = 13;
+            this.deLabel29.Text = "From Serial No :";
+            // 
             // deButton1
             // 
             this.deButton1.BackColor = System.Drawing.SystemColors.Control;
@@ -87,7 +141,7 @@ namespace ImageHeaven
             this.deButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.deButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deButton1.Location = new System.Drawing.Point(682, 20);
+            this.deButton1.Location = new System.Drawing.Point(682, 15);
             this.deButton1.Name = "deButton1";
             this.deButton1.Size = new System.Drawing.Size(92, 29);
             this.deButton1.TabIndex = 12;
@@ -157,57 +211,16 @@ namespace ImageHeaven
             this.panel2.Size = new System.Drawing.Size(800, 450);
             this.panel2.TabIndex = 11;
             // 
-            // deLabel29
+            // deLabel2
             // 
-            this.deLabel29.AutoSize = true;
-            this.deLabel29.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel29.Location = new System.Drawing.Point(157, 29);
-            this.deLabel29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.deLabel29.Name = "deLabel29";
-            this.deLabel29.Size = new System.Drawing.Size(88, 13);
-            this.deLabel29.TabIndex = 13;
-            this.deLabel29.Text = "From Serial No :";
-            // 
-            // deLabel1
-            // 
-            this.deLabel1.AutoSize = true;
-            this.deLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deLabel1.Location = new System.Drawing.Point(403, 29);
-            this.deLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.deLabel1.Name = "deLabel1";
-            this.deLabel1.Size = new System.Drawing.Size(74, 13);
-            this.deLabel1.TabIndex = 14;
-            this.deLabel1.Text = "To Serial No :";
-            // 
-            // deTextBox29
-            // 
-            this.deTextBox29.BackColor = System.Drawing.Color.White;
-            this.deTextBox29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.deTextBox29.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deTextBox29.ForeColor = System.Drawing.Color.Black;
-            this.deTextBox29.Location = new System.Drawing.Point(249, 25);
-            this.deTextBox29.Mandatory = true;
-            this.deTextBox29.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.deTextBox29.MaxLength = 99999999;
-            this.deTextBox29.Name = "deTextBox29";
-            this.deTextBox29.Size = new System.Drawing.Size(98, 22);
-            this.deTextBox29.TabIndex = 1;
-            this.deTextBox29.Leave += new System.EventHandler(this.deTextBox29_Leave);
-            // 
-            // deTextBox1
-            // 
-            this.deTextBox1.BackColor = System.Drawing.Color.White;
-            this.deTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.deTextBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.deTextBox1.Location = new System.Drawing.Point(481, 25);
-            this.deTextBox1.Mandatory = true;
-            this.deTextBox1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.deTextBox1.MaxLength = 99999999;
-            this.deTextBox1.Name = "deTextBox1";
-            this.deTextBox1.Size = new System.Drawing.Size(98, 22);
-            this.deTextBox1.TabIndex = 2;
-            this.deTextBox1.Leave += new System.EventHandler(this.deTextBox1_Leave);
+            this.deLabel2.AutoSize = true;
+            this.deLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deLabel2.ForeColor = System.Drawing.Color.Red;
+            this.deLabel2.Location = new System.Drawing.Point(8, 40);
+            this.deLabel2.Name = "deLabel2";
+            this.deLabel2.Size = new System.Drawing.Size(54, 15);
+            this.deLabel2.TabIndex = 15;
+            this.deLabel2.Text = "deLabel2";
             // 
             // frmDetailDashboard
             // 
@@ -253,5 +266,6 @@ namespace ImageHeaven
         private nControls.deLabel deLabel1;
         private nControls.deTextBox deTextBox29;
         private nControls.deTextBox deTextBox1;
+        private nControls.deLabel deLabel2;
     }
 }

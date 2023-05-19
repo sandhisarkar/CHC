@@ -341,6 +341,12 @@
     <Compile Include="frmOutwardSubmission.Designer.cs">
       <DependentUpon>frmOutwardSubmission.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLocConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocConfig.Designer.cs">
+      <DependentUpon>frmLocConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPathConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -652,6 +658,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOutwardSubmission.resx">
       <DependentUpon>frmOutwardSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLocConfig.resx">
+      <DependentUpon>frmLocConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPathConfig.resx">
       <DependentUpon>frmPathConfig.cs</DependentUpon>
