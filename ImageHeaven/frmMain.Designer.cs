@@ -59,6 +59,7 @@
             this.newPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlineUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.locationConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.productionReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.locationConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additaionalDetailsUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -176,6 +177,7 @@
             this.toolStripSeparator2,
             this.outwardSubmissionToolStripMenuItem,
             this.updateStatusToolStripMenuItem,
+            this.additaionalDetailsUpdateToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(87, 22);
@@ -352,6 +354,13 @@
             this.onlineUsersToolStripMenuItem.Text = "Online Users";
             this.onlineUsersToolStripMenuItem.Click += new System.EventHandler(this.onlineUsersToolStripMenuItem_Click);
             // 
+            // locationConfigurationToolStripMenuItem
+            // 
+            this.locationConfigurationToolStripMenuItem.Name = "locationConfigurationToolStripMenuItem";
+            this.locationConfigurationToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.locationConfigurationToolStripMenuItem.Text = "Location Configuration";
+            this.locationConfigurationToolStripMenuItem.Click += new System.EventHandler(this.locationConfigurationToolStripMenuItem_Click);
+            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -434,7 +443,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -554,12 +563,12 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // locationConfigurationToolStripMenuItem
+            // additaionalDetailsUpdateToolStripMenuItem
             // 
-            this.locationConfigurationToolStripMenuItem.Name = "locationConfigurationToolStripMenuItem";
-            this.locationConfigurationToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.locationConfigurationToolStripMenuItem.Text = "Location Configuration";
-            this.locationConfigurationToolStripMenuItem.Click += new System.EventHandler(this.locationConfigurationToolStripMenuItem_Click);
+            this.additaionalDetailsUpdateToolStripMenuItem.Name = "additaionalDetailsUpdateToolStripMenuItem";
+            this.additaionalDetailsUpdateToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.additaionalDetailsUpdateToolStripMenuItem.Text = "Additaional Details Update";
+            this.additaionalDetailsUpdateToolStripMenuItem.Click += new System.EventHandler(this.additaionalDetailsUpdateToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -647,6 +656,7 @@
         private System.Windows.Forms.ToolStripMenuItem detailedDashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locationConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem additaionalDetailsUpdateToolStripMenuItem;
     }
 }
 

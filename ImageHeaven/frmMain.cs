@@ -160,7 +160,7 @@ namespace ImageHeaven
                         
                         
                         helpToolStripMenuItem.Visible = true;
-
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = true;
                         locationConfigurationToolStripMenuItem.Visible = true;
                         aboutToolStripMenuItem.Visible = true;
                         updateStatusToolStripMenuItem.Visible = true;
@@ -228,7 +228,7 @@ namespace ImageHeaven
                         toolStrip1.Enabled = false;
                         configurationToolStripMenuItem.Visible = false;
                         outwardSubmissionToolStripMenuItem.Visible = false;
-
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         helpToolStripMenuItem.Visible = true;
                         locationConfigurationToolStripMenuItem.Visible = false;
                         updateStatusToolStripMenuItem.Visible = false;
@@ -306,7 +306,7 @@ namespace ImageHeaven
                         outwardSubmissionToolStripMenuItem.Visible = false;
 
                         helpToolStripMenuItem.Visible = true;
-
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         locationConfigurationToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         detailDashboardToolStripMenuItem.Visible = false;
@@ -380,7 +380,7 @@ namespace ImageHeaven
 
                         configurationToolStripMenuItem.Visible = false;
                         outwardSubmissionToolStripMenuItem.Visible = false;
-
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         helpToolStripMenuItem.Visible = true;
                         locationConfigurationToolStripMenuItem.Visible = false;
                         updateStatusToolStripMenuItem.Visible = false;
@@ -455,8 +455,8 @@ namespace ImageHeaven
                         toolStripButton4.Visible = true;
                         outwardSubmissionToolStripMenuItem.Visible = false;
                         configurationToolStripMenuItem.Visible = false;
-                        
-                      
+
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         helpToolStripMenuItem.Visible = true;
                         locationConfigurationToolStripMenuItem.Visible = false;
                         updateStatusToolStripMenuItem.Visible = false;
@@ -536,7 +536,7 @@ namespace ImageHeaven
 
                         helpToolStripMenuItem.Visible = true;
 
-                        
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         aboutToolStripMenuItem.Visible = true;
                         updateStatusToolStripMenuItem.Visible = false;
                         auditToolStripMenuItem.Visible = false;
@@ -576,6 +576,7 @@ namespace ImageHeaven
                         detailedDashboardToolStripMenuItem.Visible = false;
                         updateStatusToolStripMenuItem.Visible = false;
                         locationConfigurationToolStripMenuItem.Visible = false;
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                     }
                     else
                     {
@@ -612,7 +613,7 @@ namespace ImageHeaven
                         configurationToolStripMenuItem.Visible = false;
                         userWiseReportToolStripMenuItem.Visible = false;
 
-
+                        additaionalDetailsUpdateToolStripMenuItem.Visible = false;
                         helpToolStripMenuItem.Visible = true;
                         locationConfigurationToolStripMenuItem.Visible = false;
                         updateStatusToolStripMenuItem.Visible = false;
@@ -1287,6 +1288,14 @@ namespace ImageHeaven
         private void locationConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmLocConfig frm = new frmLocConfig(sqlCon);
+            frm.ShowDialog(this);
+        }
+
+        private void additaionalDetailsUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //frmDeliver frm = new frmDeliver(sqlCon);
+            //frm.ShowDialog(this);
+            frmDelivery frm = new frmDelivery(sqlCon);
             frm.ShowDialog(this);
         }
     }

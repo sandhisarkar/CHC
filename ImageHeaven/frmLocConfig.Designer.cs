@@ -50,7 +50,6 @@ namespace ImageHeaven
             // deTextBox1
             // 
             this.deTextBox1.BackColor = System.Drawing.Color.White;
-            this.deTextBox1.Enabled = false;
             this.deTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deTextBox1.ForeColor = System.Drawing.Color.Black;
             this.deTextBox1.Location = new System.Drawing.Point(116, 17);

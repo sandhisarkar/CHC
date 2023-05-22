@@ -39,7 +39,7 @@ namespace ImageHeaven
         OdbcConnection sqlCon = null;
         private INIReader rd = null;
         private KeyValueStruct udtKeyValue;
-        public string location = "";
+        public static string location = "";
 
         public frmStatusUpdate()
         {
@@ -52,7 +52,7 @@ namespace ImageHeaven
             sqlCon = prmCon;
             INIFile ini = new INIFile();
             string iniPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Remove(0, 6) + "\\" + "IhConfiguration.ini";
-            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath);
+            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath).Trim().Replace("\0", "");
         }
 
         private void deButton21_Click(object sender, EventArgs e)
@@ -259,7 +259,7 @@ namespace ImageHeaven
             DtTemp.Columns.Add("Upload date");
 
             DtTemp.Columns.Add("Outward date");
-            DtTemp.Columns.Add("Raise invoice");   
+            DtTemp.Columns.Add("Raise invoice");
             DtTemp.Columns.Add("Challan No");
             DtTemp.Columns.Add("Challan Date");
 
@@ -314,7 +314,7 @@ namespace ImageHeaven
                     records.Add(new DataRecord
                     {
                         sl = runningSlNo,
-                        loc = location,
+                        loc = location.Trim('\0'),
                         soft = "Nevaeh",
                         monthyear = table.Rows[i][2].ToString(),
                         bunName = table.Rows[i][3].ToString(),
@@ -399,7 +399,7 @@ namespace ImageHeaven
         private bool insertIntoDB(string sl, string loc, string software, string monthyr, string bunName, string bundleNo, string file, string scanI,
             string scanCom, string indCom, string fqcCom, string uatCom, string uatIm, string uatDone, string uatDate, string ocrF, string ocrI,
             string delDMS, string delI, string delDate, string delTo, string upFile, string upIm, string upDate, string oDate, string rInv,
-            string challanNo,string challanDate)
+            string challanNo, string challanDate)
         {
             bool commitBol = true;
 
@@ -417,7 +417,7 @@ namespace ImageHeaven
                 "'" + loc + "','" + software + "','" + monthyr + "','" + bunName + "', '" + bundleNo + "','" + file + "','" + scanI + "','" + scanCom + "','" + indCom + "'," +
                 "'" + fqcCom + "','" + uatCom + "','" + uatIm + "','" + uatDone + "','" + uatDate + "','" + ocrF + "','" + ocrI + "','" + delDMS + "','" + delI + "','" + delDate + "'," +
                 "'" + delTo + "','" + upFile + "','" + upIm + "','" + upDate + "','" + oDate + "','" + rInv + "'," +
-                "'"+ challanNo + "','"+challanDate+"')";
+                "'" + challanNo + "','" + challanDate + "')";
 
             sqlCmd.Connection = sqlCon;
             //sqlCmd.Transaction = trans;
@@ -477,9 +477,24 @@ namespace ImageHeaven
             deButton20.Enabled = false;
             deButton21.Enabled = false;
             bool retVal = false;
+
             for (int i = 0; i < grdStatus.Rows.Count; i++)
             {
                 string sl = grdStatus.Rows[i].Cells[0].Value.ToString();
+
+                //grdStatus.Rows[i].Cells[25].Value = frmDeliver.chcInvoice;
+                //grdStatus.Rows[i].Cells[26].Value = frmDeliver.chcChallanNo;
+                //grdStatus.Rows[i].Cells[27].Value = frmDeliver.chcChallanDate;
+
+                //grdStatus.Rows[i].Cells[21].Value = frmDeliver.chcUpload;
+                //grdStatus.Rows[i].Cells[22].Value = grdStatus.Rows[i].Cells[16].Value;
+                //grdStatus.Rows[i].Cells[23].Value = frmDeliver.chcUploadDate;
+
+                //grdStatus.Rows[i].Cells[17].Value = frmDeliver.chcDeliver;
+                //grdStatus.Rows[i].Cells[18].Value = grdStatus.Rows[i].Cells[16].Value;
+                //grdStatus.Rows[i].Cells[19].Value = frmDeliver.chcDeliverDate;
+                //grdStatus.Rows[i].Cells[20].Value = frmDeliver.chcDeliverTo;
+
                 if (checkExsist(sl).Rows.Count > 0)
                 {
                     //update
@@ -538,6 +553,8 @@ namespace ImageHeaven
                     }
                 }
             }
+
+
             if (retVal == true)
             {
                 MessageBox.Show(this, "Status updated successfully...", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

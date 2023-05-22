@@ -61,7 +61,7 @@ namespace ImageHeaven
             deLabel2.Text = "Maximum running serail no : " +_GetTotalBundleEntries().Rows.Count.ToString();
             INIFile ini = new INIFile();
             string iniPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Remove(0, 6) + "\\" + "IhConfiguration.ini";
-            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath);
+            location = ini.ReadINI("LOCCONFIG", "LOC", string.Empty, iniPath).Trim('\0');
         }
 
         private void deButton1_Click(object sender, EventArgs e)
@@ -283,7 +283,7 @@ namespace ImageHeaven
                     records.Add(new DataRecord
                     {
                         sl = runningSlNo,
-                        loc = location,
+                        loc = location.Trim('\0'),
                         soft = "Nevaeh",
                         monthyear = table.Rows[i][2].ToString(),
                         bunName = table.Rows[i][3].ToString(),

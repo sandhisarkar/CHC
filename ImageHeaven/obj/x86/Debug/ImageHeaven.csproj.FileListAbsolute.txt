@@ -431,3 +431,5 @@ D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmOutwardRe
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmDashboard.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmDetailDashboard.resources
 D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmStatusUpdate.resources
+D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmLocConfig.resources
+D:\CHC Backup Code - Copy\CHC\ImageHeaven\obj\x86\Debug\ImageHeaven.frmDelivery.resources

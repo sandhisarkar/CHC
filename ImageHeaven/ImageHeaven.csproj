@@ -305,6 +305,12 @@
     <Compile Include="frmDataTransfer.Designer.cs">
       <DependentUpon>frmDataTransfer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDelivery.Designer.cs">
+      <DependentUpon>frmDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDetailDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -640,6 +646,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDataTransfer.resx">
       <DependentUpon>frmDataTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDelivery.resx">
+      <DependentUpon>frmDelivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailDashboard.resx">
       <DependentUpon>frmDetailDashboard.cs</DependentUpon>
